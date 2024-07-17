@@ -9,6 +9,16 @@
                 @csrf
                 <div class="card-body">
                     <div class="mb-4">
+                        <label for="fullname" class="form-label">Full Name</label>
+                        @error('fullname')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
+                        <input type="fullname" class="form-control border rounded @error('fullname') is-invalid @enderror"
+                            id="fullname" name="fullname">
+                    </div>
+                    <div class="mb-4">
                         <label for="email" class="form-label">Email</label>
                         @error('email')
                         <div class="invalid-feedback">
@@ -23,7 +33,7 @@
                         <input type="password" class="form-control border rounded @error('password') is-invalid @enderror"
                             id="password" name="password">
                     </div>
-                    <button type="submit" class="bg-primary text-white fw-semibold p-2 w-100 rounded-pill border-0 mt-2">Sign In</button>
+                    <button type="submit" class="bg-primary text-white fw-semibold p-2 w-100 rounded-pill border-0 mt-2">Register</button>
                 </div>
             </form>
         </div>
