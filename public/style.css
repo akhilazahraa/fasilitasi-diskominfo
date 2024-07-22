@@ -5,3 +5,40 @@ body {
     font-family: "Poppins", sans-serif;
     background-color: #f6f8fd;
 }
+/* Tambahkan ini ke file CSS Anda */
+.banner-auth-container {
+    height: 100vh; /* Membuat kolom pertama mengisi tinggi penuh layar */
+    overflow-y: auto; /* Menambahkan scroll jika konten melebihi tinggi layar */
+}
+
+.full-height {
+    height: 100%; /* Membuat navbar mengisi tinggi penuh kolom */
+    border: 1px solid #ddd; /* Tambahkan border untuk tampilan kotak */
+    background-color: #f8f9fa; /* Warna background */
+}
+
+.navbar-nav .nav-item {
+    width: 100%; /* Membuat setiap item navbar mengisi lebar penuh */
+    border-bottom: 1px solid #ddd; /* Garis bawah setiap item */
+}
+
+.navbar-nav .nav-link {
+    padding: 10px 15px; /* Ruang dalam item navbar */
+    text-align: left; /* Teks rata kiri */
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #e9ecef; /* Warna background saat hover */
+}
+
+.navbar-brand {
+    padding: 10px 15px; /* Ruang dalam brand navbar */
+    border-bottom: 1px solid #ddd; /* Garis bawah brand */
+}
+
+/* CSS untuk mengatur margin atau padding heading */
+.content-wrapper {
+    margin-top: 20px; /* Mengatur margin atas */
+    padding-top: 20px; /* Mengatur padding atas */
+}
+

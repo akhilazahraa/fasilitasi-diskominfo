@@ -1,0 +1,111 @@
+html,
+body {
+    padding: 10;
+    margin: 10;
+    font-family: "Poppins", sans-serif;
+    background-color: #f6f8fd;
+}
+/* Tambahkan ini ke file CSS Anda */
+.banner-auth-container {
+    height: 100vh; /* Membuat kolom pertama mengisi tinggi penuh layar */
+    overflow-y: auto; /* Menambahkan scroll jika konten melebihi tinggi layar */
+    border: 1px solid #ddd; /* Tambahkan border untuk tampilan kotak */
+
+}
+
+.full-height {
+    height: 100%; /* Membuat navbar mengisi tinggi penuh kolom */
+    border: 1px solid #ddd; /* Tambahkan border untuk tampilan kotak */
+    background-color: #ffff; /* Warna background */
+}
+
+.navbar-nav .nav-item {
+    width: 100%; /* Membuat setiap item navbar mengisi lebar penuh */
+    border-bottom: 1px solid #ddd; /* Garis bawah setiap item */
+}
+
+.navbar-nav .nav-link {
+    padding: 10px 15px; /* Ruang dalam item navbar */
+    text-align: left; /* Teks rata kiri */
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #e9ecef; /* Warna background saat hover */
+}
+
+.navbar-brand {
+    padding: 10px 15px; /* Ruang dalam brand navbar */
+    border-bottom: 1px solid #ddd; /* Garis bawah brand */
+}
+
+/* CSS untuk mengatur margin atau padding heading */
+.content-wrapper {
+    margin-top: 20px; /* Mengatur margin atas */
+    padding-top: 20px; /* Mengatur padding atas */
+}
+/* Tambahkan ini ke file CSS Anda */
+
+/* Warna latar belakang kalender */
+/* Tambahkan ini ke file CSS Anda */
+
+/* Warna latar belakang kalender */
+#calendar {
+    background-color: #ffff; /* Warna pastel biru muda */
+    border-radius: 8px; /* Memberikan sudut yang melengkung */
+    padding: 20px; /* Memberikan ruang di sekitar kalender */
+}
+
+/* Warna latar belakang header kalender */
+.fc-toolbar {
+    background-color: #bbdefb; /* Warna pastel biru yang lebih terang */
+    border-radius: 8px 8px 0 0; /* Sudut melengkung hanya di bagian atas */
+    padding: 10px; /* Ruang di sekitar header */
+}
+
+/* Warna latar belakang hari */
+.fc-daygrid-day {
+    background-color: #e3f2fd; /* Warna pastel biru muda */
+}
+
+/* Warna latar belakang saat hari dihover */
+.fc-daygrid-day:hover {
+    background-color: #90caf9; /* Warna pastel biru yang lebih terang */
+}
+
+/* Warna latar belakang untuk event */
+.fc-event {
+    background-color: #bbdefb; /* Warna pastel biru */
+    border: 1px solid #64b5f6; /* Warna biru yang lebih gelap */
+    color: #0000; /* Warna teks biru */
+    border-radius: 4px; /* Sudut melengkung */
+}
+
+/* Warna latar belakang saat event dihover */
+.fc-event:hover {
+    background-color: #64b5f6; /* Warna biru yang lebih terang */
+}
+
+/* Warna latar belakang kolom hari saat hari ini */
+.fc-day-today {
+    background-color: #bbdefb; /* Warna pastel biru */
+}
+
+/* Warna latar belakang saat hari dipilih */
+.fc-highlight {
+    background-color: #90caf9; /* Warna pastel biru yang lebih gelap */
+}
+
+/* Warna teks untuk header kalender */
+.fc-toolbar h2 {
+    color: #0000; /* Warna biru */
+}
+
+/* Warna teks untuk hari */
+.fc-daygrid-day-number {
+    color: #1e88e5; /* Warna biru */
+}
+
+/* Warna teks untuk nama hari */
+.fc-col-header-cell-cushion {
+    color: #1e88e5; /* Warna biru */
+}
