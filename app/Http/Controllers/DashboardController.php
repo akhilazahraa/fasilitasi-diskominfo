@@ -12,4 +12,10 @@ class DashboardController extends Controller
             'title' => 'Fasilitasi | Dashboard',
         ]);
     }
+
+    public function addEvents(){
+        return view('dashboard.create.index', [
+            'title' => 'Fasilitasi | Create Events',
+        ]);
+    }
 }
