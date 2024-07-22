@@ -5,7 +5,7 @@
     </div>
     <div class="content-wrapper">
         <div class="card border">
-        <div id='calendar'></div>
+            <div id='calendar'></div>
         </div>
     </div>
 @endsection

@@ -74,11 +74,15 @@ body {
 
 .btn-primary {
     background-color: var(--primary-color);
-    border-radius: 10px;
+    border-radius: 8px;
     font-weight: 600 !important;
-    padding: 6px 16px;
+    padding: 8px 12px;
     width: fit-content;
     border: 0;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color);
 }
 
 .form-control {
@@ -127,4 +131,12 @@ body {
     line-height: 1.25;
     color: #71717a;
     text-decoration: none !important;
+}
+
+.table tr th {
+    font-weight: 600;
+}
+
+.table td {
+    line-clamp: 1;
 }

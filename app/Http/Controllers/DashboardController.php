@@ -21,7 +21,10 @@ class DashboardController extends Controller
 
     public function list(){
         return view('dashboard.schedule.index', [
-            'title' => 'Fasilitasi | Schedule Events',
+            'title' => 'Fasilitasi | Schedule Events',   
         ]);
+    }
+    public function store(){
+
     }
 }
