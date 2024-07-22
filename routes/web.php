@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,4 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/dashboard/create', [DashboardController::class, 'addEvents']);
+Route::get('/dashboard/events', [DashboardController::class, 'list']);

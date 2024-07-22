@@ -18,4 +18,10 @@ class DashboardController extends Controller
             'title' => 'Fasilitasi | Create Events',
         ]);
     }
+
+    public function list(){
+        return view('dashboard.schedule.index', [
+            'title' => 'Fasilitasi | Schedule Events',
+        ]);
+    }
 }
