@@ -21,34 +21,13 @@
 </head>
 
 <body>
+    @include('layouts.nav.nav-bar')
     <section class="container-fluid">
-    <div class="row">
-            <div class="col-lg-2 bg-white">
-                <!-- Vertical Navbar -->
-                <nav class="navbar navbar-expand-lg navbar-light flex-column">
-                    <div>
-                        <img src="{{ asset('image/logo.png') }}" alt="" height="35px" class="mb-4">
-                    </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav flex-column">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/dashboard/create">Create Events</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/dashboard/events">Scheduled Events</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <!-- End of Vertical Navbar -->
-            </div>
-            <div class="col-lg-10">
-                <div class="container">
-                @yield('container')
+        <div class="row">
+            @include('layouts.nav.side-bar')
+            <div class="col-lg-9">
+                <div class="container py-4">
+                    @yield('container')
                 </div>
             </div>
         </div>
