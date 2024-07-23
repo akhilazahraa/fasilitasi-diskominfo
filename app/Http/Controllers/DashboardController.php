@@ -59,9 +59,20 @@ class DashboardController extends Controller
         return redirect()->route('dashboard.events.index')->with('success', 'Event created successfully');
     }
 
-    public function listed(){
+    public function listed()
+    {
         return view('dashboard.scheduled.index', [
             'title' => 'Fasilitasi | Scheduled Events',
+        ]);
+    }
+
+    public function setting()
+    {
+        $user = Auth::user();
+
+        return view('dashboard.setting.index', [
+            'title' => 'Fasilitasi | Setting',
+            'users' => $user,
         ]);
     }
 }

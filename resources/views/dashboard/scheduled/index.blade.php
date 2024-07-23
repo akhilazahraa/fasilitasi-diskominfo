@@ -23,6 +23,12 @@
                         <td>Otto</td>
                         <td>@mdo</td>
                     </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Workshop Cyber Security CNN Indonesia</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
