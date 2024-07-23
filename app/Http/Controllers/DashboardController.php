@@ -59,9 +59,23 @@ class DashboardController extends Controller
         return redirect()->route('dashboard.events.index')->with('success', 'Event created successfully');
     }
 
-    public function listed(){
+    public function listed()
+    {
         return view('dashboard.scheduled.index', [
             'title' => 'Fasilitasi | Scheduled Events',
+        ]);
+    }
+
+    public function upcomingEvents()
+    {
+        $currentDateTime = now();
+        $user = Auth::user();
+        $events = $user->events;
+        $events = Event::where('start', '>=', $currentDateTime)->orderBy('start', 'asc')->get();
+
+        return view('dashboard.scheduled.index', [
+            'title' => 'Fasilitasi | Upcoming Events',
+            'events' => $events,
         ]);
     }
 }

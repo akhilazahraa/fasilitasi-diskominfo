@@ -1,6 +1,13 @@
 @extends('layouts.admin')
 @section('container')
-
+    <div class="mb-0">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Events</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Scheduled</li>
+            </ol>
+        </nav>
+    </div>
     <div>
         <div class="heading mb-4">
             <h1 class="fs-3 fw-bold">Scheduled Events</h1>
@@ -9,23 +16,31 @@
     <div class="content-wrapper">
         <div class="card border">
             <table class="table">
-                <div class="container-wrapper">
-                    <!--Button-->
-                    <div class="container">
-                        <button type="button" class="btn btn-primary ">Upcoming</button>
-                        <button type="button" class="btn btn-secondary">Past</button>
-                    </div>
+                <div class="d-flex gap-2 mb-4">
+                    <a class="nav-dashboard {{ Request::is('dashboard/scheduled') ? 'active' : '' }}">Upcoming</a>
+                    <a class="nav-dashboard">Previous</a>
                 </div>
+                <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Location</th>
+                            <th>Location Link</th>
+                        </tr>
+                    </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Workshop Cyber Security CNN Indonesia</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    @foreach ($events as $event)
+                        <tr>
+                            <td>{{ $event->name }}</td>
+                            <td>{{ $event->start }}</td>
+                            <td>{{ $event->end }}</td>
+                            <td>{{ $event->location }}</td>
+                            <td><a href="{{ $event->location_link }}" target="_blank">View Location</a></td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
 @endsection

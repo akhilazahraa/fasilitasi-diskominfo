@@ -11,7 +11,7 @@
     </div>
     <div class="d-flex justify-content-between align-items-center">
         <div class="heading mb-4">
-            <h1 class="fs-3 fw-bold">Scheduled Events</h1>
+            <h1 class="fs-3 fw-bold">Events</h1>
         </div>
         <div class="mb-4">
             <a href="/dashboard/events/create" class="btn btn-primary">Create Events</a>
