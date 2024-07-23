@@ -73,7 +73,9 @@ class DashboardController extends Controller
         return view('dashboard.setting.index', [
             'title' => 'Fasilitasi | Setting',
             'users' => $user,
-          
+        ]);
+    }
+    
     public function upcomingEvents()
     {
         $currentDateTime = now();
