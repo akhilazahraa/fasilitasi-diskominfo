@@ -81,6 +81,15 @@ body {
     border: 0;
 }
 
+.btn-secondary {
+    background-color: #6c757d;
+    border-radius: 8px;
+    font-weight: 600 !important;
+    padding: 8px 12px;
+    width: fit-content;
+    border: 0;
+}
+
 .btn-primary:hover {
     background-color: var(--primary-color);
 }
