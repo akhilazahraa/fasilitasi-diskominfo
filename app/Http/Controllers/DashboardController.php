@@ -78,4 +78,17 @@ class DashboardController extends Controller
             'events' => $events,
         ]);
     }
+
+    public function previousEvents()
+    {
+        $currentDateTime = now();
+        $user = Auth::user();
+        $events = $user->events;
+        $events = Event::where('start', '<=', $currentDateTime)->orderBy('start', 'asc')->get();
+
+        return view('dashboard.previous.index', [
+            'title' => 'Fasilitasi | Previous Events',
+            'events' => $events,
+        ]);
+    }
 }

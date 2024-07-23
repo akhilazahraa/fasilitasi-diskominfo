@@ -10,7 +10,7 @@
     </div>
     <div>
         <div class="heading mb-4">
-            <h1 class="fs-3 fw-bold">Scheduled Events</h1>
+            <h1 class="fs-3 fw-bold">Previous Events</h1>
         </div>
     </div>
     <div class="content-wrapper">
@@ -19,7 +19,7 @@
                 <div class="d-flex gap-2 mb-4">
                     <a href="/dashboard/events/scheduled"
                         class="nav-dashboard {{ Request::is('dashboard/events/scheduled') ? 'active' : '' }}">Upcoming</a>
-                    <a href="/dashboard/events/scheduled/previous" class="nav-dashboard">Previous</a>
+                    <a href="/dashboard/events/scheduled/previous" class="nav-dashboard {{ Request::is('dashboard/events/scheduled/previous') ? 'active' : '' }}">Previous</a>
                 </div>
                 <thead>
                     <tr>
