@@ -17,11 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/dashboard', [DashboardController::class, 'index']);
-Route::get('/dashboard/events/create', [DashboardController::class, 'addEvents']);
-Route::get('/dashboard/events', [DashboardController::class, 'list']);
-Route::get('/dashboard/scheduled', [DashboardController::class, 'listed']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard/events/create', [DashboardController::class, 'addEvents'])->middleware('auth');
+Route::post('/dashboard/events', [DashboardController::class, 'store'])->name('events.store')->middleware('auth');
+Route::get('/dashboard/events', [DashboardController::class, 'list'])->name('dashboard.events.index')->middleware('auth');
+Route::get('/dashboard/scheduled', [DashboardController::class, 'listed'])->middleware('auth');
