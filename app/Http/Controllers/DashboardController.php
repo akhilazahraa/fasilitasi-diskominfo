@@ -32,6 +32,7 @@ class DashboardController extends Controller
         $events = $user->events;
         return view('dashboard.schedule.index', [
             'title' => 'Fasilitasi | Schedule Events',
+            'events' => $events,
         ]);
     }
 
