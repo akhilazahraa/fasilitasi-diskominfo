@@ -149,3 +149,17 @@ body {
 .table td {
     line-clamp: 1;
 }
+
+.nav-dashboard {
+    color: #000;
+    text-decoration: none;
+    background-color: #e5e9f2;
+    padding: 8px 36px;
+    border-radius: 24px;
+    font-weight: 500;
+}
+
+.nav-dashboard.active {
+    color: #fff;
+    background-color: var(--primary-color);
+}

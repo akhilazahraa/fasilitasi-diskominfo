@@ -73,6 +73,17 @@ class DashboardController extends Controller
         return view('dashboard.setting.index', [
             'title' => 'Fasilitasi | Setting',
             'users' => $user,
+          
+    public function upcomingEvents()
+    {
+        $currentDateTime = now();
+        $user = Auth::user();
+        $events = $user->events;
+        $events = Event::where('start', '>=', $currentDateTime)->orderBy('start', 'asc')->get();
+
+        return view('dashboard.scheduled.index', [
+            'title' => 'Fasilitasi | Upcoming Events',
+            'events' => $events,
         ]);
     }
 }
