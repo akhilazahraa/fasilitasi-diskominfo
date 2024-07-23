@@ -5,18 +5,18 @@
             <div class="text-center">
                 <img src="{{ asset('image/logo.png') }}" alt="" height="50px" class="mb-4">
             </div>
-            <form class="" action="/login" method="post">
+            <form class="" action="/register" method="post">
                 @csrf
                 <div class="card-body">
                     <div class="mb-4">
-                        <label for="fullname" class="form-label">Full Name</label>
+                        <label for="name" class="form-label">Full Name</label>
                         @error('fullname')
                         <div class="invalid-feedback">
                             {{$message}}
                         </div>
                         @enderror
-                        <input type="fullname" class="form-control border rounded @error('fullname') is-invalid @enderror"
-                            id="fullname" name="fullname">
+                        <input type="text" class="form-control border rounded @error('name') is-invalid @enderror"
+                            id="name" name="name">
                     </div>
                     <div class="mb-4">
                         <label for="email" class="form-label">Email</label>

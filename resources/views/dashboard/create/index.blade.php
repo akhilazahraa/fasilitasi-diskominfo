@@ -13,30 +13,34 @@
     </div>
     <div class="content-wrapper">
         <div class="card p-4 border">
-            <form>
+            <form action="{{ route('events.store') }}" method="POST">
+                @csrf
                 <div class="mb-4">
                     <label class="form-label">Event name</label>
-                    <input type="text" class="form-control">
+                    <input type="text" name='name' class="form-control" required>
                 </div>
                 <div class="mb-4">
-                    <label class="form-label">Date</label>
-                    <input type="date" class="form-control">
+                    <label class="form-label">Start</label>
+                    <input type="date" name="start" class="form-control" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">End</label>
+                    <input type="date" name="end" class="form-control" required>
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Location</label>
-                    <input type="text" class="form-control">
+                    <input type="text" name="location" class="form-control" required>
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Location Link</label>
-                    <input type="text" class="form-control">
+                    <input type="url" name="location_link" class="form-control" required>
                 </div>
                 <div class="mb-4">
-                    <label class="form-label">Participant</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <label class="form-label">Participants</label>
+                    <select class="form-select" name="user_id[]" multiple>
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <button class="w-full btn btn-primary">Create</button>
@@ -44,3 +48,15 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: 'Select participants',
+                width: '100%',
+                allowClear: true
+            });
+        });
+    </script>
+@endpush
