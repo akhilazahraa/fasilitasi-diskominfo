@@ -24,3 +24,4 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/dashboard/events/create', [DashboardController::class, 'addEvents']);
 Route::get('/dashboard/events', [DashboardController::class, 'list']);
+Route::get('/dashboard/scheduled', [DashboardController::class, 'listed']);
