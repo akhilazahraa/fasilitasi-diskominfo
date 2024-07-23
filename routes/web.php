@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/dashboard/events/create', [DashboardController::class, 'addEvents']);
 Route::get('/dashboard/events', [DashboardController::class, 'list']);
-Route::get('/dashboard/scheduled', [DashboardController::class, 'listed']);
