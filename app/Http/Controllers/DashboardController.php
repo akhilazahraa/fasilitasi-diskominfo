@@ -66,6 +66,16 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function setting()
+    {
+        $user = Auth::user();
+
+        return view('dashboard.setting.index', [
+            'title' => 'Fasilitasi | Setting',
+            'users' => $user,
+        ]);
+    }
+    
     public function upcomingEvents()
     {
         $currentDateTime = now();
@@ -78,6 +88,7 @@ class DashboardController extends Controller
             'events' => $events,
         ]);
     }
+<<<<<<< HEAD
     public function detailsEvents()
     {
         return view('dashboard.scheduled.details', [
@@ -85,4 +96,19 @@ class DashboardController extends Controller
         ]);
     }
 
+=======
+
+    public function previousEvents()
+    {
+        $currentDateTime = now();
+        $user = Auth::user();
+        $events = $user->events;
+        $events = Event::where('start', '<=', $currentDateTime)->orderBy('start', 'asc')->get();
+
+        return view('dashboard.previous.index', [
+            'title' => 'Fasilitasi | Previous Events',
+            'events' => $events,
+        ]);
+    }
+>>>>>>> 074bdf8f393ffa8b4cbebbedee65ed775e002dd3
 }

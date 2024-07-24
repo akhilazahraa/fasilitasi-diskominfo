@@ -19,12 +19,13 @@
     </div>
     <div class="content-wrapper">
         <div class="card p-4 border">
-            @if($events->isEmpty())
+            @if ($events->isEmpty())
                 <p>No events scheduled.</p>
             @else
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Name</th>
                             <th>Start</th>
                             <th>End</th>
@@ -33,8 +34,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($events as $event)
+                        @foreach ($events as $event)
                             <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $event->name }}</td>
                                 <td>{{ $event->start }}</td>
                                 <td>{{ $event->end }}</td>
