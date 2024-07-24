@@ -30,3 +30,7 @@ Route::get('/dashboard/events/scheduled/details', [DashboardController::class, '
 Route::get('/dashboard/events/scheduled', [DashboardController::class, 'upcomingEvents'])->middleware('auth');
 Route::get('/dashboard/events/scheduled/previous', [DashboardController::class, 'previousEvents'])->middleware('auth');
 Route::get('/dashboard/setting', [DashboardController::class, 'setting'])->middleware('auth');
+Route::get('/dashboard/events/scheduled/{events:id}', [DashboardController::class, 'showEvents']);
+Route::get('/dashboard/events/scheduled', [DashboardController::class, 'upcomingEvents'])->middleware('auth');
+Route::get('/dashboard/events/scheduled/previous', [DashboardController::class, 'previousEvents'])->middleware('auth');
+Route::get('/dashboard/setting', [DashboardController::class, 'setting'])->middleware('auth');

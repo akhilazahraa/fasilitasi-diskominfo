@@ -35,14 +35,16 @@
                     </thead>
                     <tbody>
                         @foreach ($events as $event)
+                        <a href="{$events->id}">
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $event->name }}</td>
                                 <td>{{ $event->start }}</td>
                                 <td>{{ $event->end }}</td>
                                 <td>{{ $event->location }}</td>
-                                <td><a href="{{ $event->location_link }}" target="_blank">View Location</a></td>
+                                <td><a href="/dashboard/events/scheduled/{{ $event->id}}">View Location</a></td>
                             </tr>
+                        </a>
                         @endforeach
                     </tbody>
                 </table>

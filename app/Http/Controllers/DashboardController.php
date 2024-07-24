@@ -19,7 +19,7 @@ class DashboardController extends Controller
     public function addEvents()
     {
         $users = User::all();
-        return view('dashboard.create.index', [
+        return view('dashboard.events.create.index', [
             'title' => 'Fasilitasi | Create Events',
             'users' => $users,
         ]);
@@ -30,7 +30,7 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         $events = $user->events;
-        return view('dashboard.schedule.index', [
+        return view('dashboard.events.index', [
             'title' => 'Fasilitasi | Schedule Events',
             'events' => $events,
         ]);
@@ -75,7 +75,7 @@ class DashboardController extends Controller
             'users' => $user,
         ]);
     }
-    
+
     public function upcomingEvents()
     {
         $currentDateTime = now();
@@ -83,19 +83,11 @@ class DashboardController extends Controller
         $events = $user->events;
         $events = Event::where('start', '>=', $currentDateTime)->orderBy('start', 'asc')->get();
 
-        return view('dashboard.scheduled.index', [
+        return view('dashboard.events.scheduled.index', [
             'title' => 'Fasilitasi | Upcoming Events',
             'events' => $events,
         ]);
     }
-
-    public function detailsEvents()
-    {
-        return view('dashboard.scheduled.details', [
-            'title' => 'Fasilitasi | Details Events',
-        ]);
-    }
-
 
     public function previousEvents()
     {
@@ -104,8 +96,15 @@ class DashboardController extends Controller
         $events = $user->events;
         $events = Event::where('start', '<=', $currentDateTime)->orderBy('start', 'asc')->get();
 
-        return view('dashboard.previous.index', [
+        return view('dashboard.events.previous.index', [
             'title' => 'Fasilitasi | Previous Events',
+            'events' => $events,
+        ]);
+    }
+    public function showEvents(Event $events)
+    {
+        return view("dashboard.events.details.index", [
+            'title' => 'Fasilitasi | Details Events',
             'events' => $events,
         ]);
     }
