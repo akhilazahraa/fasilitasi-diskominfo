@@ -19,6 +19,10 @@ body {
     background-color: #fafafa;
 }
 
+.text-muted {
+    color: var(--muted-color);
+}
+
 .card {
     padding: 32px;
     border-radius: 16px;
@@ -164,5 +168,5 @@ body {
     background-color: var(--primary-color);
 }
 .bg-custom {
-    background-color: #F01E2C !important;
+    background-color: #f01e2c !important;
 }
