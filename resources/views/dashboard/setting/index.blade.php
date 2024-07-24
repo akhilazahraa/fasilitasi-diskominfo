@@ -17,6 +17,9 @@
         <div class="card border">
             <form class="" action="/register" method="post">
                 @csrf
+                <div>
+                    <img src="https://prium.github.io/phoenix/v1.18.0/assets/img/team/40x40/57.webp" alt="" class="rounded-circle" width="60px">
+                </div>
                 <div class="card-body">
                     <div class="mb-4">
                         <label for="name" class="form-label">Full Name</label>
@@ -39,7 +42,7 @@
                             id="email" name="email" value="{{ $users->email }}">
                     </div>
                     <button type="submit"
-                        class="btn-primary text-white fw-semibold p-2 w-100 rounded-pill border-0 mt-2">Login</button>
+                        class="btn-primary text-white fw-semibold p-2 w-100 rounded-pill border-0 mt-2">Update Profile</button>
                 </div>
             </form>
         </div>

@@ -25,11 +25,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 Route::get('/dashboard/events/create', [DashboardController::class, 'addEvents'])->middleware('auth');
 Route::post('/dashboard/events', [DashboardController::class, 'store'])->name('events.store')->middleware('auth');
 Route::get('/dashboard/events', [DashboardController::class, 'list'])->name('dashboard.events.index')->middleware('auth');
-<<<<<<< HEAD
 Route::get('/dashboard/scheduled', [DashboardController::class, 'upcomingEvents']);
-Route::get('/dashboard/scheduled/details', [DashboardController::class, 'detailsEvents']);
-=======
+Route::get('/dashboard/events/scheduled/{events:id}', [DashboardController::class, 'showEvents']);
 Route::get('/dashboard/events/scheduled', [DashboardController::class, 'upcomingEvents'])->middleware('auth');
 Route::get('/dashboard/events/scheduled/previous', [DashboardController::class, 'previousEvents'])->middleware('auth');
 Route::get('/dashboard/setting', [DashboardController::class, 'setting'])->middleware('auth');
->>>>>>> 074bdf8f393ffa8b4cbebbedee65ed775e002dd3

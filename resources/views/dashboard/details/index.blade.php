@@ -10,7 +10,7 @@
         </nav>
     </div>
     <div class="heading mb-4">
-        <h1 class="fs-3 fw-bold">Event Details</h1>
+        <h1 class="fs-3 fw-bold">{{ $events -> name }}</h1>
     </div>
     <div class="content-wrapper">
         <div class="card border shadow-sm">
@@ -22,23 +22,23 @@
                     <tbody>
                         <tr>
                             <th scope="row">Event Name</th>
-                            <td>Example Event</td>
+                            <td>{{$events->name}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Start</th>
+                            <td>{{$events->start}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">End</th>
+                            <td>{{$events->end}}</td>
                         </tr>
                         <tr>
                             <th scope="row">Location</th>
-                            <td>Example Location</td>
+                            <td>{{$events->location}}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Date</th>
-                            <td>Example Date</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Start Time - End Time</th>
-                            <td>Example Time</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Description</th>
-                            <td>Example Description</td>
+                            <th scope="row">Location link</th>
+                            <td>{{$events->location_link}}</td>
                         </tr>
                         <!-- Add more rows here as needed -->
                     </tbody>
