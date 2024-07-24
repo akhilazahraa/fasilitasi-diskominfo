@@ -42,7 +42,7 @@
                                 <td>{{ $event->start }}</td>
                                 <td>{{ $event->end }}</td>
                                 <td>{{ $event->location }}</td>
-                                <td><a href="/dashboard/events/scheduled/{{ $event->id}}" target="_blank">View Location</a></td>
+                                <td><a href="/dashboard/events/scheduled/{{ $event->id}}">View Location</a></td>
                             </tr>
                         </a>
                         @endforeach
