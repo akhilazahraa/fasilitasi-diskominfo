@@ -75,7 +75,7 @@ class DashboardController extends Controller
             'users' => $user,
         ]);
     }
-    
+
     public function upcomingEvents()
     {
         $currentDateTime = now();
@@ -88,7 +88,7 @@ class DashboardController extends Controller
             'events' => $events,
         ]);
     }
-<<<<<<< HEAD
+
     public function detailsEvents()
     {
         return view('dashboard.scheduled.details', [
@@ -96,7 +96,6 @@ class DashboardController extends Controller
         ]);
     }
 
-=======
 
     public function previousEvents()
     {
@@ -110,5 +109,4 @@ class DashboardController extends Controller
             'events' => $events,
         ]);
     }
->>>>>>> 074bdf8f393ffa8b4cbebbedee65ed775e002dd3
 }
