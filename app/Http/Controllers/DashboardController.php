@@ -78,4 +78,11 @@ class DashboardController extends Controller
             'events' => $events,
         ]);
     }
+    public function detailsEvents()
+    {
+        return view('dashboard.scheduled.details', [
+            'title' => 'Fasilitasi | Details Events',
+        ]);
+    }
+
 }

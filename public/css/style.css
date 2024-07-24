@@ -163,3 +163,6 @@ body {
     color: #fff;
     background-color: var(--primary-color);
 }
+.bg-custom {
+    background-color: #F01E2C !important;
+}
