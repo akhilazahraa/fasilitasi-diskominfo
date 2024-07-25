@@ -14,6 +14,12 @@
         </div>
     </div>
     <div class="content-wrapper">
+        <div class="d-flex gap-2 mb-4">
+            <a href="/dashboard/events/scheduled"
+                class="nav-dashboard {{ Request::is('dashboard/events/scheduled') ? 'active' : '' }}">Upcoming</a>
+            <a href="/dashboard/events/scheduled/previous"
+                class="nav-dashboard {{ Request::is('dashboard/events/scheduled/previous') ? 'active' : '' }}">Previous</a>
+        </div>
         <div class="row g-4">
             @foreach ($events as $event)
                 <div class="col-md-4">
