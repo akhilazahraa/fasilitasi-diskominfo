@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="icon" href="{{ asset('image/jateng.png') }}" type="image/png">
+
     <!-- font google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    @include('layouts.nav.nav-bar')
+    {{-- @include('layouts.nav.nav-bar') --}}
     <section class="container-fluid">
         <div class="row">
             @include('layouts.nav.side-bar')
@@ -58,16 +58,16 @@
         });
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
-            $(document).ready(function() {
+        $(document).ready(function() {
             $('.select2').select2({
                 placeholder: 'Select participants',
                 width: '100%',
                 allowClear: true
             });
         });
-    </script> 
+    </script>
 </body>
 
 </html>
