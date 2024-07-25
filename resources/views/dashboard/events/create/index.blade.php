@@ -21,11 +21,11 @@
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Start</label>
-                    <input type="date" name="start" class="form-control" required>
+                    <input type="datetime-local" name="start" class="form-control" required>
                 </div>
                 <div class="mb-4">
                     <label class="form-label">End</label>
-                    <input type="date" name="end" class="form-control" required>
+                    <input type="datetime-local" name="end" class="form-control" required>
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Location</label>
@@ -38,7 +38,7 @@
                 <div class="mb-4">
                     <label class="form-label">Participants</label>
                     <select class="form-select" name="user_id[]" multiple>
-                        @foreach($users as $user)
+                        @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach
                     </select>
