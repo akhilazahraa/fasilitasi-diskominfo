@@ -170,3 +170,17 @@ body {
 .bg-custom {
     background-color: #f01e2c !important;
 }
+
+.text-muted-custom {
+    color: #7a7a7a;
+}
+
+.card-scheduled {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-scheduled:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adjust the values as needed */
+}
+
