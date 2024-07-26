@@ -13,7 +13,7 @@
                     </a>
                 </li>
                 <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
-                    <a class="nav-link d-flex gap-2 align-items-center fw-medium" href="/dashboard">
+                    <a class="nav-link d-flex gap-3 align-items-center fw-medium" href="/dashboard">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-house-door" viewBox="0 0 16 16">
                             <path
@@ -24,7 +24,7 @@
                 </li>
                 @if (Auth::user()->role === 'ADMIN')
                 <li class="nav-item {{ Request::is('dashboard/events', 'dashboard/events/create') ? 'active' : '' }}">
-                    <a class="nav-link d-flex gap-2 align-items-center fw-medium" href="/dashboard/events">
+                    <a class="nav-link d-flex gap-3 align-items-center fw-medium" href="/dashboard/events">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-calendar" viewBox="0 0 16 16">
                             <path
@@ -36,7 +36,7 @@
                 @endif
                 <li
                     class="nav-item {{ Request::is('dashboard/events/scheduled', 'dashboard/events/scheduled/previous') ? 'active' : '' }}">
-                    <a class="nav-link d-flex gap-2 align-items-center fw-medium" href="/dashboard/events/scheduled">
+                    <a class="nav-link d-flex gap-3 align-items-center fw-medium" href="/dashboard/events/scheduled">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-pin-angle" viewBox="0 0 16 16">
                             <path
@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li class="nav-item {{ Request::is('dashboard/setting') ? 'active' : '' }}">
-                    <a class="nav-link d-flex gap-2 align-items-center fw-medium" href="/dashboard/setting">
+                    <a class="nav-link d-flex gap-3 align-items-center fw-medium" href="/dashboard/setting">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-gear" viewBox="0 0 16 16">
                             <path
