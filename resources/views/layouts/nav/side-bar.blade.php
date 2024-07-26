@@ -22,6 +22,7 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                @if (Auth::user()->role === 'ADMIN')
                 <li class="nav-item {{ Request::is('dashboard/events', 'dashboard/events/create') ? 'active' : '' }}">
                     <a class="nav-link d-flex gap-2 align-items-center fw-medium" href="/dashboard/events">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -32,6 +33,7 @@
                         <span>Events</span>
                     </a>
                 </li>
+                @endif
                 <li
                     class="nav-item {{ Request::is('dashboard/events/scheduled', 'dashboard/events/scheduled/previous') ? 'active' : '' }}">
                     <a class="nav-link d-flex gap-2 align-items-center fw-medium" href="/dashboard/events/scheduled">

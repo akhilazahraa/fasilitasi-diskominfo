@@ -17,7 +17,7 @@
                 @csrf
                 <div class="mb-4">
                     <label class="form-label">Event name</label>
-                    <input type="text" name='name' class="form-control" required>
+                    <input type="text" name='title' class="form-control" required>
                 </div>
                 <div class="mb-4">
                     <label class="form-label">Start</label>
