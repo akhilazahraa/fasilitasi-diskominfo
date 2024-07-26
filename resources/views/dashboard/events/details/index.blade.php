@@ -19,7 +19,7 @@
                         <div class="col-lg-4 mb-4">
                             <div>
                                 <span class="text-muted">Event Name</span>
-                                <p class="fw-semibold fs-5">{{ $events->name }}</p>
+                                <p class="fw-semibold fs-5">{{ $events->title }}</p>
                             </div>
                         </div>
                         <div class="col-lg-4 mb-4">

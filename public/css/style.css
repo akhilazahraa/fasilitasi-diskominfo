@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #e21d48;
+    --primary-color: #f33f40;
     --secondary-color: #e5e9f2;
     --muted-color: #f4f4f5;
 
@@ -16,11 +16,24 @@ body {
     padding: 0;
     margin: 0;
     font-family: "Poppins", sans-serif;
-    background-color: #fafefd;
+    background-color: #fafafa;
 }
 
 .text-muted {
     color: var(--muted-color);
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25;
+}
+
+.bg-muted {
+    background-color: var(--muted-color);
+}
+
+.font-semibold {
+    font-weight: 600;
 }
 
 .card {
@@ -78,10 +91,40 @@ body {
     border: 0 !important;
 }
 
+.fc-h-event {
+    border: 0px !important;
+}
+
+.custom-event-title {
+    background-color: var(--primary-color);
+    border: 0px;
+    color: #fff;
+    padding: 4px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.button-action-edit {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.button-action-edit:hover span {
+    text-decoration: underline;
+}
+
+.button-action-edit span {
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
 .btn-primary {
     background-color: var(--primary-color);
     border-radius: 8px;
-    font-weight: 600 !important;
     padding: 8px 12px;
     width: fit-content;
     border: 0;
@@ -124,12 +167,28 @@ body {
     padding: 0 0.5rem;
 }
 
+.nav-item .nav-link span {
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: rgb(63, 63, 70);
+}
+
+.nav-item:hover {
+    background-color: var(--muted-color);
+    border-radius: 0.5rem;
+}
+
 .nav-item.active {
     color: var(--primary-color) !important;
     background-color: var(--muted-color);
     border-radius: 0.5rem;
     padding: 0 0.5rem;
     width: 100%;
+}
+
+.nav-item.active .nav-link span {
+    color: var(--primary-color) !important;
 }
 
 .breadcrumb-item {
@@ -180,9 +239,3 @@ body {
 .card-scheduled {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-/* .card-scheduled:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adjust the values as needed */
-} */
-

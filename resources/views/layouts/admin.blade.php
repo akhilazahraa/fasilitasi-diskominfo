@@ -39,13 +39,34 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                events: '/api/events', // URL to fetch events
-            });
-            calendar.render();
-        });
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek'
+        },
+        events: '/api/events', // URL to fetch events
+        eventDidMount: function(info) {
+            // Menambahkan kelas CSS khusus pada elemen acara
+            if (info.event.start) {
+                var eventEl = document.createElement('div');
+                eventEl.className = 'custom-event-title';
+                eventEl.innerText = info.event.title;
+                info.el.innerHTML = '';
+                info.el.appendChild(eventEl);
+            }
+        },
+        eventClick: function(info) {
+            // Mengarahkan ke URL tertentu saat event diklik
+            var eventId = info.event.id; // Asumsikan bahwa ID event disimpan di info.event.id
+            window.location.href = '/dashboard/events/scheduled/' + eventId;
+        }
+    });
+    calendar.render();
+});
+
     </script>
 </body>
 
