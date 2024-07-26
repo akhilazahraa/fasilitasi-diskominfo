@@ -12,6 +12,23 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const ROLE_ADMIN = 'ADMIN';
+    const ROLE_USER = "USER";
+    const ROLE_DEFAULT = self::ROLE_USER;
+
+    const ROLES = [
+        self::ROLE_ADMIN => 'Admin',
+        self::ROLE_USER => 'User',
+    ];
+
+    public function isAdmin(){
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isUser(){
+        return $this->role == self::ROLE_USER;
+    }
+
     /**
      * The attributes that are mass assignable.
      *

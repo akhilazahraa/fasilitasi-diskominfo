@@ -26,7 +26,7 @@
                     <a href="/dashboard/events/scheduled/{{ $event->id }}"
                         class="card card-scheduled p-4 border-0 h-100 text-decoration-none">
                         <div>
-                            <h1 class="fs-6 fw-semibold mb-4">{{ $event->name }}</h1>
+                            <h1 class="fs-6 fw-semibold mb-4">{{ $event->title }}</h1>
                             <div>
                                 <div class="d-flex gap-3 align-items-center mb-2"><svg xmlns="http://www.w3.org/2000/svg"
                                         width="16" height="16" fill="#7a7a7a" class="bi bi-calendar3"
@@ -36,7 +36,7 @@
                                         <path
                                             d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
                                     </svg>
-                                    <span class="text-muted-custom">{{ date('Y-m-d', strtotime($event->start)) }}</span>
+                                    <span class="text-muted-custom">{{ date('Y-m-d', strtotime($event->start_date)) }}</span>
 
                                 </div>
                                 <div class="d-flex gap-3 align-items-center mb-2"><svg xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@
                                             d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
                                         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0" />
                                     </svg>
-                                    <span class="text-muted-custom">{{ date('H:i', strtotime($event->start)) }}</span>
+                                    <span class="text-muted-custom">{{ date('H:i', strtotime($event->start_date)) }}</span>
 
                                 </div>
                                 <div class="d-flex gap-3 align-items-center mb-2">

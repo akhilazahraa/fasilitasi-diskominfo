@@ -36,10 +36,17 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function getevents(){
+        $user = Auth::user();
+        $events = $user->events;
+
+        return response()->json($events);
+    }
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
+            'title' => 'required',
             'start' => 'required|date',
             'end' => 'required|date',
             'location' => 'required',

@@ -38,7 +38,7 @@
                         <a href="{$events->id}">
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $event->name }}</td>
+                                <td>{{ $event->title }}</td>
                                 <td>{{ $event->start }}</td>
                                 <td>{{ $event->end }}</td>
                                 <td>{{ $event->location }}</td>
