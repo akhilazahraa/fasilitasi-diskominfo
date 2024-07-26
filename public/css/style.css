@@ -105,16 +105,16 @@ body {
     border-radius: 4px;
 }
 
-.button-action-edit {
+.button-action {
     color: var(--primary-color);
     text-decoration: none;
 }
 
-.button-action-edit:hover span {
+.button-action:hover span {
     text-decoration: underline;
 }
 
-.button-action-edit span {
+.button-action span {
     font-weight: 600;
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -128,6 +128,9 @@ body {
     padding: 8px 12px;
     width: fit-content;
     border: 0;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    font-weight: 500;
 }
 
 .btn-secondary {
