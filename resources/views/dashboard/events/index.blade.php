@@ -43,7 +43,7 @@
                     <td>{{ $event->location }}</td>
                     <td>
                         <a
-                            href="/dashboard/events/edit/{{ $event->id }}"
+                            href="/dashboard/events/{{ $event->id }}/edit"
                             class="button-action"
                         >
                             <svg

@@ -17,24 +17,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])
+    ->name('login')
+    ->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// API Routes
 Route::get('/api/events', [DashboardController::class, 'getEvents'])->name('events.get');
+
+// Dashboard Routes
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
+// Routes requiring admin role
 Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::get('/dashboard/events/create', [DashboardController::class, 'addEvents']);
     Route::post('/dashboard/events', [DashboardController::class, 'store'])->name('events.store');
     Route::get('/dashboard/events', [DashboardController::class, 'list'])->name('dashboard.events.index');
     Route::delete('/dashboard/events/delete/{id}', [DashboardController::class, 'destroy'])->name('events.destroy');
+    Route::get('/dashboard/events/{id}/edit', [DashboardController::class, 'edit'])->name('dashboard.events.edit');
+    Route::put('/dashboard/events/{id}', [DashboardController::class, 'update'])->name('dashboard.events.update');
 });
-Route::get('/dashboard/scheduled', [DashboardController::class, 'upcomingEvents']);
-Route::get('/dashboard/events/scheduled/details', [DashboardController::class, 'detailsEvents']);
-Route::get('/dashboard/events/scheduled', [DashboardController::class, 'upcomingEvents'])->middleware('auth');
-Route::get('/dashboard/events/scheduled/previous', [DashboardController::class, 'previousEvents'])->middleware('auth');
-Route::get('/dashboard/setting', [DashboardController::class, 'setting'])->middleware('auth');
-Route::get('/dashboard/events/scheduled/{events:id}', [DashboardController::class, 'showEvents']);
-Route::get('/dashboard/events/scheduled', [DashboardController::class, 'upcomingEvents'])->middleware('auth');
-Route::get('/dashboard/events/scheduled/previous', [DashboardController::class, 'previousEvents'])->middleware('auth');
-Route::get('/dashboard/setting', [DashboardController::class, 'setting'])->middleware('auth');
+
+// Authenticated routes
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard/scheduled', [DashboardController::class, 'upcomingEvents']);
+    Route::get('/dashboard/events/scheduled', [DashboardController::class, 'upcomingEvents']);
+    Route::get('/dashboard/events/scheduled/previous', [DashboardController::class, 'previousEvents']);
+    Route::get('/dashboard/events/scheduled/{events:id}', [DashboardController::class, 'showEvents']);
+    Route::get('/dashboard/setting', [DashboardController::class, 'setting']);
+});
