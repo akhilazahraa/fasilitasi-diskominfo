@@ -27,6 +27,7 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::get('/dashboard/events/create', [DashboardController::class, 'addEvents']);
     Route::post('/dashboard/events', [DashboardController::class, 'store'])->name('events.store');
     Route::get('/dashboard/events', [DashboardController::class, 'list'])->name('dashboard.events.index');
+    Route::delete('/dashboard/events/delete/{id}', [DashboardController::class, 'destroy'])->name('events.destroy');
 });
 Route::get('/dashboard/scheduled', [DashboardController::class, 'upcomingEvents']);
 Route::get('/dashboard/events/scheduled/details', [DashboardController::class, 'detailsEvents']);

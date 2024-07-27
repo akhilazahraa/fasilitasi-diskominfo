@@ -63,8 +63,17 @@ class DashboardController extends Controller
         // Attach users to the event
         $event->users()->attach($userIds);
 
-        return redirect()->route('dashboard.events.index')->with('success', 'Event created successfully');
+        return redirect()->route('dashboard.events.index')->with('success', 'Acara berhasil ditambahkan!');
     }
+
+    public function destroy($id)
+{
+    $event = Event::findOrFail($id);
+    $event->delete();
+
+    return redirect()->route('dashboard.events.index')->with('success', 'Event successfully deleted!');
+}
+
 
     public function listed()
     {
