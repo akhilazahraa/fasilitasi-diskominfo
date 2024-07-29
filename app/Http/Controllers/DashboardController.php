@@ -218,7 +218,7 @@ class DashboardController extends Controller
         $report->user_id = Auth::id(); // Menyimpan ID pengguna yang sedang login
         $report->save();
 
-        return redirect()->route('dashboard.report')->with('success', 'Laporan berhasil dibuat.');
+        return redirect()->route('dashboard.report.my-report')->with('success', 'Laporan berhasil dibuat.');
     }
 
     public function deleteReport($id)
@@ -226,7 +226,7 @@ class DashboardController extends Controller
         $report = Report::findOrFail($id);
         $report->delete();
 
-        return redirect()->route('dashboard.report')->with('success', 'Event successfully deleted!');
+        return redirect()->route('dashboard.report.myreports')->with('success', 'Event successfully deleted!');
     }
 
     public function editReport($id)
@@ -271,35 +271,45 @@ class DashboardController extends Controller
         $report->user_id = auth()->id();
         $report->save();
 
-        return redirect()->route('dashboard.report')->with('success', 'Laporan berhasil diperbarui!');
+        return redirect()->route('dashboard.report.myreports')->with('success', 'Laporan berhasil diperbarui!');
     }
 
-    public function createReportUser()
+    public function userReports()
     {
-        $users = User::all();
-        return view('dashboard.report.create.index', [
-            'title' => 'Fasilitasi | Create',
-            'users' => $users,
+        $user = Auth::user();
+        $report = $user->reports()->get();
+
+        return view('dashboard.report.my-report.index', [
+            'title' => 'Fasilitasi | My Reports',
+            'report' => $report,
         ]);
     }
 
-    public function storeReportUser(Request $request)
+    public function showReport($id)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'documentation' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
-            'notes' => 'required|string',
+        $report = Report::findOrFail($id);
+
+        return view('dashboard.report.details.index', [
+            'title' => 'Fasilitasi | Details Report',
+            'report' => $report,
         ]);
+    }
 
-        $report = new Report();
-        $report->title = $request->title;
-        if ($request->hasFile('documentation')) {
-            $report->documentation = $request->file('documentation')->store('documentations');
-        }
-        $report->notes = $request->notes;
-        $report->user_id = Auth::id(); // Menyimpan ID pengguna yang sedang login
-        $report->save();
+    public function showUser(User $user){
+        $user = User::all();
 
-        return redirect()->route('dashboard.report.user.create')->with('success', 'Laporan berhasil dibuat.');
+        return view('dashboard.user.index', [
+            'title' => 'Fasilitasi | User',
+            'user' => $user,
+        ]);
+    }
+
+    public function editUser($id){
+        $user = User::findOrFail($id);
+
+        return view('dashboard.user.edit.index', [
+            'title' => 'Fasilitasi | Edit Event',
+            'user' => $user,
+        ]);
     }
 }
