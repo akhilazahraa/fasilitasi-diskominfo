@@ -37,8 +37,14 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::post('/dashboard/events', [DashboardController::class, 'store'])->name('events.store');
     Route::get('/dashboard/events', [DashboardController::class, 'list'])->name('dashboard.events.index');
     Route::delete('/dashboard/events/delete/{id}', [DashboardController::class, 'destroy'])->name('events.destroy');
-    Route::get('/dashboard/events/{id}/edit', [DashboardController::class, 'edit'])->name('dashboard.events.edit');
+    Route::get('/dashboard/events/edit/{id}', [DashboardController::class, 'edit'])->name('dashboard.events.edit');
     Route::put('/dashboard/events/{id}', [DashboardController::class, 'update'])->name('dashboard.events.update');
+    Route::get('dashboard/reports', [DashboardController::class, 'report'])->name('dashboard.report');
+    Route::get('dashboard/reports/create', [DashboardController::class, 'createReport']);
+    Route::post('dashboard/reports', [DashboardController::class, 'storeReport'])->name('dashboard.report.store');
+    Route::get('/dashboard/reports/edit/{id}', [DashboardController::class, 'editReport'])->name('dashboard.report.edit');
+    Route::put('/dashboard/reports/{id}', [DashboardController::class, 'updateReport'])->name('dashboard.report.update');
+    Route::delete('/dashboard/reports/delete/{id}', [DashboardController::class, 'deleteReport'])->name('report.destroy');
 });
 
 // Authenticated routes
@@ -48,4 +54,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/events/scheduled/previous', [DashboardController::class, 'previousEvents']);
     Route::get('/dashboard/events/scheduled/{events:id}', [DashboardController::class, 'showEvents']);
     Route::get('/dashboard/setting', [DashboardController::class, 'setting']);
+    Route::get('dashboard/reports/user/create', [DashboardController::class, 'createReportUser'])->name('dashboard.report.user.create');
+    Route::post('dashboard/reports', [DashboardController::class, 'storeReportUser'])->name('dashboard.report.store');
 });

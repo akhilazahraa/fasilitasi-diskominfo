@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Report;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -101,8 +102,6 @@ class DashboardController extends Controller
         ]);
     }
 
-    // app/Http/Controllers/DashboardController.php
-
     public function upcomingEvents()
     {
         $currentDateTime = now();
@@ -182,5 +181,125 @@ class DashboardController extends Controller
         $event->users()->sync($validatedData['user_id']);
 
         return redirect()->route('dashboard.events.index')->with('success', 'Event berhasil diperbarui!');
+    }
+
+    public function report()
+    {
+        $report = Report::with('user')->get();
+        return view('dashboard.report.index', [
+            'title' => 'Fasilitasi | Report',
+            'report' => $report,
+        ]);
+    }
+
+    public function createReport()
+    {
+        $users = User::all();
+        return view('dashboard.report.create.index', [
+            'title' => 'Fasilitasi | Create',
+            'users' => $users,
+        ]);
+    }
+
+    public function storeReport(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'documentation' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'notes' => 'required|string',
+        ]);
+
+        $report = new Report();
+        $report->title = $request->title;
+        if ($request->hasFile('documentation')) {
+            $report->documentation = $request->file('documentation')->store('documentations');
+        }
+        $report->notes = $request->notes;
+        $report->user_id = Auth::id(); // Menyimpan ID pengguna yang sedang login
+        $report->save();
+
+        return redirect()->route('dashboard.report')->with('success', 'Laporan berhasil dibuat.');
+    }
+
+    public function deleteReport($id)
+    {
+        $report = Report::findOrFail($id);
+        $report->delete();
+
+        return redirect()->route('dashboard.report')->with('success', 'Event successfully deleted!');
+    }
+
+    public function editReport($id)
+    {
+        $reports = Report::findOrFail($id);
+        $users = User::all();
+
+        return view('dashboard.report.edit.index', [
+            'title' => 'Fasilitasi | Edit Event',
+            'reports' => $reports,
+            'users' => $users,
+        ]);
+    }
+
+    public function updateReport(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'notes' => 'required',
+            'documentation' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        $report = Report::findOrFail($id);
+
+        // Handle file upload
+        if ($request->hasFile('documentation')) {
+            // Delete old file if exists
+            if ($report->documentation) {
+                Storage::delete('public/documentation/' . $report->documentation);
+            }
+
+            $file = $request->file('documentation');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/documentation', $fileName);
+            $validatedData['documentation'] = $fileName;
+        }
+
+        // Update report data
+        $report->update($validatedData);
+
+        // Set the current logged-in user as the report owner
+        $report->user_id = auth()->id();
+        $report->save();
+
+        return redirect()->route('dashboard.report')->with('success', 'Laporan berhasil diperbarui!');
+    }
+
+    public function createReportUser()
+    {
+        $users = User::all();
+        return view('dashboard.report.create.index', [
+            'title' => 'Fasilitasi | Create',
+            'users' => $users,
+        ]);
+    }
+
+    public function storeReportUser(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'documentation' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'notes' => 'required|string',
+        ]);
+
+        $report = new Report();
+        $report->title = $request->title;
+        if ($request->hasFile('documentation')) {
+            $report->documentation = $request->file('documentation')->store('documentations');
+        }
+        $report->notes = $request->notes;
+        $report->user_id = Auth::id(); // Menyimpan ID pengguna yang sedang login
+        $report->save();
+
+        return redirect()->route('dashboard.report.user.create')->with('success', 'Laporan berhasil dibuat.');
     }
 }

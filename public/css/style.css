@@ -28,6 +28,11 @@ body {
     line-height: 1.25;
 }
 
+.text-xs {
+    font-size: 0.75rem;
+    line-height: 1.25;
+}
+
 .bg-muted {
     background-color: var(--muted-color);
 }
