@@ -40,11 +40,8 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::get('/dashboard/events/edit/{id}', [DashboardController::class, 'edit'])->name('dashboard.events.edit');
     Route::put('/dashboard/events/{id}', [DashboardController::class, 'update'])->name('dashboard.events.update');
     Route::get('dashboard/reports', [DashboardController::class, 'report'])->name('dashboard.report');
-    Route::get('dashboard/reports/create', [DashboardController::class, 'createReport']);
-    Route::post('dashboard/reports', [DashboardController::class, 'storeReport'])->name('dashboard.report.store');
-    Route::get('/dashboard/reports/edit/{id}', [DashboardController::class, 'editReport'])->name('dashboard.report.edit');
-    Route::put('/dashboard/reports/{id}', [DashboardController::class, 'updateReport'])->name('dashboard.report.update');
-    Route::delete('/dashboard/reports/delete/{id}', [DashboardController::class, 'deleteReport'])->name('report.destroy');
+    Route::get('dashboard/user', [DashboardController::class, 'showUser'])->name('dashboard.user');
+    Route::get('dashboard/user/edit/{id}', [DashboardController::class, 'editUser'])->name('dashboard.user.edit');
 });
 
 // Authenticated routes
@@ -54,6 +51,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/events/scheduled/previous', [DashboardController::class, 'previousEvents']);
     Route::get('/dashboard/events/scheduled/{events:id}', [DashboardController::class, 'showEvents']);
     Route::get('/dashboard/setting', [DashboardController::class, 'setting']);
-    Route::get('dashboard/reports/user/create', [DashboardController::class, 'createReportUser'])->name('dashboard.report.user.create');
-    Route::post('dashboard/reports', [DashboardController::class, 'storeReportUser'])->name('dashboard.report.store');
+    Route::get('/dashboard/reports/my-reports', [DashboardController::class, 'userReports'])->name('dashboard.report.myreports');
+    Route::get('dashboard/reports/create', [DashboardController::class, 'createReport']);
+    Route::post('dashboard/reports', [DashboardController::class, 'storeReport'])->name('dashboard.report.store');
+    Route::get('/dashboard/reports/edit/{id}', [DashboardController::class, 'editReport'])->name('dashboard.report.edit');
+    Route::put('/dashboard/reports/{id}', [DashboardController::class, 'updateReport'])->name('dashboard.report.update');
+    Route::delete('/dashboard/reports/delete/{id}', [DashboardController::class, 'deleteReport'])->name('report.destroy');
+    Route::get('/dashboard/reports/{events:id}', [DashboardController::class, 'showReport']);
 });

@@ -13,36 +13,38 @@
         </div>
         <form class="" action="/login" method="post">
             @csrf
-            <div class="card-body">
-                <div class="mb-4">
-                    <label for="email" class="form-label">Email</label>
-                    @error('email')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                    <input
-                        type="email"
-                        class="form-control border rounded @error('email') is-invalid @enderror"
-                        id="email"
-                        name="email"
-                    />
+            <div class="mb-4">
+                <label for="email" class="form-label">Email</label>
+                @error('email')
+                <div class="invalid-feedback">
+                    {{ $message }}
                 </div>
-                <div class="mb-4">
-                    <label for="password" class="form-label">Password</label>
-                    <input
-                        type="password"
-                        class="form-control border rounded @error('password') is-invalid @enderror"
-                        id="password"
-                        name="password"
-                    />
-                </div>
-                <button
-                    type="submit"
-                    class="btn btn-primary text-white fw-semibold p-2 w-100 border-0 mt-2"
-                >
-                    Login
-                </button>
+                @enderror
+                <input
+                    type="email"
+                    class="form-control border rounded @error('email') is-invalid @enderror"
+                    id="email"
+                    name="email"
+                />
+            </div>
+            <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <input
+                    type="password"
+                    class="form-control border rounded @error('password') is-invalid @enderror"
+                    id="password"
+                    name="password"
+                />
+            </div>
+            <button
+                type="submit"
+                class="btn btn-primary text-white fw-semibold p-2 w-100 border-0 mt-2"
+            >
+                Login
+            </button>
+            <div class="form-text text-center pt-2">
+                Belum punya akun?
+                <a href="/register" class="text-black">Daftar sekarang</a>
             </div>
         </form>
     </div>

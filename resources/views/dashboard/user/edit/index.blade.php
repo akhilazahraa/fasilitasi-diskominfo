@@ -15,17 +15,9 @@
 <div class="content-wrapper">
     <div class="card border d-flex">
         <div>
-            <img
-                src="https://prium.github.io/phoenix/v1.18.0/assets/img/team/40x40/57.webp"
-                alt=""
-                class="rounded-circle"
-                width="60px"
-            />
-        </div>
-        <div>
             <form class="" action="/register" method="post">
                 @csrf
-                <div class="card-body">
+                <div>
                     <div class="mb-4">
                         <label for="name" class="form-label">Full Name</label>
                         @error('fullname')
@@ -38,7 +30,7 @@
                             class="form-control border rounded @error('name') is-invalid @enderror"
                             id="name"
                             name="name"
-                            value="{{ $users->name }}"
+                            value="{{ $user->name }}"
                         />
                     </div>
                     <div class="mb-4">
@@ -53,8 +45,19 @@
                             class="form-control border rounded @error('email') is-invalid @enderror"
                             id="email"
                             name="email"
-                            value="{{ $users->email }}"
+                            value="{{ $user->email }}"
                         />
+                    </div>
+                    <div class="mb-4">
+                        <label for="role" class="form-label">Role</label>
+                        <select class="form-select" id="role" name="role">
+                            <option value="ADMIN" {{ $user->
+                                role == 'ADMIN' ? 'selected' : '' }}>Admin
+                            </option>
+                            <option value="USER" {{ $user->
+                                role == 'USER' ? 'selected' : '' }}>User
+                            </option>
+                        </select>
                     </div>
                     <div class="mb-4">
                         <label for="phonenumber" class="form-label"
@@ -70,7 +73,7 @@
                             class="form-control border rounded @error('phonenumber') is-invalid @enderror"
                             id="phonenumber"
                             name="phonenumber"
-                            value="{{ $users->phonenumber }}"
+                            value="{{ $user->phonenumber }}"
                         />
                     </div>
                     <div class="row g-4">
@@ -87,7 +90,7 @@
                                     class="form-control border rounded @error('city') is-invalid @enderror"
                                     id="city"
                                     name="city"
-                                    value="{{ $users->city }}"
+                                    value="{{ $user->city }}"
                                 />
                             </div>
                         </div>
@@ -104,17 +107,16 @@
                                     class="form-control border rounded @error('address') is-invalid @enderror"
                                     id="address"
                                     name="address"
-                                    value="{{ $users->address }}"
+                                    value="{{ $user->address }}"
                                 />
                             </div>
                         </div>
                     </div>
                     <button
                         type="submit"
-                        class="btn-primary text-white fw-semibold p-2 w-30 rounded-pill border-0 mt-2"
-                        style="width: 200px"
+                        class="btn btn-primary text-white fw-semibold border-0 mt-2"
                     >
-                        Update Profile
+                        Update
                     </button>
                 </div>
             </form>
