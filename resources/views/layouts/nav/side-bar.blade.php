@@ -119,18 +119,6 @@
                         <span>Setting</span>
                     </a>
                 </li>
-                <li class="align-items-end">
-                    <form
-                        action="{{ route('logout') }}"
-                        method="POST"
-                        class="d-inline"
-                    >
-                        @csrf
-                        <button type="submit" class="btn btn-danger">
-                            Logout
-                        </button>
-                    </form>
-                </li>
             </ul>
         </div>
     </nav>

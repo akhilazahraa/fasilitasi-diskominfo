@@ -43,7 +43,59 @@
             <div class="row">
                 @include('layouts.nav.side-bar')
                 <div class="col-lg-9">
-                    <div class="container py-4">@yield('container')</div>
+                    <div class="container py-4">
+                        <div class="d-flex justify-content-end">
+                            <div class="dropdown">
+                                <button
+                                    class="border-0 bg-transparent"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    <img
+                                        src="https://prium.github.io/phoenix/v1.18.0/assets/img/team/40x40/57.webp"
+                                        alt=""
+                                        class="rounded-circle"
+                                        width="45px"
+                                    />
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="px-2 mb-1">
+                                        <a
+                                            class="dropdown-item fw-medium"
+                                            >{{auth()->user()->name}}</a
+                                        >
+                                    </li>
+                                    <li class="px-2">
+                                        <a
+                                            class="dropdown-item px-2"
+                                            href="/dashboard/setting"
+                                            >Setting</a
+                                        >
+                                    </li>
+                                    <hr class="m-0 my-2" />
+                                    <li>
+                                        <a class="dropdown-item">
+                                            <form
+                                                action="{{ route('logout') }}"
+                                                method="POST"
+                                                class="d-inline p-0"
+                                            >
+                                                @csrf
+                                                <button
+                                                    type="submit"
+                                                    class="border-0 bg-transparent logout-item px-2"
+                                                >
+                                                    Logout
+                                                </button>
+                                            </form>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        @yield('container')
+                    </div>
                 </div>
             </div>
         </section>

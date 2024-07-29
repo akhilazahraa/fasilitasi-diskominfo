@@ -43,6 +43,33 @@ body {
     box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
 }
 
+.dropdown-item {
+    padding: 0 !important;
+    border-radius: 6px;
+}
+
+.dropdown-item:hover {
+    background-color: transparent;
+}
+
+.dropdown-menu {
+    border-radius: 10px;
+    border: 1px #edf2f9 !important;
+    box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+    padding: 8px;
+}
+
+.logout-item {
+    color: #f87171 !important;
+    width: 100%;
+    text-align: left;
+    border-radius: 6px;
+}
+
+.logout-item:hover {
+    background-color: #fef2f2 !important;
+}
+
 .login-fasilitasi {
     background-image: url(https://magang.diskominfo.jatengprov.go.id/assets/frontend/images/kantordiskominfo.jpg);
     background-position: center;
