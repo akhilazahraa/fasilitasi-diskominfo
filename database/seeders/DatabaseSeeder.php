@@ -27,6 +27,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => bcrypt('password'),
             'role' => 'ADMIN',
+            'phonenumber' => '087810615021',
+            'address' => 'jl.jatingaleh',
+            'city' => 'semarang',
         ]);
     }
 }
