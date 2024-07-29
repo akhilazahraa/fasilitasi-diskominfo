@@ -47,6 +47,12 @@
                     </div>
                     <div class="col-lg-6 mb-4">
                         <div>
+                            <span class="fw-semibold">Notes</span>
+                            <p class="text-muted">{{ $events->notes }}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div>
                             <span class="fw-semibold">Dokumentasi</span>
                             @if($events->documentation)
                             <img
@@ -58,12 +64,6 @@
                             @else
                             <p>Tidak ada dokumentasi</p>
                             @endif
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div>
-                            <span class="fw-semibold">Notes</span>
-                            <p class="text-muted">{{ $events->notes }}</p>
                         </div>
                     </div>
                 </div>
