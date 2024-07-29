@@ -26,6 +26,7 @@
                         />
                     </a>
                 </li>
+                <span class="text-xs text-uppercase text-muted">Main Menu</span>
                 <li
                     class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}"
                 >
@@ -48,32 +49,8 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                @if (Auth::user()->role === 'ADMIN')
                 <li
-                    class="nav-item {{ Request::is('dashboard/events', 'dashboard/events/create') ? 'active' : '' }}"
-                >
-                    <a
-                        class="nav-link d-flex gap-3 align-items-center fw-medium"
-                        href="/dashboard/events"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            fill="currentColor"
-                            class="bi bi-calendar"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"
-                            />
-                        </svg>
-                        <span>Events</span>
-                    </a>
-                </li>
-                @endif
-                <li
-                    class="nav-item {{ Request::is('dashboard/events/scheduled', 'dashboard/events/scheduled/previous') ? 'active' : '' }}"
+                    class="nav-item {{ Request::is('dashboard/events/scheduled*', 'dashboard/events/scheduled/previous') ? 'active' : '' }}"
                 >
                     <a
                         class="nav-link d-flex gap-3 align-items-center fw-medium"
@@ -94,6 +71,85 @@
                         <span>Scheduled</span>
                     </a>
                 </li>
+                <li
+                    class="nav-item {{ Request::is('dashboard/reports/user/create*') ? 'active' : '' }}"
+                >
+                    <a
+                        class="nav-link d-flex gap-3 align-items-center fw-medium"
+                        href="/dashboard/reports/user/create"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            fill="currentColor"
+                            class="bi bi-exclamation-circle"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+                            />
+                            <path
+                                d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"
+                            />
+                        </svg>
+                        <span>Lapor</span>
+                    </a>
+                </li>
+                @if (Auth::user()->role === 'ADMIN')
+                <hr />
+                <span class="text-xs text-uppercase text-muted"
+                    >Admin Menu</span
+                >
+                <li
+                    class="nav-item {{ Request::is('dashboard/events', 'dashboard/events/create', 'dashboard/events/edit*') ? 'active' : '' }}"
+                >
+                    <a
+                        class="nav-link d-flex gap-3 align-items-center fw-medium"
+                        href="/dashboard/events"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            fill="currentColor"
+                            class="bi bi-calendar"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"
+                            />
+                        </svg>
+                        <span>Events</span>
+                    </a>
+                </li>
+                <li
+                    class="nav-item {{ Request::is('dashboard/reports', 'dashboard/reports/edit*') ? 'active' : '' }}"
+                >
+                    <a
+                        class="nav-link d-flex gap-3 align-items-center fw-medium"
+                        href="/dashboard/reports"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            fill="currentColor"
+                            class="bi bi-envelope"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"
+                            />
+                        </svg>
+                        <span>Report</span>
+                    </a>
+                </li>
+                @endif
+                <hr />
+                <span class="text-xs text-uppercase text-muted"
+                    >Help & Support</span
+                >
                 <li
                     class="nav-item {{ Request::is('dashboard/setting') ? 'active' : '' }}"
                 >

@@ -2,48 +2,46 @@
 <div class="mb-0">
     <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Events</a></li>
+            <li class="breadcrumb-item"><a href="#">Laporan</a></li>
             <li class="breadcrumb-item active" aria-current="page">List</li>
         </ol>
     </nav>
 </div>
 <div class="d-flex justify-content-between align-items-center">
     <div class="heading mb-4">
-        <h1 class="fs-3 fw-bold">Events</h1>
+        <h1 class="fs-3 fw-bold">Laporan</h1>
     </div>
     <div class="mb-4">
-        <a href="/dashboard/events/create" class="btn btn-primary"
-            >Create Events</a
+        <a href="/dashboard/reports/create" class="btn btn-primary"
+            >Tambah Report</a
         >
     </div>
 </div>
 <div class="content-wrapper">
     <div class="card p-4 border">
-        @if ($events->isEmpty())
-        <p>No events scheduled.</p>
+        @if ($report->isEmpty())
+        <p>Laporan belum tersedia.</p>
         @else
         <table class="table text-sm">
             <thead class="font-semibold">
                 <tr class="w-100">
                     <th>No</th>
-                    <th>Name</th>
-                    <th>Start</th>
-                    <th>End</th>
-                    <th>Location</th>
+                    <th>Nama</th>
+                    <th>Title</th>
+                    <th>Documentation</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($events as $event)
+                @foreach ($report as $report)
                 <tr class="lh-lg">
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $event->title }}</td>
-                    <td>{{ $event->start }}</td>
-                    <td>{{ $event->end }}</td>
-                    <td>{{ $event->location }}</td>
+                    <td>{{ $report->user->name }}</td>
+                    <td>{{ $report->title }}</td>
+                    <td>{{ $report->documentation }}</td>
                     <td>
                         <a
-                            href="/dashboard/events/edit/{{ $event->id }}"
+                            href="/dashboard/reports/edit/{{ $report->id }}"
                             class="button-action"
                         >
                             <svg
@@ -65,7 +63,7 @@
                             <span>Edit</span>
                         </a>
                         <form
-                            action="/dashboard/events/delete/{{ $event->id }}"
+                            action="/dashboard/reports/delete/{{ $report->id }}"
                             method="POST"
                             style="display: inline"
                         >
