@@ -43,6 +43,13 @@ body {
     box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
 }
 
+.login-fasilitasi {
+    background-image: url(https://magang.diskominfo.jatengprov.go.id/assets/frontend/images/kantordiskominfo.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 /* Warna latar belakang header kalender */
 .fc-toolbar-title {
     font-weight: 500;
@@ -233,6 +240,10 @@ body {
 }
 .bg-custom {
     background-color: #f01e2c !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
 }
 
 .text-muted-custom {

@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -27,16 +28,15 @@ class DashboardController extends Controller
 
     public function list()
     {
-        $user = Auth::user();
-
-        $events = $user->events;
+        $events = Event::all();
         return view('dashboard.events.index', [
             'title' => 'Fasilitasi | Schedule Events',
             'events' => $events,
         ]);
     }
 
-    public function getevents(){
+    public function getevents()
+    {
         $user = Auth::user();
         $events = $user->events;
 
@@ -50,13 +50,23 @@ class DashboardController extends Controller
             'start' => 'required|date',
             'end' => 'required|date',
             'location' => 'required',
-            'location_link' => 'required|url',
+            'maps' => 'required|url',
             'user_id' => 'required|array',
+            'notes' => 'required',
+            'documentation' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
 
         // Remove user_id from validatedData
         $userIds = $validatedData['user_id'];
         unset($validatedData['user_id']);
+
+        // Handle file upload
+        if ($request->hasFile('documentation')) {
+            $file = $request->file('documentation');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/documentation', $fileName);
+            $validatedData['documentation'] = $fileName;
+        }
 
         $event = Event::create($validatedData);
 
@@ -67,13 +77,12 @@ class DashboardController extends Controller
     }
 
     public function destroy($id)
-{
-    $event = Event::findOrFail($id);
-    $event->delete();
+    {
+        $event = Event::findOrFail($id);
+        $event->delete();
 
-    return redirect()->route('dashboard.events.index')->with('success', 'Event successfully deleted!');
-}
-
+        return redirect()->route('dashboard.events.index')->with('success', 'Event successfully deleted!');
+    }
 
     public function listed()
     {
@@ -92,12 +101,14 @@ class DashboardController extends Controller
         ]);
     }
 
+    // app/Http/Controllers/DashboardController.php
+
     public function upcomingEvents()
     {
         $currentDateTime = now();
         $user = Auth::user();
-        $events = $user->events;
-        $events = Event::where('start', '>=', $currentDateTime)->orderBy('start', 'asc')->get();
+
+        $events = $user->events()->where('start', '>=', $currentDateTime)->orderBy('start', 'asc')->get();
 
         return view('dashboard.events.scheduled.index', [
             'title' => 'Fasilitasi | Upcoming Events',
@@ -109,19 +120,67 @@ class DashboardController extends Controller
     {
         $currentDateTime = now();
         $user = Auth::user();
-        $events = $user->events;
-        $events = Event::where('start', '<=', $currentDateTime)->orderBy('start', 'asc')->get();
+
+        $events = $user->events()->where('start', '<=', $currentDateTime)->orderBy('start', 'asc')->get();
 
         return view('dashboard.events.previous.index', [
             'title' => 'Fasilitasi | Previous Events',
             'events' => $events,
         ]);
     }
+
     public function showEvents(Event $events)
     {
-        return view("dashboard.events.details.index", [
+        return view('dashboard.events.details.index', [
             'title' => 'Fasilitasi | Details Events',
             'events' => $events,
         ]);
+    }
+
+    public function edit($id)
+    {
+        $event = Event::findOrFail($id);
+        $users = User::all();
+
+        return view('dashboard.events.edit.index', [
+            'title' => 'Fasilitasi | Edit Event',
+            'event' => $event,
+            'users' => $users,
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'start' => 'required|date',
+            'end' => 'required|date',
+            'location' => 'required',
+            'maps' => 'required|url',
+            'user_id' => 'required|array',
+            'notes' => 'required',
+            'documentation' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        $event = Event::findOrFail($id);
+
+        // Handle file upload
+        if ($request->hasFile('documentation')) {
+            // Delete old file if exists
+            if ($event->documentation) {
+                Storage::delete('public/documentation/' . $event->documentation);
+            }
+
+            $file = $request->file('documentation');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/documentation', $fileName);
+            $validatedData['documentation'] = $fileName;
+        }
+
+        $event->update($validatedData);
+
+        $event->users()->sync($validatedData['user_id']);
+
+        return redirect()->route('dashboard.events.index')->with('success', 'Event berhasil diperbarui!');
     }
 }

@@ -28,4 +28,10 @@ class LoginController extends Controller
 
         return back()->withErrors('Login Error');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login')->with('success', 'Anda telah logout.');
+    }
 }
