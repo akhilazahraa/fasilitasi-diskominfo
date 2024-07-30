@@ -33,6 +33,14 @@ body {
     line-height: 1.25;
 }
 
+.bg-success {
+    background-color: #22c55e !important;
+}
+
+.bg-danger {
+    background-color: #f24a4a !important;
+}
+
 .bg-muted {
     background-color: var(--muted-color);
 }
