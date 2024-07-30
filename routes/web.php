@@ -42,6 +42,8 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::get('dashboard/reports', [DashboardController::class, 'report'])->name('dashboard.report');
     Route::get('dashboard/user', [DashboardController::class, 'showUser'])->name('dashboard.user');
     Route::get('dashboard/user/edit/{id}', [DashboardController::class, 'editUser'])->name('dashboard.user.edit');
+    Route::patch('dashboard/reports/{report}/approve', [DashboardController::class, 'approve'])->name('reports.approve');
+    Route::get('/dashboard/reports/details/{id}', [DashboardController::class, 'showReport']);
 });
 
 // Authenticated routes
@@ -57,5 +59,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/reports/edit/{id}', [DashboardController::class, 'editReport'])->name('dashboard.report.edit');
     Route::put('/dashboard/reports/{id}', [DashboardController::class, 'updateReport'])->name('dashboard.report.update');
     Route::delete('/dashboard/reports/delete/{id}', [DashboardController::class, 'deleteReport'])->name('report.destroy');
-    Route::get('/dashboard/reports/{events:id}', [DashboardController::class, 'showReport']);
 });

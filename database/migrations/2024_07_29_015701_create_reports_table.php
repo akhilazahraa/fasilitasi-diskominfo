@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('documentation')->nullable();
             $table->string('notes')->nullable();
+            $table->enum('status', ['on progress', 'completed', 'pending', 'canceled'])->default('pending');
             $table->timestamps();
         });
     }

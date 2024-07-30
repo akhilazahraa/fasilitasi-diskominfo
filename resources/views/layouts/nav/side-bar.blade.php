@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li
-                    class="nav-item {{ Request::is('dashboard/reports/*') ? 'active' : '' }}"
+                    class="nav-item {{ Request::is('dashboard/reports/my-reports', 'dashboard/reports/create', 'dashboard/reports/edit/*') ? 'active' : '' }}"
                 >
                     <a
                         class="nav-link d-flex gap-3 align-items-center fw-medium"
@@ -126,7 +126,7 @@
                     </a>
                 </li>
                 <li
-                    class="nav-item {{ Request::is('dashboard/reports') ? 'active' : '' }}"
+                    class="nav-item {{ Request::is('dashboard/reports', 'dashboard/reports/details/*') ? 'active' : '' }}"
                 >
                     <a
                         class="nav-link d-flex gap-3 align-items-center fw-medium"

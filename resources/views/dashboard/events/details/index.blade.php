@@ -62,7 +62,7 @@
                                 style="max-width: 100%; height: auto"
                             />
                             @else
-                            <p>Tidak ada dokumentasi</p>
+                            <p class="text-muted">Tidak ada dokumentasi</p>
                             @endif
                         </div>
                     </div>

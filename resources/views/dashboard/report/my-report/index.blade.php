@@ -29,6 +29,7 @@
                     <th>Nama</th>
                     <th>Title</th>
                     <th>Documentation</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -48,6 +49,23 @@
                         />
                         @else
                         <p>Tidak ada dokumentasi</p>
+                        @endif
+                    </td>
+                    <td>
+                        @if ($report->status == 'on progress')
+                        <span class="badge bg-warning text-white"
+                            >On Progress</span
+                        >
+                        @elseif ($report->status == 'completed')
+                        <span class="badge bg-success text-white"
+                            >Completed</span
+                        >
+                        @elseif ($report->status == 'pending')
+                        <span class="badge bg-secondary text-white"
+                            >Pending</span
+                        >
+                        @elseif ($report->status == 'canceled')
+                        <span class="badge bg-danger text-white">Canceled</span>
                         @endif
                     </td>
                     <td>

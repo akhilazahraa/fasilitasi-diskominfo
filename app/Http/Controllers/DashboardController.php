@@ -218,7 +218,7 @@ class DashboardController extends Controller
         $report->user_id = Auth::id(); // Menyimpan ID pengguna yang sedang login
         $report->save();
 
-        return redirect()->route('dashboard.report.my-report')->with('success', 'Laporan berhasil dibuat.');
+        return redirect()->route('dashboard.report.myreports')->with('success', 'Laporan berhasil dibuat.');
     }
 
     public function deleteReport($id)
@@ -311,5 +311,17 @@ class DashboardController extends Controller
             'title' => 'Fasilitasi | Edit Event',
             'user' => $user,
         ]);
+    }
+
+    public function approve(Request $request, Report $report)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,on progress,completed,canceled',
+        ]);
+
+        $report->status = $request->status;
+        $report->save();
+
+        return redirect()->route('dashboard.report')->with('success', 'Status laporan berhasil diubah.');
     }
 }
