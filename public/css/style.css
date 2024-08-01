@@ -41,6 +41,15 @@ body {
     background-color: #f24a4a !important;
 }
 
+.clamped-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Ubah jumlah baris sesuai kebutuhan */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px; /* Atur sesuai kebutuhan Anda */
+}
+
 .bg-muted {
     background-color: var(--muted-color);
 }
@@ -63,6 +72,17 @@ body {
 
 .dropdown-item:hover {
     background-color: transparent;
+}
+
+.bulk-delete {
+    background-color: transparent;
+    border: 0px;
+    color: var(--primary-color);
+    font-weight: 600 !important;
+}
+
+.bulk-delete:hover {
+    text-decoration: underline;
 }
 
 .dropdown-menu {

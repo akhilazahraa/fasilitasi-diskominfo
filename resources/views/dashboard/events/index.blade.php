@@ -2,34 +2,34 @@
 <div class="mb-0">
     <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Events</a></li>
+            <li class="breadcrumb-item"><a href="#">Acara</a></li>
             <li class="breadcrumb-item active" aria-current="page">List</li>
         </ol>
     </nav>
 </div>
 <div class="d-flex justify-content-between align-items-center">
     <div class="heading mb-4">
-        <h1 class="fs-3 fw-bold">Events</h1>
+        <h1 class="fs-3 fw-bold">Acara</h1>
     </div>
     <div class="mb-4">
         <a href="/dashboard/events/create" class="btn btn-primary"
-            >Create Events</a
+            >Tambah Acara</a
         >
     </div>
 </div>
 <div class="content-wrapper">
     <div class="card p-4 border">
         @if ($events->isEmpty())
-        <p>No events scheduled.</p>
+        <p>Belum ada acara.</p>
         @else
         <table class="table text-sm">
             <thead class="font-semibold">
                 <tr class="w-100">
                     <th>No</th>
-                    <th>Name</th>
-                    <th>Start</th>
-                    <th>End</th>
-                    <th>Location</th>
+                    <th>Nama Acara</th>
+                    <th>Tanggal</th>
+                    <th>Nama OPD</th>
+                    <th>ISP</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -37,10 +37,10 @@
                 @foreach ($events as $event)
                 <tr class="lh-lg">
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $event->title }}</td>
+                    <td>{{ $event->name }}</td>
                     <td>{{ $event->start }}</td>
-                    <td>{{ $event->end }}</td>
-                    <td>{{ $event->location }}</td>
+                    <td class="clamped-text">{{ $event->instansi->name}}</td>
+                    <td>{{ $event->isp }}</td>
                     <td>
                         <a
                             href="/dashboard/events/edit/{{ $event->id }}"

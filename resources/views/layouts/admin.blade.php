@@ -183,8 +183,13 @@
                     calendar.render();
                 }
 
-                $('select[name="user_id[]"]').select2({
-                    placeholder: "Pilih peserta",
+                $('select[name="location"]').select2({
+                    placeholder: "Pilih Lokasi",
+                    allowClear: true,
+                });
+
+                $('select[name="tim[]"]').select2({
+                    placeholder: "Pilih Tim",
                     allowClear: true,
                 });
             });
