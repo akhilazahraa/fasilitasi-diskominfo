@@ -18,80 +18,6 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function addEvents()
-    {
-        $users = User::all();
-        return view('dashboard.events.create.index', [
-            'title' => 'Fasilitasi | Create Events',
-            'users' => $users,
-        ]);
-    }
-
-    public function list()
-    {
-        $events = Event::all();
-        return view('dashboard.events.index', [
-            'title' => 'Fasilitasi | Schedule Events',
-            'events' => $events,
-        ]);
-    }
-
-    public function getevents()
-    {
-        $user = Auth::user();
-        $events = $user->events;
-
-        return response()->json($events);
-    }
-
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'title' => 'required',
-            'start' => 'required|date',
-            'end' => 'required|date',
-            'location' => 'required',
-            'maps' => 'required|url',
-            'user_id' => 'required|array',
-            'notes' => 'required',
-            'documentation' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
-        ]);
-
-        // Remove user_id from validatedData
-        $userIds = $validatedData['user_id'];
-        unset($validatedData['user_id']);
-
-        // Handle file upload
-        if ($request->hasFile('documentation')) {
-            $file = $request->file('documentation');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/documentation', $fileName);
-            $validatedData['documentation'] = $fileName;
-        }
-
-        $event = Event::create($validatedData);
-
-        // Attach users to the event
-        $event->users()->attach($userIds);
-
-        return redirect()->route('dashboard.events.index')->with('success', 'Acara berhasil ditambahkan!');
-    }
-
-    public function destroy($id)
-    {
-        $event = Event::findOrFail($id);
-        $event->delete();
-
-        return redirect()->route('dashboard.events.index')->with('success', 'Event successfully deleted!');
-    }
-
-    public function listed()
-    {
-        return view('dashboard.scheduled.index', [
-            'title' => 'Fasilitasi | Scheduled Events',
-        ]);
-    }
-
     public function setting()
     {
         $user = Auth::user();
@@ -99,32 +25,6 @@ class DashboardController extends Controller
         return view('dashboard.setting.index', [
             'title' => 'Fasilitasi | Setting',
             'users' => $user,
-        ]);
-    }
-
-    public function upcomingEvents()
-    {
-        $currentDateTime = now();
-        $user = Auth::user();
-
-        $events = $user->events()->where('start', '>=', $currentDateTime)->orderBy('start', 'asc')->get();
-
-        return view('dashboard.events.scheduled.index', [
-            'title' => 'Fasilitasi | Upcoming Events',
-            'events' => $events,
-        ]);
-    }
-
-    public function previousEvents()
-    {
-        $currentDateTime = now();
-        $user = Auth::user();
-
-        $events = $user->events()->where('start', '<=', $currentDateTime)->orderBy('start', 'asc')->get();
-
-        return view('dashboard.events.previous.index', [
-            'title' => 'Fasilitasi | Previous Events',
-            'events' => $events,
         ]);
     }
 
@@ -183,118 +83,6 @@ class DashboardController extends Controller
         return redirect()->route('dashboard.events.index')->with('success', 'Event berhasil diperbarui!');
     }
 
-    public function report()
-    {
-        $report = Report::with('user')->get();
-        return view('dashboard.report.index', [
-            'title' => 'Fasilitasi | Report',
-            'report' => $report,
-        ]);
-    }
-
-    public function createReport()
-    {
-        $users = User::all();
-        return view('dashboard.report.create.index', [
-            'title' => 'Fasilitasi | Create',
-            'users' => $users,
-        ]);
-    }
-
-    public function storeReport(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'documentation' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
-            'notes' => 'required|string',
-        ]);
-
-        $report = new Report();
-        $report->title = $request->title;
-        if ($request->hasFile('documentation')) {
-            $report->documentation = $request->file('documentation')->store('documentations');
-        }
-        $report->notes = $request->notes;
-        $report->user_id = Auth::id(); // Menyimpan ID pengguna yang sedang login
-        $report->save();
-
-        return redirect()->route('dashboard.report.myreports')->with('success', 'Laporan berhasil dibuat.');
-    }
-
-    public function deleteReport($id)
-    {
-        $report = Report::findOrFail($id);
-        $report->delete();
-
-        return redirect()->route('dashboard.report.myreports')->with('success', 'Event successfully deleted!');
-    }
-
-    public function editReport($id)
-    {
-        $reports = Report::findOrFail($id);
-        $users = User::all();
-
-        return view('dashboard.report.edit.index', [
-            'title' => 'Fasilitasi | Edit Event',
-            'reports' => $reports,
-            'users' => $users,
-        ]);
-    }
-
-    public function updateReport(Request $request, $id)
-    {
-        $validatedData = $request->validate([
-            'title' => 'required',
-            'notes' => 'required',
-            'documentation' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
-        ]);
-
-        $report = Report::findOrFail($id);
-
-        // Handle file upload
-        if ($request->hasFile('documentation')) {
-            // Delete old file if exists
-            if ($report->documentation) {
-                Storage::delete('public/documentation/' . $report->documentation);
-            }
-
-            $file = $request->file('documentation');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/documentation', $fileName);
-            $validatedData['documentation'] = $fileName;
-        }
-
-        // Update report data
-        $report->update($validatedData);
-
-        // Set the current logged-in user as the report owner
-        $report->user_id = auth()->id();
-        $report->save();
-
-        return redirect()->route('dashboard.report.myreports')->with('success', 'Laporan berhasil diperbarui!');
-    }
-
-    public function userReports()
-    {
-        $user = Auth::user();
-        $report = $user->reports()->get();
-
-        return view('dashboard.report.my-report.index', [
-            'title' => 'Fasilitasi | My Reports',
-            'report' => $report,
-        ]);
-    }
-
-    public function showReport($id)
-    {
-        $report = Report::findOrFail($id);
-
-        return view('dashboard.report.details.index', [
-            'title' => 'Fasilitasi | Details Report',
-            'report' => $report,
-        ]);
-    }
-
     public function showUser(User $user){
         $user = User::all();
 
@@ -311,17 +99,5 @@ class DashboardController extends Controller
             'title' => 'Fasilitasi | Edit Event',
             'user' => $user,
         ]);
-    }
-
-    public function approve(Request $request, Report $report)
-    {
-        $request->validate([
-            'status' => 'required|in:pending,on progress,completed,canceled',
-        ]);
-
-        $report->status = $request->status;
-        $report->save();
-
-        return redirect()->route('dashboard.report')->with('success', 'Status laporan berhasil diubah.');
     }
 }

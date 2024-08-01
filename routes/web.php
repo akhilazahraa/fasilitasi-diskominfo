@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OpdController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\TimController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,30 +36,26 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 
 // Routes requiring admin role
 Route::middleware(['auth', 'role:ADMIN'])->group(function () {
-    Route::get('/dashboard/events/create', [DashboardController::class, 'addEvents']);
-    Route::post('/dashboard/events', [DashboardController::class, 'store'])->name('events.store');
-    Route::get('/dashboard/events', [DashboardController::class, 'list'])->name('dashboard.events.index');
-    Route::delete('/dashboard/events/delete/{id}', [DashboardController::class, 'destroy'])->name('events.destroy');
+    Route::get('/dashboard/events/create', [EventController::class, 'create']);
+    Route::post('/dashboard/events', [EventController::class, 'store'])->name('events.store');
+    Route::get('/dashboard/events', [EventController::class, 'index'])->name('dashboard.events.index');
+    Route::delete('/dashboard/events/delete/{id}', [EventController::class, 'destroy'])->name('events.destroy');
     Route::get('/dashboard/events/edit/{id}', [DashboardController::class, 'edit'])->name('dashboard.events.edit');
     Route::put('/dashboard/events/{id}', [DashboardController::class, 'update'])->name('dashboard.events.update');
-    Route::get('dashboard/reports', [DashboardController::class, 'report'])->name('dashboard.report');
     Route::get('dashboard/user', [DashboardController::class, 'showUser'])->name('dashboard.user');
     Route::get('dashboard/user/edit/{id}', [DashboardController::class, 'editUser'])->name('dashboard.user.edit');
-    Route::patch('dashboard/reports/{report}/approve', [DashboardController::class, 'approve'])->name('reports.approve');
-    Route::get('/dashboard/reports/details/{id}', [DashboardController::class, 'showReport']);
+    Route::get('/dashboard/opd/create', [OpdController::class, 'create']);
+    Route::get('/dashboard/opd', [OpdController::class, 'index'])->name('dashboard.opd');
+    Route::post('/dashboard/opd', [OpdController::class, 'store'])->name('opd.store');
+    Route::delete('/dashboard/opd/delete/{id}', [OpdController::class, 'destroy'])->name('opd.destroy');
+    Route::delete('/dashboard/opd/bulk-delete', [OpdController::class, 'bulkDelete'])->name('opd.bulkDelete');
+    Route::get('/dashboard/teams', [TimController::class, 'index'])->name('dashboard.teams.index');
+    Route::get('/dashboard/teams/create', [TimController::class, 'create']);
+    Route::post('/dashboard/teams', [TimController::class, 'store'])->name('dashboard.teams.store');
 });
 
 // Authenticated routes
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard/scheduled', [DashboardController::class, 'upcomingEvents']);
-    Route::get('/dashboard/events/scheduled', [DashboardController::class, 'upcomingEvents']);
-    Route::get('/dashboard/events/scheduled/previous', [DashboardController::class, 'previousEvents']);
     Route::get('/dashboard/events/scheduled/{events:id}', [DashboardController::class, 'showEvents']);
     Route::get('/dashboard/setting', [DashboardController::class, 'setting']);
-    Route::get('/dashboard/reports/my-reports', [DashboardController::class, 'userReports'])->name('dashboard.report.myreports');
-    Route::get('dashboard/reports/create', [DashboardController::class, 'createReport']);
-    Route::post('dashboard/reports', [DashboardController::class, 'storeReport'])->name('dashboard.report.store');
-    Route::get('/dashboard/reports/edit/{id}', [DashboardController::class, 'editReport'])->name('dashboard.report.edit');
-    Route::put('/dashboard/reports/{id}', [DashboardController::class, 'updateReport'])->name('dashboard.report.update');
-    Route::delete('/dashboard/reports/delete/{id}', [DashboardController::class, 'deleteReport'])->name('report.destroy');
 });
