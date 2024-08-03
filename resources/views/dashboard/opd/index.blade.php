@@ -40,7 +40,11 @@
                 <thead class="font-semibold">
                     <tr class="w-100">
                         <th>
-                            <input type="checkbox" id="select-all" />
+                            <input
+                                type="checkbox"
+                                id="select-all"
+                                class="form-check-input"
+                            />
                         </th>
                         <th>No</th>
                         <th>Nama OPD</th>
@@ -56,7 +60,7 @@
                                 type="checkbox"
                                 name="ids[]"
                                 value="{{ $item->id }}"
-                                class="rowSelect"
+                                class="rowSelect form-check-input"
                             />
                         </td>
                         <td>{{ $loop->iteration }}</td>

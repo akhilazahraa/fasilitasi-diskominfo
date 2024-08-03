@@ -110,6 +110,8 @@
             crossorigin="anonymous"
         ></script>
 
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
         <!-- FullCalendar JS -->
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 
@@ -164,15 +166,36 @@
                             center: "title",
                             right: "dayGridMonth,timeGridWeek",
                         },
-                        events: "/api/events",
-                        eventDidMount: function (info) {
-                            if (info.event.start) {
-                                var eventEl = document.createElement("div");
-                                eventEl.className = "custom-event-title";
-                                eventEl.innerText = info.event.title;
-                                info.el.innerHTML = "";
-                                info.el.appendChild(eventEl);
-                            }
+                        events: function (
+                            info,
+                            successCallback,
+                            failureCallback
+                        ) {
+                            fetch("/api/events")
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    // Transform data to FullCalendar format if needed
+                                    const events = data.map((event) => ({
+                                        id: event.id,
+                                        title: event.name, // Use 'name' from API data
+                                        start: event.start,
+                                        end: event.end,
+                                    }));
+                                    successCallback(events);
+                                })
+                                .catch((error) => {
+                                    console.error(
+                                        "Error fetching events:",
+                                        error
+                                    );
+                                    failureCallback(error);
+                                });
+                        },
+                        eventContent: function (arg) {
+                            // Create custom HTML for event content
+                            return {
+                                html: `<div class="custom-event-title">${arg.event.title}</div>`,
+                            };
                         },
                         eventClick: function (info) {
                             var eventId = info.event.id;

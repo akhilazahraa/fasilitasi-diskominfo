@@ -19,6 +19,8 @@ return new class extends Migration
             $table->dateTime('start');
             $table->dateTime('end')->nullable();
             $table->string('isp');
+            $table->enum('status', ['On Going', 'Not Started', 'End'])->nullable();
+            $table->string('kebutuhan')->nullable();
             $table->timestamps();
         });
     }

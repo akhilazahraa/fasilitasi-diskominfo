@@ -1,4 +1,4 @@
-<div class="col-lg-3" style="min-height: 100vh">
+<div class="col-lg-3 fixed-sidebar" style="min-height: 100vh">
     <!-- Vertical Navbar -->
     <nav
         class="navbar-expand-lg navbar-light flex-column px-3 py-4 h-100 border-end"
