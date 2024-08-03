@@ -18,7 +18,7 @@ class Event extends Model
         return $this->belongsTo(Provider::class);
     }
 
-    public function tim(){
+    public function tims(){
         return $this->belongsToMany(Tim::class, 'event_tim');
     }
 }

@@ -1,5 +1,6 @@
 :root {
-    --primary-color: #f33f40;
+    --primary-color: #6572ff;
+    --primary-hover-color: #5660d9;
     --secondary-color: #e5e9f2;
     --muted-color: #f4f4f5;
 
@@ -19,6 +20,10 @@ body {
     background-color: #fafafa;
 }
 
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
 .text-muted {
     color: var(--muted-color);
 }
@@ -33,6 +38,24 @@ body {
     line-height: 1.25;
 }
 
+.chart {
+    height: 100px !important;
+    width: 100%;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.fixed-sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
 .bg-success {
     background-color: #22c55e !important;
 }
@@ -41,14 +64,14 @@ body {
     background-color: #f24a4a !important;
 }
 
-.clamped-text {
+/* .clamped-text {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2; /* Ubah jumlah baris sesuai kebutuhan */
+    -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 150px; /* Atur sesuai kebutuhan Anda */
-}
+    max-width: 200px;
+} */
 
 .bg-muted {
     background-color: var(--muted-color);
@@ -191,8 +214,8 @@ body {
 
 .btn-primary {
     background-color: var(--primary-color);
-    border-radius: 8px;
-    padding: 8px 12px;
+    border-radius: 6px;
+    padding: 10px 12px;
     width: fit-content;
     border: 0;
     font-size: 0.875rem;
@@ -200,13 +223,36 @@ body {
     font-weight: 500;
 }
 
+.btn-primary:hover {
+    background-color: var(--primary-hover-color) !important;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    font-weight: 500;
+    width: fit-content;
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
 .btn-secondary {
     background-color: #6c757d;
-    border-radius: 8px;
-    font-weight: 600 !important;
-    padding: 8px 12px;
+    border-radius: 6px;
+    padding: 10px 12px;
     width: fit-content;
     border: 0;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    font-weight: 500;
 }
 
 .btn-primary:hover {
@@ -312,4 +358,9 @@ body {
 
 .card-scheduled {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pie-chart {
+    height: 250px !important;
+    width: 250px !important;
 }

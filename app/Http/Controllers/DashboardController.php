@@ -13,8 +13,36 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $currentDate = now();
+
+        $events = Event::with('instansi')->get();
+
+        $ispCounts = Event::select('isp')->selectRaw('COUNT(*) as count')->groupBy('isp')->get();
+
+        $ongoing = $events
+            ->filter(function ($event) use ($currentDate) {
+                return $event->start <= $currentDate && $currentDate <= $event->end;
+            })
+            ->count();
+
+        $notstarted = $events
+            ->filter(function ($event) use ($currentDate) {
+                return $event->start > $currentDate;
+            })
+            ->count();
+
+        $end = $events
+            ->filter(function ($event) use ($currentDate) {
+                return $event->end < $currentDate;
+            })
+            ->count();
+
         return view('dashboard.index', [
             'title' => 'Fasilitasi | Dashboard',
+            'ongoing' => $ongoing,
+            'notstarted' => $notstarted,
+            'end' => $end,
+            'ispCounts' => $ispCounts,
         ]);
     }
 
@@ -28,62 +56,8 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function showEvents(Event $events)
+    public function showUser(User $user)
     {
-        return view('dashboard.events.details.index', [
-            'title' => 'Fasilitasi | Details Events',
-            'events' => $events,
-        ]);
-    }
-
-    public function edit($id)
-    {
-        $event = Event::findOrFail($id);
-        $users = User::all();
-
-        return view('dashboard.events.edit.index', [
-            'title' => 'Fasilitasi | Edit Event',
-            'event' => $event,
-            'users' => $users,
-        ]);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $validatedData = $request->validate([
-            'title' => 'required',
-            'start' => 'required|date',
-            'end' => 'required|date',
-            'location' => 'required',
-            'maps' => 'required|url',
-            'user_id' => 'required|array',
-            'notes' => 'required',
-            'documentation' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
-        ]);
-
-        $event = Event::findOrFail($id);
-
-        // Handle file upload
-        if ($request->hasFile('documentation')) {
-            // Delete old file if exists
-            if ($event->documentation) {
-                Storage::delete('public/documentation/' . $event->documentation);
-            }
-
-            $file = $request->file('documentation');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/documentation', $fileName);
-            $validatedData['documentation'] = $fileName;
-        }
-
-        $event->update($validatedData);
-
-        $event->users()->sync($validatedData['user_id']);
-
-        return redirect()->route('dashboard.events.index')->with('success', 'Event berhasil diperbarui!');
-    }
-
-    public function showUser(User $user){
         $user = User::all();
 
         return view('dashboard.user.index', [
@@ -92,7 +66,8 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function editUser($id){
+    public function editUser($id)
+    {
         $user = User::findOrFail($id);
 
         return view('dashboard.user.edit.index', [

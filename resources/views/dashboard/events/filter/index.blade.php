@@ -2,32 +2,42 @@
 <div class="mb-0">
     <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Anggota Tim</a></li>
-            <li class="breadcrumb-item active" aria-current="page">List</li>
+            <li class="breadcrumb-item"><a href="#">Acara</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Filter</li>
         </ol>
     </nav>
 </div>
 <div class="d-flex justify-content-between align-items-center">
     <div class="heading mb-4">
-        <h1 class="fs-3 fw-bold">Anggota Tim</h1>
+        <h1 class="fs-3 fw-bold">Acara</h1>
     </div>
-    <div class="mb-4">
-        <a href="/dashboard/teams/create" class="btn btn-primary">Tambah Tim</a>
+    <div class="mb-4 d-flex justify-content-between gap-2">
+        <a
+            href="{{ route('dashboard.events.exportFilterPdf', ['opd_id' => $opd_id]) }}"
+            class="btn btn-outline"
+            target="_blank"
+        >
+            Export PDF
+        </a>
+
+        <a href="/dashboard/events/create" class="btn btn-primary"
+            >Tambah Acara</a
+        >
     </div>
 </div>
 <div class="content-wrapper">
     <div class="card p-4 border">
-        @if ($teams->isEmpty())
-        <p>No events scheduled.</p>
+        @if ($events->isEmpty())
+        <p>Belum ada acara.</p>
         @else
         <form
             id="bulk-delete-form"
-            action="/dashboard/teams/bulk-delete"
+            action="/dashboard/events/bulk-delete"
             method="POST"
         >
             @csrf @method('DELETE')
             <table class="table text-sm">
-                <div class="d-flex justify-content-end">
+                <div>
                     <button
                         type="submit"
                         id="bulk-delete-btn"
@@ -42,17 +52,20 @@
                         <th>
                             <input
                                 type="checkbox"
-                                id="select-all"
                                 class="form-check-input"
+                                id="select-all"
                             />
                         </th>
                         <th>No</th>
-                        <th>Nama</th>
+                        <th>Nama Acara</th>
+                        <th>Tanggal</th>
+                        <th>Nama OPD</th>
+                        <th>ISP</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($teams as $item)
+                    @foreach ($events as $item)
                     <tr class="lh-lg">
                         <td>
                             <input
@@ -64,9 +77,14 @@
                         </td>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
+                        <td>{{ $item->start }}</td>
+                        <td class="clamped-text">
+                            {{ $item->instansi->name}}
+                        </td>
+                        <td>{{ $item->isp }}</td>
                         <td>
                             <a
-                                href="/dashboard/teams/edit/{{ $item->id }}"
+                                href="/dashboard/events/edit/{{ $item->id }}"
                                 class="button-action"
                             >
                                 <svg

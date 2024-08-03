@@ -40,8 +40,9 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::post('/dashboard/events', [EventController::class, 'store'])->name('events.store');
     Route::get('/dashboard/events', [EventController::class, 'index'])->name('dashboard.events.index');
     Route::delete('/dashboard/events/delete/{id}', [EventController::class, 'destroy'])->name('events.destroy');
-    Route::get('/dashboard/events/edit/{id}', [DashboardController::class, 'edit'])->name('dashboard.events.edit');
-    Route::put('/dashboard/events/{id}', [DashboardController::class, 'update'])->name('dashboard.events.update');
+    Route::delete('/dashboard/events/bulk-delete', [EventController::class, 'bulkDelete'])->name('dashboard.events.bulkDelete');
+    Route::get('/dashboard/events/edit/{id}', [EventController::class, 'edit'])->name('dashboard.events.edit');
+    Route::put('/dashboard/events/{id}', [EventController::class, 'update'])->name('dashboard.events.update');
     Route::get('dashboard/user', [DashboardController::class, 'showUser'])->name('dashboard.user');
     Route::get('dashboard/user/edit/{id}', [DashboardController::class, 'editUser'])->name('dashboard.user.edit');
     Route::get('/dashboard/opd/create', [OpdController::class, 'create']);
@@ -52,10 +53,15 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::get('/dashboard/teams', [TimController::class, 'index'])->name('dashboard.teams.index');
     Route::get('/dashboard/teams/create', [TimController::class, 'create']);
     Route::post('/dashboard/teams', [TimController::class, 'store'])->name('dashboard.teams.store');
+    Route::delete('/dashboard/teams/bulk-delete', [TimController::class, 'bulkDelete'])->name('opd.bulkDelete');
 });
 
 // Authenticated routes
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard/events/scheduled/{events:id}', [DashboardController::class, 'showEvents']);
     Route::get('/dashboard/setting', [DashboardController::class, 'setting']);
+    Route::get('/api/events', [EventController::class, 'apiEvents']);
+    Route::get('/dashboard/events/filter/{opd_id}', [EventController::class, 'filterOPD'])->name('dashboard.events.filter');
+    Route::get('dashboard/events/filter/export-pdf/{opd_id}', [EventController::class, 'exportFilterPdf'])->name('dashboard.events.exportFilterPdf');
+    Route::get('/dashboard/events/export-pdf', [EventController::class, 'exportPdf'])->name('dashboard.events.exportPdf');
 });

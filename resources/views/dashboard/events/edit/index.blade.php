@@ -1,8 +1,9 @@
-@extends('layouts.admin') @section('container')
+@extends('layouts.admin')
+@section('container')
 <div class="mb-0">
     <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Events</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard.events.index') }}">Events</a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit</li>
         </ol>
     </nav>
@@ -18,26 +19,48 @@
             class="row"
             enctype="multipart/form-data"
         >
-            @csrf @method('PUT')
+            @csrf
+            @method('PUT')
             <div class="col-lg-6 mb-4">
-                <label class="form-label">Event name</label>
+                <label class="form-label">Nama Acara</label>
                 <input
                     type="text"
-                    name="title"
+                    name="name"
+                    value="{{ old('name', $event->name) }}"
                     class="form-control"
-                    value="{{ old('title', $event->title) }}"
                     required
                 />
             </div>
             <div class="col-lg-6 mb-4">
-                <label class="form-label">Location</label>
-                <input
-                    type="text"
+                <label class="form-label">Nama OPD</label>
+                <select name="opd_id" class="form-control" required>
+                    @foreach($instansis as $instansi)
+                        <option value="{{ $instansi->id }}" {{ old('opd_id', $event->opd_id) == $instansi->id ? 'selected' : '' }}>
+                            {{ $instansi->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <label class="form-label">Lokasi</label>
+                <select
                     name="location"
+                    id="location"
                     class="form-control"
-                    value="{{ old('location', $event->location) }}"
                     required
-                />
+                >
+                    <option value="{{ $event->location }}" selected>{{ $event->location }}</option>
+                </select>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <label class="form-label">Tim</label>
+                <select name="tim[]" class="form-control" required multiple>
+                    @foreach($tims as $tim)
+                        <option value="{{ $tim->id }}" {{ in_array($tim->id, $event->tims->pluck('id')->toArray()) ? 'selected' : '' }}>
+                            {{ $tim->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
             <div class="col-lg-6 mb-4">
                 <label class="form-label">Start</label>
@@ -45,7 +68,7 @@
                     type="datetime-local"
                     name="start"
                     class="form-control"
-                    value="{{ old('start', $event->start) }}"
+                    value="{{ old('start', \Carbon\Carbon::parse($event->start)->format('Y-m-d\TH:i')) }}"
                     required
                 />
             </div>
@@ -55,59 +78,53 @@
                     type="datetime-local"
                     name="end"
                     class="form-control"
-                    value="{{ old('end', $event->end) }}"
+                    value="{{ old('end', \Carbon\Carbon::parse($event->end)->format('Y-m-d\TH:i')) }}"
                     required
                 />
             </div>
             <div class="col-lg-6 mb-4">
-                <label class="form-label"
-                    >Documentation
-                    <span class="text-muted"
-                        >(Kosongkan jika belum ada.)</span
-                    ></label
-                >
-                <input type="file" name="documentation" class="form-control" />
+                <label class="form-label">ISP</label>
+                <select name="isp" class="form-control" required>
+                    <option value="Telkom" {{ old('isp', $event->isp) == 'Telkom' ? 'selected' : '' }}>Telkom</option>
+                    <option value="Lintasarta" {{ old('isp', $event->isp) == 'Lintasarta' ? 'selected' : '' }}>Lintasarta</option>
+                    <option value="Joule" {{ old('isp', $event->isp) == 'Joule' ? 'selected' : '' }}>Joule</option>
+                    <option value="Nexa" {{ old('isp', $event->isp) == 'Nexa' ? 'selected' : '' }}>Nexa</option>
+                </select>   
             </div>
             <div class="col-lg-6 mb-4">
-                <label class="form-label">Location Link</label>
-                <input
-                    type="url"
-                    name="maps"
-                    class="form-control"
-                    value="{{ old('maps', $event->maps) }}"
-                    required
-                />
-            </div>
-            <div class="mb-4">
-                <label class="form-label">Participants</label>
-                <select
-                    multiple
-                    class="form-control"
-                    id="user_id"
-                    name="user_id[]"
-                    required
-                >
-                    @foreach($users as $user)
-                    <option value="{{ $user->id }}" {{ in_array($user->
-                        id, $event->users->pluck('id')->toArray()) ? 'selected'
-                        : '' }}>
-                        {{ $user->name }}
-                    </option>
-                    @endforeach
+                <label class="form-label">Status</label>
+                <select name="status" id="status" class="form-control">
+                    <option value="" {{ old('status', $event->status) === '' ? 'selected' : '' }}>Pilih Status</option>
+                    <option value="On Going" {{ old('status', $event->status) === 'On Going' ? 'selected' : '' }}>On Going</option>
+                    <option value="Not Started" {{ old('status', $event->status) === 'Not Started' ? 'selected' : '' }}>Not Started</option>
+                    <option value="End" {{ old('status', $event->status) === 'End' ? 'selected' : '' }}>End</option>
                 </select>
-            </div>
+            </div>            
             <div class="col-lg-12 mb-4">
-                <label class="form-label">Notes</label>
-                <textarea
-                    name="notes"
-                    class="form-control"
-                    required
-                    >{{ old('notes', $event->notes) }}</textarea
-                >
+                <label class="form-label">Kebutuhan</label>
+                <textarea name="kebutuhan" class="form-control" rows="4">{{ old('kebutuhan', $event->kebutuhan) }}</textarea>
+            </div>            
+            <div class="col-lg-12">
+                <button class="w-full btn btn-primary">Edit</button>
             </div>
-
-            <button class="w-full btn btn-primary">Edit</button>
         </form>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch("https://www.emsifa.com/api-wilayah-indonesia/api/regencies/33.json")
+            .then((response) => response.json())
+            .then((data) => {
+                const locationSelect = document.getElementById("location");
+                data.forEach((region) => {
+                    const option = document.createElement("option");
+                    option.value = region.name;
+                    option.textContent = region.name;
+                    locationSelect.appendChild(option);
+                });
+            })
+            .catch((error) => console.error("Error fetching location data:", error));
+    });
+</script>
 @endsection
