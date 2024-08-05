@@ -63,5 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/events', [EventController::class, 'apiEvents']);
     Route::get('/dashboard/events/filter/{opd_id}', [EventController::class, 'filterOPD'])->name('dashboard.events.filter');
     Route::get('dashboard/events/filter/export-pdf/{opd_id}', [EventController::class, 'exportFilterPdf'])->name('dashboard.events.exportFilterPdf');
+    Route::get('dashboard/events/filter/isp/export-pdf/{isp_id}', [EventController::class, 'exportFilterIspPdf'])->name('dashboard.events.exportFilterIspPdf');
+    Route::get('/dashboard/events/filter/isp/{isp_id}', [EventController::class, 'filterISP'])->name('events.filterISP');
     Route::get('/dashboard/events/export-pdf', [EventController::class, 'exportPdf'])->name('dashboard.events.exportPdf');
 });

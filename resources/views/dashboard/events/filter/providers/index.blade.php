@@ -3,16 +3,20 @@
         <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Acara</a></li>
-                <li class="breadcrumb-item active" aria-current="page">List</li>
+                <li class="breadcrumb-item active" aria-current="page">Filter</li>
             </ol>
         </nav>
     </div>
     <div class="d-flex justify-content-between align-items-center">
         <div class="heading mb-4">
-            <h1 class="fs-3 fw-bold">Acara</h1>
+            <h1 class="fs-3 fw-bold">{{ $providers->name }}</h1>
         </div>
         <div class="mb-4 d-flex justify-content-between gap-2">
-            <a href="{{ route('dashboard.events.exportPdf') }}" class="btn btn-outline" target="_blank">Export to PDF</a>
+            <a href="{{ route('dashboard.events.exportFilterIspPdf', ['isp_id' => $isp_id]) }}" class="btn btn-outline"
+                target="_blank">
+                Export PDF
+            </a>
+
             <a href="/dashboard/events/create" class="btn btn-primary">Tambah Acara</a>
         </div>
     </div>

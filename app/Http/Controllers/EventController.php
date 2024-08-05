@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Instansi;
+use App\Models\Provider;
 use App\Models\Tim;
 use Barryvdh\DomPDF\PDF;
 use GuzzleHttp\Client;
@@ -37,11 +38,13 @@ class EventController extends Controller
     public function create()
     {
         $instansis = Instansi::all();
+        $providers = Provider::all();
         $tims = Tim::all();
         return view('dashboard.events.create.index', [
             'title' => 'Fasilitasi | Tambah Acara',
             'instansis' => $instansis,
             'tims' => $tims,
+            'providers' => $providers,
         ]);
     }
 
@@ -53,7 +56,7 @@ class EventController extends Controller
             'end' => 'required|date',
             'opd_id' => 'required|exists:instansis,id',
             'location' => 'required',
-            'isp' => 'required',
+            'isp_id' => 'required',
             'kebutuhan' => 'nullable',
             'status' => 'nullable',
             'tim' => 'required|array',
@@ -64,11 +67,11 @@ class EventController extends Controller
 
         $event->tims()->attach($request->input('tim'));
 
-        $message = "Halo *{$event->instansi->name}*,\n\n" . 
-           "Kami ingin memberitahukan bahwa akan ada fasilitasi *{$event->name}* di OPD Anda mulai tanggal *{$event->start}*. Harap mempersiapkan segala sesuatunya untuk acara tersebut.\n\n" . 
-           "Mohon tidak membalas pesan ini karena terkirim secara otomatis melalui sistem. Demikian yang dapat disampaikan, atas perhatian dan kerjasamanya kami ucapkan terimakasih\n\n" . 
-           "*Hormat kami,*\n" . 
-           "*Magang UNDIP*";
+        $message = "Halo *{$event->instansi->name}*,\n\n" .
+            "Kami ingin memberitahukan bahwa akan ada fasilitasi *{$event->name}* di OPD Anda mulai tanggal *{$event->start}*. Harap mempersiapkan segala sesuatunya untuk acara tersebut.\n\n" .
+            "Mohon tidak membalas pesan ini karena terkirim secara otomatis melalui sistem. Demikian yang dapat disampaikan, atas perhatian dan kerjasamanya kami ucapkan terimakasih\n\n" .
+            "*Hormat kami,*\n" .
+            "*Magang UNDIP*";
 
         $this->sendWhatsappNotification($message);
 
@@ -81,7 +84,7 @@ class EventController extends Controller
         $url = "https://api.fonnte.com/send";
         $phone = '6287810615021';
 
-        try{
+        try {
             $response = $client->post($url, [
                 'form_params' => [
                     'target' => $phone,
@@ -92,7 +95,7 @@ class EventController extends Controller
                 ],
                 'verifiy' => false,
             ]);
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             Log::error('Gagal mengirim pesan WhatsApp: ' . $e->getMessage());
         }
     }
@@ -142,6 +145,19 @@ class EventController extends Controller
         ]);
     }
 
+    public function filterISP($isp_id)
+    {
+        $providers = Provider::findOrFail($isp_id);
+        $events = Event::where('isp_id', $isp_id)->with('instansi')->get();
+
+        return view('dashboard.events.filter.providers.index', [
+            'title' => 'Fasilitasi | Acara - ' . $providers->name,
+            'events' => $events,
+            'isp_id' => $isp_id,
+            'providers' => $providers,
+        ]);
+    }
+
     public function exportFilterPdf($opd_id)
     {
         $events = Event::where('opd_id', $opd_id)->with('instansi')->get();
@@ -149,6 +165,27 @@ class EventController extends Controller
         $pdf = $this->pdf->loadView('dashboard.events.filter.pdf', ['events' => $events, 'instansi' => $instansi]);
         return $pdf->stream('filter_events.pdf');
     }
+
+    public function exportFilterIspPdf($isp_id)
+    {
+        $events = Event::where('isp_id', $isp_id)->with('providers')->get();
+        $providers = Provider::findOrFail($isp_id);
+        $pdf = $this->pdf->loadView('dashboard.events.filter.pdf', ['events' => $events, 'providers' => $providers]);
+        return $pdf->stream('filter_events.pdf');
+    }
+
+    public function filterByIsp(Request $request)
+    {
+        $isp = $request->input('isp');
+        $events = Event::where('isp', $isp)->with('instansi')->get();
+
+        return view('dashboard.events.index', [
+            'title' => 'Fasilitasi | Acara',
+            'events' => $events,
+            'selectedIsp' => $isp, // Tambahkan ini untuk mengetahui ISP yang dipilih di tampilan
+        ]);
+    }
+
 
     public function edit($id)
     {
