@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Event;
+use App\Models\Provider;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -30,6 +31,22 @@ class DatabaseSeeder extends Seeder
             'phonenumber' => '087810615021',
             'address' => 'jl.jatingaleh',
             'city' => 'semarang',
+        ]);
+
+        Provider::create([
+            'name' => 'Telkom',
+        ]);
+
+        Provider::create([
+            'name' => 'Nexa',
+        ]);
+
+        Provider::create([
+            'name' => 'Lintasarta',
+        ]);
+
+        Provider::create([
+            'name' => 'Sijoli',
         ]);
     }
 }

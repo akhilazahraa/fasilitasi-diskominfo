@@ -10,7 +10,8 @@ class Provider extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function events(){
-        return $this->hasMany(Event::class);
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'isp_id');
     }
 }

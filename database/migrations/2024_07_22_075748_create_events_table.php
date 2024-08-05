@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->foreignId('opd_id');
+            $table->foreignId('isp_id');
             $table->string('name');
             $table->string('location');
             $table->dateTime('start');
             $table->dateTime('end')->nullable();
-            $table->string('isp');
             $table->enum('status', ['On Going', 'Not Started', 'End'])->nullable();
             $table->string('kebutuhan')->nullable();
             $table->timestamps();
