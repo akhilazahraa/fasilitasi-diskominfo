@@ -17,7 +17,7 @@ class DashboardController extends Controller
 
         $events = Event::with('instansi')->get();
 
-        $ispCounts = Event::select('isp_id')->selectRaw('COUNT(*) as count')->groupBy('isp_id')->get();
+        $ispCounts = Event::select('isp_id', 'providers.name as isp_name')->join('providers', 'events.isp_id', '=', 'providers.id')->selectRaw('COUNT(*) as count')->groupBy('isp_id', 'isp_name')->get();
 
         $ongoing = $events
             ->filter(function ($event) use ($currentDate) {

@@ -64,14 +64,10 @@ body {
     background-color: #f24a4a !important;
 }
 
-/* .clamped-text {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 200px;
-} */
+.dropdown-menu .dropdown-item:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
 
 .bg-muted {
     background-color: var(--muted-color);
