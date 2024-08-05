@@ -22,10 +22,12 @@ class EventController extends Controller
 
     public function index()
     {
-        $events = Event::with('instansi')->get(); // Pastikan relasi instansi di-load
+        $events = Event::with('instansi')->get();
+        $providers = Provider::all();
         return view('dashboard.events.index', [
             'title' => 'Fasilitasi | Acara',
             'events' => $events,
+            'providers' => $providers
         ]);
     }
 

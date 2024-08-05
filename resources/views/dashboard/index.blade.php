@@ -37,7 +37,7 @@
                     <!-- Hidden elements to store ISP data -->
                     <div id="isp-data" style="display: none">
                         @foreach($ispCounts as $ispCount)
-                        <span class="isp-label">{{ $ispCount->isp }}</span>
+                        <span class="isp-label">{{ $ispCount->isp_name }}</span>
                         <span class="isp-count">{{ $ispCount->count }}</span>
                         @endforeach
                     </div>
