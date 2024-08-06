@@ -151,12 +151,14 @@ class EventController extends Controller
     {
         $providers = Provider::findOrFail($isp_id);
         $events = Event::where('isp_id', $isp_id)->with('instansi')->get();
+        $allproviders = Provider::all();
 
         return view('dashboard.events.filter.providers.index', [
             'title' => 'Fasilitasi | Acara - ' . $providers->name,
             'events' => $events,
             'isp_id' => $isp_id,
             'providers' => $providers,
+            'allproviders' => $allproviders,
         ]);
     }
 
