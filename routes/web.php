@@ -60,6 +60,7 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard/events/scheduled/{events:id}', [DashboardController::class, 'showEvents']);
     Route::get('/dashboard/setting', [DashboardController::class, 'setting']);
+    Route::put('/dashboard/setting', [DashboardController::class, 'update'])->name('dashboard.setting.update');
     Route::get('/api/events', [EventController::class, 'apiEvents']);
     Route::get('/dashboard/events/filter/{opd_id}', [EventController::class, 'filterOPD'])->name('dashboard.events.filter');
     Route::get('dashboard/events/filter/export-pdf/{opd_id}', [EventController::class, 'exportFilterPdf'])->name('dashboard.events.exportFilterPdf');
