@@ -55,6 +55,8 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::get('/dashboard/teams/create', [TimController::class, 'create']);
     Route::post('/dashboard/teams', [TimController::class, 'store'])->name('dashboard.teams.store');
     Route::delete('/dashboard/teams/bulk-delete', [TimController::class, 'bulkDelete'])->name('opd.bulkDelete');
+    Route::get('/dashboard/events/details/{id}', [EventController::class, 'details'])->name('dashboard.events.details');
+    Route::get('dashboard/events/details/pdf/{id}', [EventController::class, 'exportSingleEventPdf'])->name('dashboard.events.details.pdf');
 });
 
 // Authenticated routes
