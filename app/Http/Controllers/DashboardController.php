@@ -95,4 +95,24 @@ class DashboardController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function updateUser(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phonenumber' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'role' => 'required|in:ADMIN,USER', // validasi role
+        ]);
+
+        // Ambil user yang akan diupdate
+        $user = User::findOrFail($id);
+
+        // Update user dengan data yang telah divalidasi
+        $user->update($validatedData);
+
+        return redirect()->route('dashboard.user')->with('success', 'Profil pengguna berhasil diperbarui!');
+    }
 }

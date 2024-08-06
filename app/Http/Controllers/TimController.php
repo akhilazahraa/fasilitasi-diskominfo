@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class TimController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $teams = Tim::all();
         return view('dashboard.teams.index', [
             'title' => 'Fasilitasi | Acara',
