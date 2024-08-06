@@ -10,6 +10,9 @@
 <div class="heading mb-4">
     <h1 class="fs-3 fw-bold">Details Event</h1>
 </div>
+<div class="mb-4 d-flex justify-content-between gap-2">
+    <a href="{{ route('dashboard.events.details.pdf', $events->id) }}" class="btn btn-outline ms-auto" target="_blank">Export to PDF</a>
+</div>
 <div class="content-wrapper">
     <div class="card p-4 border">
         <div class="card-body p-2">
@@ -18,7 +21,7 @@
                     <div class="col-lg-6 mb-4">
                         <div>
                             <span class="fw-semibold">Event Name</span>
-                            <p class="text-muted">{{ $events->title }}</p>
+                            <p class="text-muted">{{ $events->name }}</p>
                         </div>
                     </div>
                     <div class="col-lg-6 mb-4">
@@ -47,10 +50,13 @@
                     </div>
                     <div class="col-lg-6 mb-4">
                         <div>
-                            <span class="fw-semibold">Notes</span>
-                            <p class="text-muted">{{ $events->notes }}</p>
+                            <span class="fw-semibold">Tim</span>
+                            @foreach($events->tims as $tim)
+                                <p class="text-muted">{{ $tim->name }}</p>
+                            @endforeach
                         </div>
                     </div>
+
                     <div class="col-lg-6 mb-4">
                         <div>
                             <span class="fw-semibold">Dokumentasi</span>

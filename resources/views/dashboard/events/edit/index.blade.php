@@ -89,7 +89,7 @@
                     <option value="Lintasarta" {{ old('isp', $event->isp) == 'Lintasarta' ? 'selected' : '' }}>Lintasarta</option>
                     <option value="Joule" {{ old('isp', $event->isp) == 'Joule' ? 'selected' : '' }}>Joule</option>
                     <option value="Nexa" {{ old('isp', $event->isp) == 'Nexa' ? 'selected' : '' }}>Nexa</option>
-                </select>   
+                </select>
             </div>
             <div class="col-lg-6 mb-4">
                 <label class="form-label">Status</label>
@@ -99,11 +99,11 @@
                     <option value="Not Started" {{ old('status', $event->status) === 'Not Started' ? 'selected' : '' }}>Not Started</option>
                     <option value="End" {{ old('status', $event->status) === 'End' ? 'selected' : '' }}>End</option>
                 </select>
-            </div>            
+            </div>
             <div class="col-lg-12 mb-4">
                 <label class="form-label">Kebutuhan</label>
                 <textarea name="kebutuhan" class="form-control" rows="4">{{ old('kebutuhan', $event->kebutuhan) }}</textarea>
-            </div>            
+            </div>
             <div class="col-lg-12">
                 <button class="w-full btn btn-primary">Edit</button>
             </div>

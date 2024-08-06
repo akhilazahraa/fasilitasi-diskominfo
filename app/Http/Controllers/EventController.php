@@ -205,7 +205,25 @@ class EventController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function details($id)
+    {
+        $events = Event::with('tims', 'instansi')->findOrFail($id);
+        $tims = Tim::all();
+
+        return view('dashboard.events.details.index', [
+            'title' => 'Fasilitasi Acara | Detail Events',
+            'events' => $events,
+            'tims' => $tims,
+        ]);
+    }
+
+    public function exportSingleEventPdf($id)
+    {
+        $event = Event::with('instansi', 'providers','tims')->findOrFail($id);
+        $pdf = $this->pdf->loadView('dashboard.events.details.pdf', ['event' => $event]);
+        return $pdf->stream('event_' . $id . '.pdf');
+    }
+        public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
             'name' => 'required',
