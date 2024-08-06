@@ -12,6 +12,19 @@
             <h1 class="fs-3 fw-bold">{{ $providers->name }}</h1>
         </div>
         <div class="mb-4 d-flex justify-content-between gap-2">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Filter
+                </button>
+                <ul class="dropdown-menu shadow-sm p-3 lh-lg">
+                    @foreach ($allproviders as $allproviders)
+                        <li><a class="dropdown-item "
+                                href="/dashboard/events/filter/isp/{{ $allproviders->id }}">{{ $allproviders->name }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
             <a href="{{ route('dashboard.events.exportFilterIspPdf', ['isp_id' => $isp_id]) }}" class="btn btn-outline"
                 target="_blank">
                 Export PDF
