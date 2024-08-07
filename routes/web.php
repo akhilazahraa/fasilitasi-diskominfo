@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\IspController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OpdController;
 use App\Http\Controllers\RegisterController;
@@ -61,6 +62,12 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::delete('/dashboard/teams/bulk-delete', [TimController::class, 'bulkDelete'])->name('opd.bulkDelete');
     Route::get('/dashboard/teams/edit/{team}', [TimController::class, 'edit'])->name('dashboard.teams.edit');
     Route::put('/dashboard/teams/{team}', [TimController::class, 'update'])->name('dashboard.teams.update');
+    Route::get('/dashboard/isp', [IspController::class, 'index'])->name('dashboard.isp.index');
+    Route::get('/dashboard/isp/create', [IspController::class, 'create']);
+    Route::post('/dashboard/isp', [IspController::class, 'store'])->name('dashboard.isp.store');
+    Route::delete('/dashboard/isp/bulk-delete', [IspController::class, 'bulkDelete'])->name('isp.bulkDelete');
+    Route::get('/dashboard/isp/edit/{isp}', [IspController::class, 'edit'])->name('dashboard.isp.edit');
+    Route::put('/dashboard/isp/{isp}', [IspController::class, 'update'])->name('dashboard.isp.update');
 });
 
 // Authenticated routes
