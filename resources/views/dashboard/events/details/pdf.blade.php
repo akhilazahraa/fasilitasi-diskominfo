@@ -1,22 +1,64 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Detail Acara</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <style>
-        * { font-family: Arial, sans-serif; }
-        table { width: 100%; border-collapse: collapse; font-size: 14px; }
-        table, th, td { border: 1px solid black; }
-        th, td { padding: 8px; text-align: left; }
-        .kop-surat { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-        .alamat { font-size: 14px; }
-        .kop-surat img { max-width: 100px; }
-        .divider { border-top: 2px solid #000; margin: 20px 0; }
-        .heading { font-size: 18px; }
-        .date { font-size: 14px; }
+        * {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .kop-surat {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .alamat {
+            font-size: 14px;
+        }
+
+        .kop-surat img {
+            max-width: 100px;
+        }
+
+        .divider {
+            border-top: 2px solid #000;
+            margin: 20px 0;
+        }
+
+        .heading {
+            font-size: 18px;
+        }
+
+        .date {
+            font-size: 14px;
+        }
     </style>
 </head>
+
 <body>
     <div class="kop-surat d-flex">
         <div class="text-center">
@@ -25,8 +67,10 @@
             <div class="alamat">
                 <p class="mb-0">Jalan Menteri Supeno I Nomor 2 Semarang 50234</p>
                 <p class="mb-0">Telepone 024-8319140 Faksimile (024)8319328</p>
-                <p class="mb-0">Laman: <a href="http://diskominfo.jatengprov.go.id">http://diskominfo.jatengprov.go.id</a></p>
-                <p class="mb-0">Surat Elektronik: <a href="mailto:diskominfo@jatengprov.go.id">diskominfo@jatengprov.go.id</a></p>
+                <p class="mb-0">Laman: <a
+                        href="http://diskominfo.jatengprov.go.id">http://diskominfo.jatengprov.go.id</a></p>
+                <p class="mb-0">Surat Elektronik: <a
+                        href="mailto:diskominfo@jatengprov.go.id">diskominfo@jatengprov.go.id</a></p>
             </div>
         </div>
     </div>
@@ -68,32 +112,20 @@
                 <th>Tanggal Selesai</th>
                 <th>Kebutuhan</th>
                 <th>Status</th>
-                <th>Dokumentasi</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>{{ \Carbon\Carbon::parse($event->start)->locale('id')->translatedFormat('l, d F Y') }}</td>
                 <td>{{ \Carbon\Carbon::parse($event->end)->locale('id')->translatedFormat('l, d F Y') }}</td>
-                <td>{{ $event->kebutuhan}}</td>
-                <td>{{ $event->status}}</td>
-                <td>
-                    <ol class="mb-0">
-                        @if($event->documentation)
-                            <img
-                                src="{{ asset('storage/documentation/' . $events->documentation) }}"
-                                alt="Documentation"
-                                class="rounded"
-                                style="max-width: 100%; height: auto"
-                            />
-                            @else
-                            <p class="text-muted">Tidak ada dokumentasi</p>
-                            @endif
-                    </ol>
-                </td>
+                <td>{{ $event->kebutuhan }}</td>
+                <td>{{ $event->status }}</td>
             </tr>
         </tbody>
     </table>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeo7lAiBX1TH4OVFFzFn24UwUlgp3jl8a8dKA82UdwBI8BJ3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeo7lAiBX1TH4OVFFzFn24UwUlgp3jl8a8dKA82UdwBI8BJ3" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->dateTime('end')->nullable();
             $table->enum('status', ['On Going', 'Not Started', 'End'])->nullable();
             $table->string('kebutuhan')->nullable();
+            $table->string('documentation')->nullable();
             $table->timestamps();
         });
     }

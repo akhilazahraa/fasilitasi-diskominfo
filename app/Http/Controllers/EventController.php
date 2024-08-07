@@ -60,10 +60,18 @@ class EventController extends Controller
             'location' => 'required',
             'isp_id' => 'required',
             'kebutuhan' => 'nullable',
+            'documentation' => 'nullable',
             'status' => 'nullable',
             'tim' => 'required|array',
             'tim.*' => 'exists:tims,id',
         ]);
+
+        if ($request->hasFile('documentation')) {
+            $file = $request->file('documentation');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('documents', $filename, 'public');
+            $validatedData['documentation'] = '/storage/' . $filePath;
+        }
 
         $event = Event::create($validatedData);
 
