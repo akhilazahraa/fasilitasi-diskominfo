@@ -43,7 +43,6 @@
                 <th>OPD</th>
                 <th>ISP</th>
                 <th>Tim</th>
-                <th>Tanggal</th>
             </tr>
         </thead>
         <tbody>
@@ -59,7 +58,39 @@
                         @endforeach
                     </ol>
                 </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tanggal Mulai</th>
+                <th>Tanggal Selesai</th>
+                <th>Kebutuhan</th>
+                <th>Status</th>
+                <th>Dokumentasi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
                 <td>{{ \Carbon\Carbon::parse($event->start)->locale('id')->translatedFormat('l, d F Y') }}</td>
+                <td>{{ \Carbon\Carbon::parse($event->end)->locale('id')->translatedFormat('l, d F Y') }}</td>
+                <td>{{ $event->kebutuhan}}</td>
+                <td>{{ $event->status}}</td>
+                <td>
+                    <ol class="mb-0">
+                        @if($event->documentation)
+                            <img
+                                src="{{ asset('storage/documentation/' . $events->documentation) }}"
+                                alt="Documentation"
+                                class="rounded"
+                                style="max-width: 100%; height: auto"
+                            />
+                            @else
+                            <p class="text-muted">Tidak ada dokumentasi</p>
+                            @endif
+                    </ol>
+                </td>
             </tr>
         </tbody>
     </table>

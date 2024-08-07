@@ -68,7 +68,7 @@
                                     <td class="clamped-text">
                                         {{ $item->instansi->name }}
                                     </td>
-                                    <td>{{ $item->isp }}</td>
+                                    <td>{{ $item->providers->name }}</td>
                                     <td>
                                         <a href="/dashboard/events/edit/{{ $item->id }}" class="button-action">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

@@ -56,7 +56,22 @@
                             @endforeach
                         </div>
                     </div>
-
+                    <div class="col-lg-6 mb-4">
+                        <div>
+                            <span class="fw-semibold">ISP</span>
+                            <p class="text-muted">
+                                {{ $events->providers->name }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div>
+                            <span class="fw-semibold">Kebutuhan</span>
+                            <p class="text-muted">
+                                {{ $events->kebutuhan }}
+                            </p>
+                        </div>
+                    </div>
                     <div class="col-lg-6 mb-4">
                         <div>
                             <span class="fw-semibold">Dokumentasi</span>

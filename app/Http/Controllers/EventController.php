@@ -207,13 +207,15 @@ class EventController extends Controller
 
     public function details($id)
     {
-        $events = Event::with('tims', 'instansi')->findOrFail($id);
+        $events = Event::with('tims', 'instansi', 'providers')->findOrFail($id);
         $tims = Tim::all();
+        $providers = Provider::all();
 
         return view('dashboard.events.details.index', [
             'title' => 'Fasilitasi Acara | Detail Events',
             'events' => $events,
             'tims' => $tims,
+            'providers' => $providers,
         ]);
     }
 

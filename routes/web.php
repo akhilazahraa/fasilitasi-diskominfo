@@ -54,8 +54,6 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::get('/dashboard/teams/create', [TimController::class, 'create']);
     Route::post('/dashboard/teams', [TimController::class, 'store'])->name('dashboard.teams.store');
     Route::delete('/dashboard/teams/bulk-delete', [TimController::class, 'bulkDelete'])->name('opd.bulkDelete');
-    Route::get('/dashboard/events/details/{id}', [EventController::class, 'details'])->name('dashboard.events.details');
-    Route::get('dashboard/events/details/pdf/{id}', [EventController::class, 'exportSingleEventPdf'])->name('dashboard.events.details.pdf');
 });
 
 // Authenticated routes
@@ -68,4 +66,6 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard/events/filter/isp/export-pdf/{isp_id}', [EventController::class, 'exportFilterIspPdf'])->name('dashboard.events.exportFilterIspPdf');
     Route::get('/dashboard/events/filter/isp/{isp_id}', [EventController::class, 'filterISP'])->name('events.filterISP');
     Route::get('/dashboard/events/export-pdf', [EventController::class, 'exportPdf'])->name('dashboard.events.exportPdf');
+    Route::get('/dashboard/events/details/{id}', [EventController::class, 'details'])->name('dashboard.events.details');
+    Route::get('dashboard/events/details/pdf/{id}', [EventController::class, 'exportSingleEventPdf'])->name('dashboard.events.details.pdf');
 });
