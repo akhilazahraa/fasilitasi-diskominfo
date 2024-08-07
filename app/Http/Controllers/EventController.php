@@ -175,21 +175,27 @@ class EventController extends Controller
         ]);
     }
 
-    public function exportFilterPdf($opd_id)
+    public function exportFilterIspPdf($isp_id)
     {
-        $events = Event::where('opd_id', $opd_id)->with('instansi')->get();
-        $instansi = Instansi::findOrFail($opd_id);
-        $pdf = $this->pdf->loadView('dashboard.events.filter.pdf', ['events' => $events, 'instansi' => $instansi]);
+        // Ambil data event yang terkait dengan ISP
+        $instansi = Instansi::find(1);
+        $events = Event::where('isp_id', $isp_id)->with('instansi', 'tims')->get();
+        // Ambil data provider
+        $providers = Provider::findOrFail($isp_id);
+        // Load view blade dengan data
+        $pdf = $this->pdf->loadView('dashboard.events.filter.isp.pdf', [
+            'events' => $events,
+            'providers' => $providers,
+            'instansi' => $instansi
+        ]);
+
+        // Stream file PDF ke browser
         return $pdf->stream('filter_events.pdf');
     }
 
-    public function exportFilterIspPdf($isp_id)
-    {
-        $events = Event::where('isp_id', $isp_id)->with('providers')->get();
-        $providers = Provider::findOrFail($isp_id);
-        $pdf = $this->pdf->loadView('dashboard.events.filter.pdf', ['events' => $events, 'providers' => $providers]);
-        return $pdf->stream('filter_events.pdf');
-    }
+
+
+
 
     public function filterByIsp(Request $request)
     {
