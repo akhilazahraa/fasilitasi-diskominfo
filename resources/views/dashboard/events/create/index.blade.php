@@ -63,6 +63,24 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="col-lg-6 mb-4">
+                    <label class="form-label">Documentation</label>
+                    <input type="file" name="documentation" class="form-control" required />
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <label class="form-label">Status</label>
+                    <select name="status" id="status" class="form-control">
+                        <option value="">Pilih Status
+                        </option>
+                        <option value="On Going">On Going</option>
+                        <option value="Not Started">Not Started</option>
+                        <option value="End">End</option>
+                    </select>
+                </div>
+                <div class="col-lg-12 mb-4">
+                    <label class="form-label">Kebutuhan</label>
+                    <textarea name="kebutuhan" class="form-control" rows="4"></textarea>
+                </div>
                 <div class="col-lg-12">
                     <button type="submit" class="btn btn-primary">Create</button>
                 </div>
