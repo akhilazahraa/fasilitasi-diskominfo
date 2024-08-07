@@ -58,36 +58,6 @@
                             </div>
                         </div>
 
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div>
-                            <span class="fw-semibold">ISP</span>
-                            <p class="text-muted">
-                                {{ $events->providers->name }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div>
-                            <span class="fw-semibold">Kebutuhan</span>
-                            <p class="text-muted">
-                                {{ $events->kebutuhan }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-4">
-                        <div>
-                            <span class="fw-semibold">Dokumentasi</span>
-                            @if($events->documentation)
-                            <img
-                                src="{{ asset('storage/documentation/' . $events->documentation) }}"
-                                alt="Documentation"
-                                class="rounded"
-                                style="max-width: 100%; height: auto"
-                            />
-                            @else
-                            <p class="text-muted">Tidak ada dokumentasi</p>
-                            @endif
                         <div class="col-lg-6 mb-4">
                             <div>
                                 <span class="fw-semibold">Dokumentasi</span>
