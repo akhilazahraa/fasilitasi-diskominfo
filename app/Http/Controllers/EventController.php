@@ -22,7 +22,7 @@ class EventController extends Controller
 
     public function index()
     {
-        $events = Event::with('instansi')->get();
+        $events = Event::with('instansi', 'providers')->get();
         $providers = Provider::all();
         return view('dashboard.events.index', [
             'title' => 'Fasilitasi | Acara',
@@ -219,11 +219,11 @@ class EventController extends Controller
 
     public function exportSingleEventPdf($id)
     {
-        $event = Event::with('instansi', 'providers','tims')->findOrFail($id);
+        $event = Event::with('instansi', 'providers', 'tims')->findOrFail($id);
         $pdf = $this->pdf->loadView('dashboard.events.details.pdf', ['event' => $event]);
         return $pdf->stream('event_' . $id . '.pdf');
     }
-        public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
             'name' => 'required',

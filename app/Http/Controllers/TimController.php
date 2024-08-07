@@ -35,4 +35,23 @@ class TimController extends Controller
 
         return redirect()->route('dashboard.teams.index')->with('success', 'Anggota Tim berhasil ditambahkan!');
     }
+
+    public function edit(Tim $team)
+    {
+        return view('dashboard.teams.edit.index', [
+            'title' => 'Fasilitasi | Edit Anggota Tim',
+            'team' => $team,
+        ]);
+    }
+
+    public function update(Request $request, Tim $team)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+        ]);
+
+        $team->update($validatedData);
+
+        return redirect()->route('dashboard.teams.index')->with('success', 'Anggota Tim berhasil diupdate!');
+    }
 }
