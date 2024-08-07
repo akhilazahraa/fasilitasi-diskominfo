@@ -11,21 +11,18 @@
                         SEDANG BERLANGSUNG
                     </p>
                     <h4 class="fw-semibold">{{ $ongoing }}</h4>
-                    <canvas id="chartSedangBerlangsung" class="chart"></canvas>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="card border">
                     <p class="text-primary fw-medium mb-2">BELUM MULAI</p>
                     <h4 class="fw-semibold">{{ $notstarted }}</h4>
-                    <canvas id="chartBelumMulai" class="chart"></canvas>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="card border">
                     <p class="text-primary fw-medium mb-2">SELESAI</p>
                     <h4 class="fw-semibold">{{ $end }}</h4>
-                    <canvas id="chartSelesai" class="chart"></canvas>
                 </div>
             </div>
             <div class="col-lg-6 mt-4">
@@ -78,114 +75,6 @@
                         hoverOffset: 4,
                     },
                 ],
-            },
-        });
-
-        new Chart(
-            document.getElementById("chartSedangBerlangsung").getContext("2d"),
-            {
-                type: "line",
-                data: {
-                    labels: [
-                        "January",
-                        "February",
-                        "March",
-                        "April",
-                        "May",
-                        "June",
-                        "July",
-                    ],
-                    datasets: [
-                        {
-                            label: "Data Sedang Berlangsung",
-                            data: [12, 19, 3, 5, 2, 3, 7],
-                            borderColor: "rgba(75, 192, 192, 1)",
-                            backgroundColor: "rgba(75, 192, 192, 0.2)",
-                            fill: true,
-                        },
-                    ],
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { display: false }, // Sembunyikan legenda
-                        tooltip: { enabled: false }, // Sembunyikan tooltip
-                    },
-                    scales: {
-                        x: { display: false }, // Sembunyikan sumbu X
-                        y: { display: false }, // Sembunyikan sumbu Y
-                    },
-                },
-            }
-        );
-
-        new Chart(document.getElementById("chartBelumMulai").getContext("2d"), {
-            type: "line",
-            data: {
-                labels: [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                ],
-                datasets: [
-                    {
-                        label: "Data Belum Mulai",
-                        data: [5, 12, 6, 9, 8, 11, 15],
-                        borderColor: "rgba(153, 102, 255, 1)",
-                        backgroundColor: "rgba(153, 102, 255, 0.2)",
-                        fill: true,
-                    },
-                ],
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: { enabled: false },
-                },
-                scales: {
-                    x: { display: false },
-                    y: { display: false },
-                },
-            },
-        });
-
-        new Chart(document.getElementById("chartSelesai").getContext("2d"), {
-            type: "line",
-            data: {
-                labels: [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                ],
-                datasets: [
-                    {
-                        label: "Data Selesai",
-                        data: [3, 5, 2, 8, 7, 10, 12],
-                        borderColor: "rgba(255, 99, 132, 1)",
-                        backgroundColor: "rgba(255, 99, 132, 0.2)",
-                        fill: true,
-                    },
-                ],
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { display: false }, // Sembunyikan legenda
-                    tooltip: { enabled: false }, // Sembunyikan tooltip
-                },
-                scales: {
-                    x: { display: false }, // Sembunyikan sumbu X
-                    y: { display: false }, // Sembunyikan sumbu Y
-                },
             },
         });
     });
