@@ -43,23 +43,31 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::delete('/dashboard/events/bulk-delete', [EventController::class, 'bulkDelete'])->name('dashboard.events.bulkDelete');
     Route::get('/dashboard/events/edit/{id}', [EventController::class, 'edit'])->name('dashboard.events.edit');
     Route::put('/dashboard/events/{id}', [EventController::class, 'update'])->name('dashboard.events.update');
+    Route::get('/dashboard/events/details/{id}', [EventController::class, 'details'])->name('dashboard.events.details');
+    Route::get('dashboard/events/details/pdf/{id}', [EventController::class, 'exportSingleEventPdf'])->name('dashboard.events.details.pdf');
     Route::get('dashboard/user', [DashboardController::class, 'showUser'])->name('dashboard.user');
     Route::get('dashboard/user/edit/{id}', [DashboardController::class, 'editUser'])->name('dashboard.user.edit');
+    Route::put('dashboard/user/{id}', [DashboardController::class, 'updateUser'])->name('dashboard.user.update');
     Route::get('/dashboard/opd/create', [OpdController::class, 'create']);
     Route::get('/dashboard/opd', [OpdController::class, 'index'])->name('dashboard.opd');
     Route::post('/dashboard/opd', [OpdController::class, 'store'])->name('opd.store');
     Route::delete('/dashboard/opd/delete/{id}', [OpdController::class, 'destroy'])->name('opd.destroy');
     Route::delete('/dashboard/opd/bulk-delete', [OpdController::class, 'bulkDelete'])->name('opd.bulkDelete');
+    Route::get('/dashboard/opd/edit/{opd}', [OpdController::class, 'edit'])->name('opd.edit');
+    Route::put('/dashboard/opd/{opd}', [OpdController::class, 'update'])->name('opd.update');
     Route::get('/dashboard/teams', [TimController::class, 'index'])->name('dashboard.teams.index');
     Route::get('/dashboard/teams/create', [TimController::class, 'create']);
     Route::post('/dashboard/teams', [TimController::class, 'store'])->name('dashboard.teams.store');
     Route::delete('/dashboard/teams/bulk-delete', [TimController::class, 'bulkDelete'])->name('opd.bulkDelete');
+    Route::get('/dashboard/teams/edit/{team}', [TimController::class, 'edit'])->name('dashboard.teams.edit');
+    Route::put('/dashboard/teams/{team}', [TimController::class, 'update'])->name('dashboard.teams.update');
 });
 
 // Authenticated routes
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard/events/scheduled/{events:id}', [DashboardController::class, 'showEvents']);
     Route::get('/dashboard/setting', [DashboardController::class, 'setting']);
+    Route::put('/dashboard/setting', [DashboardController::class, 'update'])->name('dashboard.setting.update');
     Route::get('/api/events', [EventController::class, 'apiEvents']);
     Route::get('/dashboard/events/filter/{opd_id}', [EventController::class, 'filterOPD'])->name('dashboard.events.filter');
     Route::get('dashboard/events/filter/export-pdf/{opd_id}', [EventController::class, 'exportFilterPdf'])->name('dashboard.events.exportFilterPdf');

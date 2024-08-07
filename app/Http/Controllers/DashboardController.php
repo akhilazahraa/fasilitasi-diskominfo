@@ -56,6 +56,26 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function update(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phonenumber' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+        ]);
+
+        // Ambil user yang sedang login
+        $user = Auth::user();
+
+        // Update user dengan data yang telah divalidasi
+        $user->update($validatedData);
+
+        return redirect()->back()->with('success', 'Profil Anda berhasil diperbarui!');
+    }
+
+
     public function showUser(User $user)
     {
         $user = User::all();
@@ -74,5 +94,25 @@ class DashboardController extends Controller
             'title' => 'Fasilitasi | Edit Event',
             'user' => $user,
         ]);
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phonenumber' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'role' => 'required|in:ADMIN,USER', // validasi role
+        ]);
+
+        // Ambil user yang akan diupdate
+        $user = User::findOrFail($id);
+
+        // Update user dengan data yang telah divalidasi
+        $user->update($validatedData);
+
+        return redirect()->route('dashboard.user')->with('success', 'Profil pengguna berhasil diperbarui!');
     }
 }

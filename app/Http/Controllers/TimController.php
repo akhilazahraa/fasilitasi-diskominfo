@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class TimController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $teams = Tim::all();
         return view('dashboard.teams.index', [
             'title' => 'Fasilitasi | Acara',
@@ -33,5 +34,24 @@ class TimController extends Controller
         Tim::create($validatedData);
 
         return redirect()->route('dashboard.teams.index')->with('success', 'Anggota Tim berhasil ditambahkan!');
+    }
+
+    public function edit(Tim $team)
+    {
+        return view('dashboard.teams.edit.index', [
+            'title' => 'Fasilitasi | Edit Anggota Tim',
+            'team' => $team,
+        ]);
+    }
+
+    public function update(Request $request, Tim $team)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+        ]);
+
+        $team->update($validatedData);
+
+        return redirect()->route('dashboard.teams.index')->with('success', 'Anggota Tim berhasil diupdate!');
     }
 }

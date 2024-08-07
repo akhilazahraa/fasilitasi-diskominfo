@@ -16,10 +16,11 @@ class OpdController extends Controller
         ]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('dashboard.opd.create.index', [
             'title' => 'Fasilitasi | Create OPD',
-        ]); 
+        ]);
     }
 
     public function store(Request $request)
@@ -52,5 +53,25 @@ class OpdController extends Controller
         }
 
         return redirect()->route('dashboard.opd')->with('error', 'Tidak ada data yang dipilih untuk dihapus.');
+    }
+
+    public function edit(Instansi $opd)
+    {
+        return view('dashboard.opd.edit.index', [
+            'title' => 'Fasilitasi | Edit OPD',
+            'opd' => $opd,
+        ]);
+    }
+
+    public function update(Request $request, Instansi $opd)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+        ]);
+
+        $opd->update($validatedData);
+
+        return redirect()->route('dashboard.opd')->with('success', 'OPD berhasil diupdate!');
     }
 }
