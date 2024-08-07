@@ -124,7 +124,12 @@ class EventController extends Controller
 
     public function exportPdf()
     {
-        $events = Event::with('instansi')->get();
+        $events = Event::with('instansi', 'tims')->get();
+
+        if ($events->isEmpty()) {
+            return response()->json(['error' => 'No events found'], 404);
+        }
+
         $pdf = $this->pdf->loadView('dashboard.events.pdf', ['events' => $events]);
         return $pdf->stream('events.pdf');
     }
