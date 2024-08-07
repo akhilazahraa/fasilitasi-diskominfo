@@ -7,12 +7,13 @@
             </ol>
         </nav>
     </div>
-    <div class="heading mb-4">
-        <h1 class="fs-3 fw-bold">Details Event</h1>
-    </div>
-    <div class="mb-4 d-flex justify-content-between gap-2">
-        <a href="{{ route('dashboard.events.details.pdf', $events->id) }}" class="btn btn-outline ms-auto"
-            target="_blank">Export to PDF</a>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="heading mb-4">
+            <h1 class="fs-3 fw-bold">Detail Event</h1>
+        </div>
+        <div class="mb-4">
+            <a href="/dashboard/events/details" class="btn btn-primary">Export to PDF</a>
+        </div>
     </div>
     <div class="content-wrapper">
         <div class="card p-4 border">
