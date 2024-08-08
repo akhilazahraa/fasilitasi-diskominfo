@@ -11,6 +11,7 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -232,6 +233,7 @@ class EventController extends Controller
         $pdf = $this->pdf->loadView('dashboard.events.details.pdf', ['event' => $event]);
         return $pdf->stream('event_' . $id . '.pdf');
     }
+
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -247,11 +249,32 @@ class EventController extends Controller
             'tim.*' => 'exists:tims,id',
             'kebutuhan' => 'nullable',
             'status' => 'nullable',
+            'documentation' => 'nullable'
         ]);
 
         $event = Event::findOrFail($id);
 
+        if ($request->hasFile('documentation')) {
+            // Delete the old file if it exists
+            if ($event->documentation) {
+                Storage::disk('public')->delete(str_replace('/storage/', '', $event->documentation));
+            }
+
+            // Store the new file and get its path
+            $file = $request->file('documentation');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('documents', $filename, 'public');
+            $validatedData['documentation'] = '/storage/' . $filePath;
+        } else {
+            // If no new file is uploaded, keep the old file path
+            unset($validatedData['documentation']);
+        }
         $event->update($validatedData);
+
+        // Sync the related tims
+        if ($request->has('tim')) {
+            $event->tims()->sync($validatedData['tim']);
+        }
 
         return redirect()->route('dashboard.events.index')->with('success', 'Event berhasil diperbarui!');
     }
