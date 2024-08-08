@@ -38,7 +38,7 @@
             @else
                 <form id="bulk-delete-form" action="/dashboard/events/bulk-delete" method="POST">
                     @csrf @method('DELETE')
-                    <table class="table text-sm">
+                    <table class="table table-hover text-sm" id="myTable">
                         <div>
                             <button type="submit" id="bulk-delete-btn"
                                 class="bulk-delete fw-semibold text-sm button-action-delete mb-4" style="display: none">
@@ -135,4 +135,5 @@
             });
         });
     </script>
+
 @endsection

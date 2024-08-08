@@ -22,7 +22,7 @@
             @else
                 <form id="bulk-delete-form" action="/dashboard/isp/bulk-delete" method="POST">
                     @csrf @method('DELETE')
-                    <table class="table text-sm">
+                    <table class="table text-sm" id="myTable">
                         <div class="d-flex justify-content-end">
                             <button type="submit" id="bulk-delete-btn"
                                 class="bulk-delete fw-semibold text-sm button-action-delete mb-4" style="display: none">

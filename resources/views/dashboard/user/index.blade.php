@@ -17,7 +17,7 @@
         @if ($user->isEmpty())
         <p>User belum tersedia.</p>
         @else
-        <table class="table text-sm">
+        <table class="table text-sm" id="myTable">
             <thead class="font-semibold">
                 <tr class="w-100">
                     <th>No</th>
