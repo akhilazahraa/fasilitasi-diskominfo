@@ -83,4 +83,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/events/export-pdf', [EventController::class, 'exportPdf'])->name('dashboard.events.exportPdf');
     Route::put('/dashboard/events/details/{id}', [EventController::class, 'details'])->name('dashboard.events.details');
     Route::get('/dashboard/events/details/pdf/{id}', [EventController::class, 'exportSingleEventPdf'])->name('dashboard.events.details.pdf');
+    Route::get('/dashboard/events/details/{id}', [EventController::class, 'details'])->name('dashboard.events.details');
+    Route::get('dashboard/events/details/pdf/{id}', [EventController::class, 'exportSingleEventPdf'])->name('dashboard.events.details.pdf');
+    Route::get('/dashboard/events/details/{id}', [EventController::class, 'details'])->name('dashboard.events.details');
+    Route::get('dashboard/events/details/pdf/{id}', [EventController::class, 'exportSingleEventPdf'])->name('dashboard.events.details.pdf');
+    Route::post('/dashboard/events', [EventController::class, 'store'])->name('events.store');
+    Route::get('/dashboard/events', [EventController::class, 'index'])->name('dashboard.events.index');
 });
