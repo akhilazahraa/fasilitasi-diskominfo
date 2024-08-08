@@ -116,8 +116,8 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{ \Carbon\Carbon::parse($event->start)->locale('id')->translatedFormat('l, d F Y') }}</td>
-                <td>{{ \Carbon\Carbon::parse($event->end)->locale('id')->translatedFormat('l, d F Y') }}</td>
+                <td>{{ \Carbon\Carbon::parse($event->start)->locale('id')->translatedFormat('l, d F Y, H:i') }}</td>
+                <td>{{ \Carbon\Carbon::parse($event->end)->locale('id')->translatedFormat('l, d F Y, H:i') }}</td>
                 <td>{{ $event->kebutuhan }}</td>
                 <td>{{ $event->status }}</td>
             </tr>

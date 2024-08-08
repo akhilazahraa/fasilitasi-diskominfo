@@ -148,18 +148,6 @@ class EventController extends Controller
         return response()->json($events);
     }
 
-    public function filterOPD($opd_id)
-    {
-        $instansi = Instansi::findOrFail($opd_id);
-        $events = Event::where('opd_id', $opd_id)->with('instansi')->get();
-
-        return view('dashboard.events.filter.index', [
-            'title' => 'Fasilitasi | Acara - ' . $instansi->name,
-            'events' => $events,
-            'opd_id' => $opd_id,
-        ]);
-    }
-
     public function filterISP($isp_id)
     {
         $providers = Provider::findOrFail($isp_id);
