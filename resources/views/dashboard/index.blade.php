@@ -1,7 +1,7 @@
 @extends('layouts.admin') @section('container')
 <div class="content-wrapper py-4">
-    <div class="mb-4">
-        <h4 class="fw-semibold">Selamat Datang di Dashboard</h4>
+    <div class="heading mb-4">
+        <h1>Dashboard</h1>
     </div>
     <div class="mb-4">
         <div class="row">

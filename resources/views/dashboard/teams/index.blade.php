@@ -26,7 +26,7 @@
             method="POST"
         >
             @csrf @method('DELETE')
-            <table class="table text-sm">
+            <table class="table text-sm" id="myTable">
                 <div class="d-flex justify-content-end">
                     <button
                         type="submit"
