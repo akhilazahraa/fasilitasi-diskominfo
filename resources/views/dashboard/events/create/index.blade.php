@@ -36,6 +36,10 @@
                     </select>
                 </div>
                 <div class="col-lg-6 mb-4">
+                    <label class="form-label">Detail Lokasi</label>
+                    <input type="text" name="details_location" class="form-control" required />
+                </div>
+                <div class="col-lg-6 mb-4">
                     <label class="form-label">Tim</label>
                     <select name="tim[]" class="form-control" required multiple>
                         <option value="">Pilih Tim</option>
@@ -55,7 +59,7 @@
                 <div class="col-lg-6 mb-4">
                     <label class="form-label">ISP</label>
                     <select name="isp_id" class="form-control" required>
-                        <option value="">Pilih ISPD</option>
+                        <option value="">Pilih ISP</option>
                         @foreach ($providers as $providers)
                             <option value="{{ $providers->id }}">
                                 {{ $providers->name }}

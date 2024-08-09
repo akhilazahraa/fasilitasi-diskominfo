@@ -40,6 +40,11 @@
                     </select>
                 </div>
                 <div class="col-lg-6 mb-4">
+                    <label class="form-label">Detail Lokasi</label>
+                    <input type="text" name="details_location" value="{{ old('details_location', $event->details_location) }}" class="form-control"
+                        required />
+                </div>
+                <div class="col-lg-6 mb-4">
                     <label class="form-label">Tim</label>
                     <select name="tim[]" class="form-control" required multiple>
                         @foreach ($tims as $tim)

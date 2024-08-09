@@ -59,6 +59,7 @@ class EventController extends Controller
             'end' => 'required|date',
             'opd_id' => 'required|exists:instansis,id',
             'location' => 'required',
+            'details_location'=> 'required',
             'isp_id' => 'required',
             'kebutuhan' => 'nullable',
             'documentation' => 'nullable',
@@ -184,8 +185,6 @@ class EventController extends Controller
 
 
 
-
-
     public function filterByIsp(Request $request)
     {
         $isp = $request->input('isp');
@@ -242,6 +241,7 @@ class EventController extends Controller
             'end' => 'required|date',
             'opd_id' => 'required|exists:instansis,id',
             'location' => 'required',
+            'details_location'=> 'required',
             'isp' => 'required',
             'kebutuhan' => 'nullable',
             'status' => 'nullable',
