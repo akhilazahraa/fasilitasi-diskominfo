@@ -108,6 +108,10 @@
                 <td>: {{ $event->location }}<</td>
             </tr>
             <tr>
+                <td>Detail Lokasi</td>
+                <td>: {{ $event->details_location }}<</td>
+            </tr>
+            <tr>
                 <td>Jam</td>
                 <td>: {{ \Carbon\Carbon::parse($event->start)->locale('id')->translatedFormat('H:i') }}
                     - Selesai<</td>

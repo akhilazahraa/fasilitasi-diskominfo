@@ -50,6 +50,12 @@
                         </div>
                         <div class="col-lg-6 mb-4">
                             <div>
+                                <span class="fw-semibold">Detail Location</span>
+                                <p class="text-muted">{{ $events->details_location}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div>
                                 <span class="fw-semibold">Start Date</span>
                                 <p class="text-muted">
                                     {{ \Carbon\Carbon::parse($events->start)->format('l, d F Y H:i') }}

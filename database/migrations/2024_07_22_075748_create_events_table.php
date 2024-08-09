@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('isp_id');
             $table->string('name');
             $table->string('location');
+            $table->string('details_location');
             $table->dateTime('start');
             $table->dateTime('end')->nullable();
             $table->enum('status', ['On Going', 'Not Started', 'End'])->nullable();
