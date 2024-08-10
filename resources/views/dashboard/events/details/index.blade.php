@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-lg-6 mb-4">
                             <div>
-                                <span class="fw-semibold">OPD</span>
+                                <span class="fw-semibold">Instansi</span>
                                 <p class="text-muted">{{ $events->instansi->name }}</p>
                             </div>
                         </div>

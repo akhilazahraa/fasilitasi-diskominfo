@@ -101,18 +101,37 @@ class DashboardController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'phonenumber' => 'required',
-            'address' => 'required',
-            'city' => 'required',
-            'role' => 'required|in:ADMIN,USER', // validasi role
+            'phonenumber' => 'nullable',
+            'address' => 'nullable',
+            'city' => 'nullable',
+            'role' => 'required|in:ADMIN,USER', 
         ]);
 
-        // Ambil user yang akan diupdate
         $user = User::findOrFail($id);
 
-        // Update user dengan data yang telah divalidasi
         $user->update($validatedData);
 
         return redirect()->route('dashboard.user')->with('success', 'Profil pengguna berhasil diperbarui!');
+    }
+
+    public function createUser(){
+        return view('dashboard.user.create.index', [
+            'title' => 'Fasilitasi | Tambah User'
+        ]);
+    }
+
+    public function store(Request $request){
+        $validatedData = $request->validate([
+            'name' => "required",
+            'email' => "required|email:dns",
+            'password' => "required",
+            'phonenumber' => 'nullable'
+        ]);
+
+        $validatedData["password"] = bcrypt($validatedData["password"]);
+
+        User::create($validatedData);
+
+        return redirect()->route('dashboard.user')->with('success', 'User berhasil ditambahkan!');
     }
 }

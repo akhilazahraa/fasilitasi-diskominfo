@@ -23,7 +23,7 @@
                         required />
                 </div>
                 <div class="col-lg-6 mb-4">
-                    <label class="form-label">Nama OPD</label>
+                    <label class="form-label">Instansi</label>
                     <select name="opd_id" class="form-control" required>
                         @foreach ($instansis as $instansi)
                             <option value="{{ $instansi->id }}"

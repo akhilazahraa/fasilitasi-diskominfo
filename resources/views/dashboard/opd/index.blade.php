@@ -2,17 +2,17 @@
 <div class="mb-0">
     <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">OPD</a></li>
+            <li class="breadcrumb-item"><a href="#">Instansi</a></li>
             <li class="breadcrumb-item active" aria-current="page">List</li>
         </ol>
     </nav>
 </div>
 <div class="d-flex justify-content-between align-items-center">
     <div class="heading mb-4">
-        <h1 class="fs-3 fw-bold">OPD</h1>
+        <h1 class="fs-3 fw-bold">Instansi</h1>
     </div>
     <div class="mb-4">
-        <a href="/dashboard/opd/create" class="btn btn-primary">Create OPD</a>
+        <a href="/dashboard/opd/create" class="btn btn-primary">Tambah Instansi</a>
     </div>
 </div>
 <div class="content-wrapper">
@@ -47,7 +47,7 @@
                             />
                         </th>
                         <th>No</th>
-                        <th>Nama OPD</th>
+                        <th>Instansi</th>
                         <th>Alamat</th>
                         <th>Actions</th>
                     </tr>
