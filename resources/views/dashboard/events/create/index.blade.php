@@ -68,17 +68,16 @@
                     </select>
                 </div>
                 <div class="col-lg-6 mb-4">
-                    <label class="form-label">Documentation</label>
-                    <input type="file" name="documentation" class="form-control" required />
+                    <label class="form-label">Documentation (.jpg .jpeg .png)</label>
+                    <input type="file" name="documentation" class="form-control" accept=".jpg, .jpeg, .png" required />
                 </div>
                 <div class="col-lg-6 mb-4">
                     <label class="form-label">Status</label>
                     <select name="status" id="status" class="form-control">
                         <option value="">Pilih Status
                         </option>
-                        <option value="On Going">On Going</option>
-                        <option value="Not Started">Not Started</option>
-                        <option value="End">End</option>
+                        <option value="On Site">On Site</option>
+                        <option value="On Call">On Call</option>
                     </select>
                 </div>
                 <div class="col-lg-12 mb-4">
