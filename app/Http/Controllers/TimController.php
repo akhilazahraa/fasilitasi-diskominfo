@@ -54,4 +54,15 @@ class TimController extends Controller
 
         return redirect()->route('dashboard.teams.index')->with('success', 'Anggota Tim berhasil diupdate!');
     }
+
+    public function bulkDelete(Request $request){
+        $ids = $request->input('ids');
+
+        if ($ids) {
+            Tim::whereIn('id', $ids)->delete();
+            return redirect()->route('dashboard.teams.index')->with('success', 'Anggota tim berhasil dihapus!');
+        }
+
+        return redirect()->route('dashboard.teams.index')->with('error', 'Tidak ada data yang dipilih untuk dihapus.');
+    }
 }

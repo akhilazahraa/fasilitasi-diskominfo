@@ -11,6 +11,9 @@
     <div class="heading mb-4">
         <h1 class="fs-3 fw-bold">User</h1>
     </div>
+    @if (auth()->user()->role == 'ADMIN')
+    <a href="/dashboard/user/create" class="btn btn-primary">Tambah User</a>
+@endif
 </div>
 <div class="content-wrapper">
     <div class="card p-4 border">

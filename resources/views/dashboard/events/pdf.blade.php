@@ -94,7 +94,7 @@
             <tr>
                 <th>No</th>
                 <th>Nama Acara</th>
-                <th>OPD</th>
+                <th>Instansi</th>
                 <th>ISP</th>
                 <th>Tim</th>
                 <th>Tanggal</th>

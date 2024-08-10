@@ -49,6 +49,8 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::get('dashboard/user', [DashboardController::class, 'showUser'])->name('dashboard.user');
     Route::get('dashboard/user/edit/{id}', [DashboardController::class, 'editUser'])->name('dashboard.user.edit');
     Route::put('dashboard/user/{id}', [DashboardController::class, 'updateUser'])->name('dashboard.user.update');
+    Route::get('dashboard/user/create', [DashboardController::class, 'createUser'])->name('dashboard.user.create');
+    Route::post('/dashboard/user', [DashboardController::class, 'store'])->name('dashboard.user.store');
     Route::get('/dashboard/opd/create', [OpdController::class, 'create']);
     Route::get('/dashboard/opd', [OpdController::class, 'index'])->name('dashboard.opd');
     Route::post('/dashboard/opd', [OpdController::class, 'store'])->name('opd.store');

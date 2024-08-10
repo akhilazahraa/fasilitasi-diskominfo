@@ -92,7 +92,7 @@
                 <td>: {{ $event->name }}</td>
             </tr>
             <tr>
-                <td>OPD</td>
+                <td>Instansi</td>
                 <td>: {{ $event->instansi->name }}</td>
             </tr>
             <tr>
