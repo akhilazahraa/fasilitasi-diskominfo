@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('details_location');
             $table->dateTime('start');
             $table->dateTime('end')->nullable();
-            $table->enum('status', ['On Site', 'On Call'])->nullable();
+            $table->enum('status', ['Onsite', 'Oncall'])->nullable();
             $table->string('kebutuhan')->nullable();
             $table->string('documentation')->nullable();
             $table->timestamps();

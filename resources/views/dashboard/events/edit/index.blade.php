@@ -41,8 +41,8 @@
                 </div>
                 <div class="col-lg-6 mb-4">
                     <label class="form-label">Detail Lokasi</label>
-                    <input type="text" name="details_location" value="{{ old('details_location', $event->details_location) }}" class="form-control"
-                        required />
+                    <input type="text" name="details_location"
+                        value="{{ old('details_location', $event->details_location) }}" class="form-control" required />
                 </div>
                 <div class="col-lg-6 mb-4">
                     <label class="form-label">Tim</label>
@@ -84,9 +84,10 @@
                     <select name="status" id="status" class="form-control">
                         <option value="" {{ old('status', $event->status) === '' ? 'selected' : '' }}>Pilih Status
                         </option>
-                        <option value="On Site" {{ old('status', $event->status) === 'On Site' ? 'selected' : '' }}>On Site</option>
-                        <option value="On Call"
-                            {{ old('status', $event->status) === 'On Call' ? 'selected' : '' }}>On Call</option>
+                        <option value="Onsite" {{ old('status', $event->status) === 'Onsite' ? 'selected' : '' }}>On Site
+                        </option>
+                        <option value="Oncall" {{ old('status', $event->status) === 'Oncall' ? 'selected' : '' }}>On Call
+                        </option>
                         <option value="End" {{ old('status', $event->status) === 'End' ? 'selected' : '' }}>End</option>
                     </select>
                 </div>

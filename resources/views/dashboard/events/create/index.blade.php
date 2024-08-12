@@ -76,8 +76,8 @@
                     <select name="status" id="status" class="form-control">
                         <option value="">Pilih Status
                         </option>
-                        <option value="On Site">On Site</option>
-                        <option value="On Call">On Call</option>
+                        <option value="Onsite">On Site</option>
+                        <option value="Oncall">On Call</option>
                     </select>
                 </div>
                 <div class="col-lg-12 mb-4">
