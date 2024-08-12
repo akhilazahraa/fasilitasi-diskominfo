@@ -12,7 +12,8 @@
             <h1 class="fs-3 fw-bold">Detail Event</h1>
         </div>
         <div class="mb-4">
-            <a href="/dashboard/events/details/pdf/{{$events->id}}" class="btn btn-primary" target="blank">Export to PDF</a>
+            <a href="/dashboard/events/details/pdf/{{ $events->id }}" class="btn btn-primary" target="blank">Export to
+                PDF</a>
         </div>
     </div>
     <div class="content-wrapper">
@@ -51,7 +52,7 @@
                         <div class="col-lg-6 mb-4">
                             <div>
                                 <span class="fw-semibold">Detail Location</span>
-                                <p class="text-muted">{{ $events->details_location}}</p>
+                                <p class="text-muted">{{ $events->details_location }}</p>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-4">
@@ -102,6 +103,12 @@
                                 <p class="text-muted">{{ $events->kebutuhan }}</p>
                             </div>
                         </div>
+
+                        <div class="col-lg-12">
+                            <button type="submit" class="btn btn-primary">Send to WA</button>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
