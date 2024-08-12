@@ -67,12 +67,13 @@
                 </div>
                 <div class="col-lg-6 mb-4">
                     <label class="form-label">ISP</label>
-                    <select name="isp" class="form-control" required>
-                        <option value="Telkom" {{ old('isp', $event->isp) == 'Telkom' ? 'selected' : '' }}>Telkom</option>
-                        <option value="Lintasarta" {{ old('isp', $event->isp) == 'Lintasarta' ? 'selected' : '' }}>
-                            Lintasarta</option>
-                        <option value="Joule" {{ old('isp', $event->isp) == 'Joule' ? 'selected' : '' }}>Joule</option>
-                        <option value="Nexa" {{ old('isp', $event->isp) == 'Nexa' ? 'selected' : '' }}>Nexa</option>
+                    <select name="isp_id" class="form-control" required>
+                        <option value="1" {{ old('isp_id', $event->isp_id) == 1 ? 'selected' : '' }}>Telkom</option>
+                        <option value="2" {{ old('isp_id', $event->isp_id) == 2 ? 'selected' : '' }}>Nexa
+                        </option>
+                        <option value="3" {{ old('isp_id', $event->isp_id) == 3 ? 'selected' : '' }}>Lintasarta
+                        </option>
+                        <option value="4" {{ old('isp_id', $event->isp_id) == 4 ? 'selected' : '' }}>Sijoli</option>
                     </select>
                 </div>
                 <div class="col-lg-6 mb-4">
