@@ -25,8 +25,7 @@ Route::get('/login', [LoginController::class, 'index'])
     ->name('login')
     ->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
-Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'store']);
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // API Routes
@@ -45,6 +44,7 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::get('/dashboard/events/edit/{id}', [EventController::class, 'edit'])->name('dashboard.events.edit');
     Route::put('/dashboard/events/{id}', [EventController::class, 'update'])->name('dashboard.events.update');
     Route::get('/dashboard/events/details/{id}', [EventController::class, 'details'])->name('dashboard.events.details');
+    Route::post('/dashboard/events/send-wa/{id}', [EventController::class, 'sendWhatsappNotification'])->name('events.sendWA');
     Route::get('dashboard/events/details/pdf/{id}', [EventController::class, 'exportSingleEventPdf'])->name('dashboard.events.details.pdf');
     Route::get('dashboard/user', [DashboardController::class, 'showUser'])->name('dashboard.user');
     Route::get('dashboard/user/edit/{id}', [DashboardController::class, 'editUser'])->name('dashboard.user.edit');
