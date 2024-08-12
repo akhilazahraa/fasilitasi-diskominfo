@@ -103,15 +103,15 @@
                                 <p class="text-muted">{{ $events->kebutuhan }}</p>
                             </div>
                         </div>
-
-                        <div class="col-lg-12">
-                            <button type="submit" class="btn btn-primary">Send to WA</button>
-                        </div>
-
-
+                        <<div class="col-lg-12">
+                            <form action="{{ route('events.sendWA', $events->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Send to WA</button>
+                            </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

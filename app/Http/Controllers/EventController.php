@@ -79,22 +79,21 @@ class EventController extends Controller
 
         $event->tims()->attach($request->input('tim'));
 
+        return redirect()->route('dashboard.events.index')->with('success', 'Acara berhasil ditambahkan!');
+    }
+
+    public function sendWhatsappNotification($id)
+    {
+        $event = Event::findOrFail($id);
+        $client = new Client();
+        $url = "https://api.fonnte.com/send";
+        $phone = '6287810615021'; // Make sure to replace this with the actual recipient's number
+
         $message = "Halo *{$event->instansi->name}*,\n\n" .
             "Kami ingin memberitahukan bahwa akan ada fasilitasi *{$event->name}* di OPD Anda mulai tanggal *{$event->start}*. Harap mempersiapkan segala sesuatunya untuk acara tersebut.\n\n" .
             "Mohon tidak membalas pesan ini karena terkirim secara otomatis melalui sistem. Demikian yang dapat disampaikan, atas perhatian dan kerjasamanya kami ucapkan terimakasih\n\n" .
             "*Hormat kami,*\n" .
             "*Magang UNDIP*";
-
-        $this->sendWhatsappNotification($message);
-
-        return redirect()->route('dashboard.events.index')->with('success', 'Acara berhasil ditambahkan!');
-    }
-
-    public function sendWhatsappNotification($message)
-    {
-        $client = new Client();
-        $url = "https://api.fonnte.com/send";
-        $phone = '6287810615021';
 
         try {
             $response = $client->post($url, [
@@ -105,11 +104,15 @@ class EventController extends Controller
                 'headers' => [
                     'Authorization' => 'L!D5tg8AH4xPGk7KJ1zg'
                 ],
-                'verifiy' => false,
+                'verify' => false,
             ]);
+            // Handle success response if needed
         } catch (\Exception $e) {
             Log::error('Gagal mengirim pesan WhatsApp: ' . $e->getMessage());
+            // Handle failure response if needed
         }
+
+        return redirect()->back()->with('success', 'Pesan WhatsApp berhasil dikirim.');
     }
 
     public function destroy($id)

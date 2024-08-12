@@ -24,10 +24,7 @@
                 <button type="submit" class="btn btn-primary text-white fw-semibold p-2 w-100 border-0 mt-2">
                     Login
                 </button>
-                <div class="form-text text-center pt-2">
-                    Belum punya akun?
-                    <a href="/register" class="text-black">Daftar sekarang</a>
-                </div>
+
             </form>
         </div>
     </section>
