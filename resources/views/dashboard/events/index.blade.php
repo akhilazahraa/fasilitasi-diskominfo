@@ -1,15 +1,9 @@
 @extends('layouts.admin') @section('container')
-    <div class="mb-0">
-        <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Acara</a></li>
-                <li class="breadcrumb-item active" aria-current="page">List</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-lg-flex justify-content-between align-items-center">
         <div class="heading mb-4">
-            <h1 class="fs-3 fw-bold">Acara</h1>
+            <h1 class="fs-2">Acara</h1>
+            <p id="currentDateTime" class="text-muted-foreground">
+            </p>
         </div>
         <div class="mb-4 d-flex justify-content-between gap-2">
             <!-- Example single danger button -->
@@ -36,9 +30,9 @@
             @if ($events->isEmpty())
                 <p>Belum ada acara.</p>
             @else
-                <form id="bulk-delete-form" action="/dashboard/events/bulk-delete" method="POST">
+                <form id="bulk-delete-form" class="overflow-x-auto" action="/dashboard/events/bulk-delete" method="POST">
                     @csrf @method('DELETE')
-                    <table class="table table-hover text-sm" id="myTable">
+                    <table class="table table-hover text-sm">
                         <div>
                             <button type="submit" id="bulk-delete-btn"
                                 class="bulk-delete fw-semibold text-sm button-action-delete mb-4" style="display: none">
@@ -104,6 +98,9 @@
                         </tbody>
                     </table>
                 </form>
+                <nav aria-label="Page navigation example">
+                    {{ $events->links('pagination::bootstrap-5') }}
+                </nav>
             @endif
         </div>
     </div>

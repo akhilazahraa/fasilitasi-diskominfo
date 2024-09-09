@@ -9,7 +9,7 @@ class OpdController extends Controller
 {
     public function index()
     {
-        $opd = Instansi::all();
+        $opd = Instansi::paginate(10);
         return view('dashboard.opd.index', [
             'title' => 'Fasilitasi | OPD',
             'opd' => $opd,

@@ -1,17 +1,11 @@
 @extends('layouts.admin') @section('container')
-    <div class="mb-0">
-        <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Acara</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Filter</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-lg-flex justify-content-between align-items-center">
         <div class="heading mb-4">
-            <h1 class="fs-3 fw-bold">{{ $providers->name }}</h1>
+            <h1 class="fs-2">{{ $providers->name }}</h1>
+            <p id="currentDateTime" class="text-muted">
+            </p>
         </div>
-        <div class="mb-4 d-flex justify-content-between gap-2">
+        <div class="mb-4 d-lg-flex justify-content-between gap-2">
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -36,9 +30,9 @@
             @if ($events->isEmpty())
                 <p>Belum ada acara.</p>
             @else
-                <form id="bulk-delete-form" action="/dashboard/events/bulk-delete" method="POST">
+                <form id="bulk-delete-form" action="/dashboard/events/bulk-delete" method="POST" class="overflow-x-auto">
                     @csrf @method('DELETE')
-                    <table class="table text-sm" id="myTable">
+                    <table class="table text-sm">
                         <div>
                             <button type="submit" id="bulk-delete-btn"
                                 class="bulk-delete fw-semibold text-sm button-action-delete mb-4" style="display: none">
