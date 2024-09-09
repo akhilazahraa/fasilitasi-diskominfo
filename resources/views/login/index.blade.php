@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="col-lg-6 d-flex justify-content-center">
-            <div class="" style="width: 70%">
+            <div class="auth-container" style="width: 70%">
                 <div class="text-center mb-4">
                     {{-- <img src="{{ asset('image/logo.png') }}" alt="" height="50px" class="mb-4" /> --}}
                     <h1 class="fs-3 fw-bold">Masuk</h1>

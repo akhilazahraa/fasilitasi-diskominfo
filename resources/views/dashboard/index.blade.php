@@ -6,7 +6,7 @@
             </p>
         </div>
         <div class="mb-4">
-            <div class="row">
+            <div class="row card-dashboard-container">
                 <div class="col-lg-4">
                     <div class="card position-relative border">
                         <p class="fw-semibold mb-2 text-primary">

@@ -1,5 +1,5 @@
 @extends('layouts.admin') @section('container')
-<div class="d-flex justify-content-between align-items-center">
+<div class="d-lg-flex justify-content-between align-items-center">
     <div class="heading mb-4">
         <h1 class="fs-2">Pengguna</h1>
         <p id="currentDateTime" class="text-muted-foreground">
@@ -10,7 +10,7 @@
 @endif
 </div>
 <div class="content-wrapper">
-    <div class="card p-4 border">
+    <div class="card p-4 border overflow-x-auto">
         @if ($user->isEmpty())
         <p>User belum tersedia.</p>
         @else

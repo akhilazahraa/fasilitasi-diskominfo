@@ -1,5 +1,5 @@
 @extends('layouts.admin') @section('container')
-<div class="d-flex justify-content-between align-items-center">
+<div class="d-lg-flex justify-content-between align-items-center">
     <div class="heading mb-4">
         <h1 class="fs-2">Anggota Tim</h1>
         <p id="currentDateTime" class="text-muted-foreground">
@@ -15,7 +15,7 @@
         <p>No events scheduled.</p>
         @else
         <form
-            id="bulk-delete-form"
+            id="bulk-delete-form" class="overflow-x-auto"
             action="/dashboard/teams/bulk-delete"
             method="POST"
         >

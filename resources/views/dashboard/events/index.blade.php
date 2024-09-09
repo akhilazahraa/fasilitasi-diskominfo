@@ -1,5 +1,5 @@
 @extends('layouts.admin') @section('container')
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-lg-flex justify-content-between align-items-center">
         <div class="heading mb-4">
             <h1 class="fs-2">Acara</h1>
             <p id="currentDateTime" class="text-muted-foreground">
@@ -30,7 +30,7 @@
             @if ($events->isEmpty())
                 <p>Belum ada acara.</p>
             @else
-                <form id="bulk-delete-form" action="/dashboard/events/bulk-delete" method="POST">
+                <form id="bulk-delete-form" class="overflow-x-auto" action="/dashboard/events/bulk-delete" method="POST">
                     @csrf @method('DELETE')
                     <table class="table table-hover text-sm">
                         <div>
