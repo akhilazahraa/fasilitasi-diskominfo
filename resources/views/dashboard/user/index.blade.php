@@ -1,15 +1,9 @@
 @extends('layouts.admin') @section('container')
-<div class="mb-0">
-    <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">User</a></li>
-            <li class="breadcrumb-item active" aria-current="page">List</li>
-        </ol>
-    </nav>
-</div>
 <div class="d-flex justify-content-between align-items-center">
     <div class="heading mb-4">
-        <h1 class="fs-3 fw-bold">User</h1>
+        <h1 class="fs-2">Pengguna</h1>
+        <p id="currentDateTime" class="text-muted-foreground">
+        </p>
     </div>
     @if (auth()->user()->role == 'ADMIN')
     <a href="/dashboard/user/create" class="btn btn-primary">Tambah User</a>
@@ -20,7 +14,7 @@
         @if ($user->isEmpty())
         <p>User belum tersedia.</p>
         @else
-        <table class="table text-sm" id="myTable">
+        <table class="table text-sm">
             <thead class="font-semibold">
                 <tr class="w-100">
                     <th>No</th>

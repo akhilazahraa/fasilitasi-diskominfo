@@ -9,7 +9,7 @@ class IspController extends Controller
 {
     public function index()
     {
-        $isp = Provider::all();
+        $isp = Provider::paginate(10);
         return view('dashboard.isp.index', [
             'title' => 'Fasilitasi | ISP',
             'isp' => $isp,
@@ -18,7 +18,7 @@ class IspController extends Controller
 
     public function create()
     {
-        $isp = Provider::all(); // Ambil semua data instansi
+        $isp = Provider::all(); 
         return view('dashboard.isp.create.index', [
             'title' => 'Fasilitasi | Tambah Acara',
             'isp' => $isp,

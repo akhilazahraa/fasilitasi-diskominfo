@@ -23,7 +23,7 @@ class EventController extends Controller
 
     public function index()
     {
-        $events = Event::with('instansi', 'providers')->get();
+        $events = Event::with('instansi', 'providers')->paginate(10);
         $providers = Provider::all();
         return view('dashboard.events.index', [
             'title' => 'Fasilitasi | Acara',
@@ -156,7 +156,7 @@ class EventController extends Controller
     public function filterISP($isp_id)
     {
         $providers = Provider::findOrFail($isp_id);
-        $events = Event::where('isp_id', $isp_id)->with('instansi')->get();
+        $events = Event::where('isp_id', $isp_id)->with('instansi')->paginate(10);
         $allproviders = Provider::all();
 
         return view('dashboard.events.filter.providers.index', [
@@ -172,7 +172,7 @@ class EventController extends Controller
     {
         // Ambil data event yang terkait dengan ISP
         $instansi = Instansi::find(1);
-        $events = Event::where('isp_id', $isp_id)->with('instansi', 'tims')->get();
+        $events = Event::where('isp_id', $isp_id)->with('instansi', 'tims')->paginate(10);
         // Ambil data provider
         $providers = Provider::findOrFail($isp_id);
         // Load view blade dengan data
@@ -191,7 +191,7 @@ class EventController extends Controller
     public function filterByIsp(Request $request)
     {
         $isp = $request->input('isp');
-        $events = Event::where('isp', $isp)->with('instansi')->get();
+        $events = Event::where('isp', $isp)->with('instansi')->paginate(10);
 
         return view('dashboard.events.index', [
             'title' => 'Fasilitasi | Acara',

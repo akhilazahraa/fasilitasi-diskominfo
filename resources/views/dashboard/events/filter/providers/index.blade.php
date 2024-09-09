@@ -1,15 +1,9 @@
 @extends('layouts.admin') @section('container')
-    <div class="mb-0">
-        <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Acara</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Filter</li>
-            </ol>
-        </nav>
-    </div>
     <div class="d-flex justify-content-between align-items-center">
         <div class="heading mb-4">
-            <h1 class="fs-3 fw-bold">{{ $providers->name }}</h1>
+            <h1 class="fs-2">{{ $providers->name }}</h1>
+            <p id="currentDateTime" class="text-muted">
+            </p>
         </div>
         <div class="mb-4 d-flex justify-content-between gap-2">
             <div class="btn-group">

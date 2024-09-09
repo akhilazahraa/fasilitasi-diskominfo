@@ -1,15 +1,9 @@
 @extends('layouts.admin') @section('container')
-<div class="mb-0">
-    <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Instansi</a></li>
-            <li class="breadcrumb-item active" aria-current="page">List</li>
-        </ol>
-    </nav>
-</div>
 <div class="d-flex justify-content-between align-items-center">
     <div class="heading mb-4">
-        <h1 class="fs-3 fw-bold">Instansi</h1>
+        <h1 class="fs-2">Instansi</h1>
+        <p id="currentDateTime" class="text-muted-foreground">
+        </p>
     </div>
     <div class="mb-4">
         <a href="/dashboard/opd/create" class="btn btn-primary">Tambah Instansi</a>
@@ -26,7 +20,7 @@
             method="POST"
         >
             @csrf @method('DELETE')
-            <table class="table text-sm" id="myTable">
+            <table class="table text-sm">
                 <div class="d-flex justify-content-end">
                     <button
                         type="submit"
@@ -95,6 +89,9 @@
                 </tbody>
             </table>
         </form>
+        <nav aria-label="Page navigation example">
+            {{ $opd->links('pagination::bootstrap-5') }} 
+        </nav>
         @endif
     </div>
 </div>

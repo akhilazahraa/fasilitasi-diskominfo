@@ -1,15 +1,7 @@
 @extends('layouts.admin') @section('container')
-    <div class="mb-0">
-        <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Setting</li>
-            </ol>
-        </nav>
-    </div>
     <div>
         <div class="heading mb-4">
-            <h1 class="fs-3 fw-bold">Setting</h1>
+            <h1 class="fs-2">Edit Pengguna</h1>
         </div>
     </div>
     <div class="content-wrapper">
@@ -89,9 +81,11 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary text-white fw-semibold border-0 mt-2">
-                            Update
-                        </button>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary text-white fw-semibold border-0 mt-2">
+                                Simpan
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>

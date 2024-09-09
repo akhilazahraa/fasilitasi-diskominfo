@@ -1,14 +1,6 @@
 @extends('layouts.admin') @section('container')
-    <div class="mb-0">
-        <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Acara</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Tambah</li>
-            </ol>
-        </nav>
-    </div>
     <div class="heading mb-4">
-        <h1 class="fs-3 fw-bold">Tambah Acara</h1>
+        <h1 class="fs-2">Tambah Acara</h1>
     </div>
     <div class="content-wrapper">
         <div class="card p-4 border">
@@ -84,8 +76,8 @@
                     <label class="form-label">Kebutuhan</label>
                     <textarea name="kebutuhan" class="form-control" rows="4"></textarea>
                 </div>
-                <div class="col-lg-12">
-                    <button type="submit" class="btn btn-primary">Create</button>
+                <div class="col-lg-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Tambah</button>
                 </div>
             </form>
         </div>

@@ -1,15 +1,9 @@
 @extends('layouts.admin') @section('container')
-    <div class="mb-0">
-        <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Events</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Details</li>
-            </ol>
-        </nav>
-    </div>
     <div class="d-flex justify-content-between align-items-center">
         <div class="heading mb-4">
-            <h1 class="fs-3 fw-bold">Detail Event</h1>
+            <h1 class="fs-2">Detail Event</h1>
+            <p id="currentDateTime" class="text-muted">
+            </p>
         </div>
         <div class="mb-4">
             <a href="/dashboard/events/details/pdf/{{ $events->id }}" class="btn btn-primary" target="blank">Export to
@@ -103,10 +97,10 @@
                                 <p class="text-muted">{{ $events->kebutuhan }}</p>
                             </div>
                         </div>
-                        <<div class="col-lg-12">
+                        <div class="col-lg-12 d-flex justify-content-end">
                             <form action="{{ route('events.sendWA', $events->id) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-primary">Send to WA</button>
+                                <button type="submit" class="btn btn-primary">Kirim Notifikasi Whatsapp</button>
                             </form>
                     </div>
                 </div>

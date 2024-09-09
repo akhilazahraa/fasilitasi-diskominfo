@@ -12,7 +12,9 @@
     <!-- font google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <!-- end font google -->
 
     <!-- SweetAlert2 -->
@@ -34,16 +36,20 @@
                 <div class="container py-4">
                     <div class="d-flex justify-content-end">
                         <div class="dropdown">
-                            <button class="border-0 bg-transparent" type="button" data-bs-toggle="dropdown"
+                            <button class="border-0 bg-transparent d-flex align-items-center h-100" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                <img src="https://prium.github.io/phoenix/v1.18.0/assets/img/team/40x40/57.webp"
-                                    alt="" class="rounded-circle" width="45px" />
+                                <div class="d-flex align-items-center gap-1">
+                                    <p class="fw-bold mb-0 me-2" id="user-name">{{ auth()->user()->name }}</p>
+                                    <div class="avatar d-flex align-items-center justify-content-center" id="user-avatar">
+                                        <p id="user-initials" class="mb-0"></p>
+                                    </div>
+                                </div>
                             </button>
                             <ul class="dropdown-menu">
-                                <li class="px-2 mb-1">
-                                    <a class="dropdown-item fw-medium">{{ auth()->user()->name }}</a>
+                                <li class="mb-1">
+                                    <a class="dropdown-item fw-medium" id="user-name">{{ auth()->user()->name }}</a>
                                 </li>
-                                <li class="px-2">
+                                <li>
                                     <a class="dropdown-item px-2" href="/dashboard/setting">Setting</a>
                                 </li>
                                 <hr class="m-0 my-2" />
@@ -51,7 +57,7 @@
                                     <a class="dropdown-item">
                                         <form action="{{ route('logout') }}" method="POST" class="d-inline p-0">
                                             @csrf
-                                            <button type="submit" class="border-0 bg-transparent logout-item px-2">
+                                            <button type="submit" class="border-0 bg-transparent logout-item">
                                                 Logout
                                             </button>
                                         </form>
@@ -91,8 +97,26 @@
     @stack('scripts')
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Fungsi untuk menghasilkan fallback name
+            function generateFallbackFromName(name) {
+                const parts = name.split(" ").map(word => word[0]);
+                return parts.slice(0, 2).join("");
+            }
+
+            // Ambil nama pengguna dari elemen HTML
+            const userNameElement = document.getElementById('user-name');
+            if (userNameElement) {
+                const userName = userNameElement.textContent.trim();
+                const fallbackName = generateFallbackFromName(userName);
+                
+                // Tampilkan fallback name di elemen avatar
+                const userAvatarElement = document.getElementById('user-initials');
+                if (userAvatarElement) {
+                    userAvatarElement.textContent = fallbackName; // Menampilkan fallback name di dalam p
+                }
+            }
+
             var successMessage = "{{ session('success') }}";
-            console.log("Success message: ", successMessage);
             if (successMessage) {
                 Swal.fire({
                     icon: "success",
@@ -101,28 +125,26 @@
                 });
             }
 
-            document
-                .querySelectorAll(".button-action-delete")
-                .forEach(function(button) {
-                    button.addEventListener("click", function(event) {
-                        event.preventDefault();
+            document.querySelectorAll(".button-action-delete").forEach(function(button) {
+                button.addEventListener("click", function(event) {
+                    event.preventDefault();
 
-                        Swal.fire({
-                            title: "Anda yakin?",
-                            text: "Anda tidak akan bisa membatalkan ini!",
-                            icon: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#f33f40",
-                            cancelButtonColor: "#3085d6",
-                            confirmButtonText: "Ya, Hapus!",
-                            cancelButtonText: "Batal",
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                button.closest("form").submit();
-                            }
-                        });
+                    Swal.fire({
+                        title: "Anda yakin?",
+                        text: "Anda tidak akan bisa membatalkan ini!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#f33f40",
+                        cancelButtonColor: "#3085d6",
+                        confirmButtonText: "Ya, Hapus!",
+                        cancelButtonText: "Batal",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            button.closest("form").submit();
+                        }
                     });
                 });
+            });
 
             var calendarEl = document.getElementById("calendar");
             if (calendarEl) {
@@ -133,41 +155,31 @@
                         center: "title",
                         right: "dayGridMonth,timeGridWeek",
                     },
-                    events: function(
-                        info,
-                        successCallback,
-                        failureCallback
-                    ) {
+                    events: function(info, successCallback, failureCallback) {
                         fetch("/api/events")
                             .then((response) => response.json())
                             .then((data) => {
-                                // Transform data to FullCalendar format if needed
                                 const events = data.map((event) => ({
                                     id: event.id,
-                                    title: event.name, // Use 'name' from API data
+                                    title: event.name,
                                     start: event.start,
                                     end: event.end,
                                 }));
                                 successCallback(events);
                             })
                             .catch((error) => {
-                                console.error(
-                                    "Error fetching events:",
-                                    error
-                                );
+                                console.error("Error fetching events:", error);
                                 failureCallback(error);
                             });
                     },
                     eventContent: function(arg) {
-                        // Create custom HTML for event content
                         return {
                             html: `<div class="custom-event-title">${arg.event.title}</div>`,
                         };
                     },
                     eventClick: function(info) {
                         var eventId = info.event.id;
-                        window.location.href =
-                            "/dashboard/events/details/" + eventId;
+                        window.location.href = "/dashboard/events/details/" + eventId;
                     },
                 });
                 calendar.render();
@@ -182,11 +194,29 @@
                 placeholder: "Pilih Tim",
                 allowClear: true,
             });
-            
-            $(document).ready( function(){
-                $('#myTable').DataTable()
-            })
+
+            $(document).ready(function() {
+                $('#myTable').DataTable();
+            });
         });
+
+        let currentDateTime = new Date("{{ \Carbon\Carbon::now()->toIso8601String() }}");
+
+        function updateDateTime() {
+            currentDateTime.setSeconds(currentDateTime.getSeconds() + 1);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = currentDateTime.toLocaleDateString('id-ID', options);
+            const time = currentDateTime.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+
+            document.getElementById("currentDateTime").textContent = `${formattedDate}, ${time}`;
+        }
+
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
     </script>
 </body>
 

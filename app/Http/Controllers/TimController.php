@@ -9,7 +9,7 @@ class TimController extends Controller
 {
     public function index()
     {
-        $teams = Tim::all();
+        $teams = Tim::paginate(10);
         return view('dashboard.teams.index', [
             'title' => 'Fasilitasi | Acara',
             'teams' => $teams,
@@ -18,7 +18,7 @@ class TimController extends Controller
 
     public function create()
     {
-        $teams = Tim::all(); // Ambil semua data instansi
+        $teams = Tim::all(); 
         return view('dashboard.teams.create.index', [
             'title' => 'Fasilitasi | Tambah Acara',
             'teams' => $teams,
