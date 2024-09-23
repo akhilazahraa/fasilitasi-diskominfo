@@ -2,6 +2,7 @@
     --primary-color: #0062a9;
     --primary-hover-color: #026fbd;
     --secondary-color: #e5e9f2;
+    --yelow-color: #fff150;
     --muted-color: #f4f4f5;
 
     /* FONT SIZE */
@@ -368,6 +369,22 @@ select.form-control:focus {
     padding: 4px;
 }
 
+.nav-button-home {
+    border: none;
+    padding: 4px;
+}
+
+.section {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem;
+}
+
+.card-secondary {
+    background-color: #f7f7f7;
+    padding: 1.5rem;
+    border-radius: 16px;
+}
+
 .nav-item.active {
     color: var(--primary-color) !important;
     background-color: var(--muted-color);
@@ -471,12 +488,84 @@ select.form-control:focus {
     cursor: pointer !important;
 }
 
+.hero {
+    min-height: 85vh;
+}
+
+.nav-home .nav-link {
+    color: #fff !important;
+}
+
+.button-secondary {
+    background-color: var(--yelow-color);
+    padding: 10px 24px;
+    color: #000;
+    text-decoration: none;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    width: fit-content;
+}
+
+.button-white {
+    background-color: #fff;
+    padding: 8px 24px;
+    color: #000;
+    text-decoration: none;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    cursor: pointer;
+}
+
+.text-secondary {
+    color: #dcdbdb !important;
+}
+
+.jumbotron {
+    max-width: 40%;
+}
+
+.head-content {
+    margin-bottom: 3rem !important;
+}
+
+.bg-yellow {
+    background-color: var(--yelow-color);
+}
+
+.icons {
+    width: fit-content;
+}
+
+hr {
+    color: var(--muted-color);
+}
+
+.page-item {
+    color: var(--primary-color) !important;
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.page-item.disabled .page-link {
+    background-color: transparent !important;
+}
+
 @media only screen and (max-width: 768px) {
+    br {
+        display: none;
+    }
     .fixed-sidebar {
         display: none;
     }
     .nav-header {
         justify-content: space-between !important;
+        margin-bottom: 1rem !important;
     }
     .nav-mobile {
         display: inline !important;
@@ -512,5 +601,16 @@ select.form-control:focus {
         padding: 0px 12px !important;
         width: 100% !important;
         margin: 0px !important;
+    }
+    .jumbotron {
+        max-width: 100% !important;
+    }
+    .asset {
+        display: flex;
+        justify-content: center;
+        height: 190px;
+    }
+    .banner {
+        max-width: 100% !important;
     }
 }

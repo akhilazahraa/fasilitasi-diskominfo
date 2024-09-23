@@ -33,20 +33,11 @@ class DatabaseSeeder extends Seeder
             'city' => 'semarang',
         ]);
 
-        Provider::create([
-            'name' => 'Telkom',
-        ]);
-
-        Provider::create([
-            'name' => 'Nexa',
-        ]);
-
-        Provider::create([
-            'name' => 'Lintasarta',
-        ]);
-
-        Provider::create([
-            'name' => 'Sijoli',
-        ]);
+        Provider::insert([
+            ['name' => 'Telkom'],
+            ['name' => 'Nexa'],
+            ['name' => 'Lintasarta'],
+            ['name' => 'Sijoli'],
+        ]);        
     }
 }

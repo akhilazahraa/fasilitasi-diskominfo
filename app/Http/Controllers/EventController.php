@@ -196,7 +196,7 @@ class EventController extends Controller
         return view('dashboard.events.index', [
             'title' => 'Fasilitasi | Acara',
             'events' => $events,
-            'selectedIsp' => $isp, // Tambahkan ini untuk mengetahui ISP yang dipilih di tampilan
+            'selectedIsp' => $isp, 
         ]);
     }
 

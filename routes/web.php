@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 
 Route::get('/login', [LoginController::class, 'index'])
     ->name('login')
@@ -50,6 +53,7 @@ Route::middleware(['auth', 'role:ADMIN'])->group(function () {
     Route::get('dashboard/user/edit/{id}', [DashboardController::class, 'editUser'])->name('dashboard.user.edit');
     Route::put('dashboard/user/{id}', [DashboardController::class, 'updateUser'])->name('dashboard.user.update');
     Route::get('dashboard/user/create', [DashboardController::class, 'createUser'])->name('dashboard.user.create');
+    Route::get('/dashboard/user/search', [DashboardController::class, 'search'])->name('user.search');
     Route::post('/dashboard/user', [DashboardController::class, 'store'])->name('dashboard.user.store');
     Route::get('/dashboard/opd/create', [OpdController::class, 'create']);
     Route::get('/dashboard/opd', [OpdController::class, 'index'])->name('dashboard.opd');

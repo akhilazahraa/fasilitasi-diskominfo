@@ -227,6 +227,8 @@
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     @stack('scripts')
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -323,6 +325,11 @@
                 allowClear: true,
             });
 
+            $('select[name="opd_id"]').select2({
+                placeholder: "Pilih Instansi",
+                allowClear: true,
+            });
+
             $('select[name="tim[]"]').select2({
                 placeholder: "Pilih Tim",
                 allowClear: true,
@@ -355,6 +362,18 @@
 
         updateDateTime();
         setInterval(updateDateTime, 1000);
+
+        $('#search').on('keyup', function() {
+            var query = $(this).val();
+            $.ajax({
+                url: "{{ route('user.search') }}", // Sesuaikan dengan route pencarian
+                type: "GET",
+                data: {'search': query},
+                success: function(data) {
+                    $('#userTable').html(data); // Ganti isi tabel
+                }
+            });
+        });
     </script>
 </body>
 

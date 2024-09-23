@@ -9,6 +9,149 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
+         @page {
+            size: A4;
+            margin: 15mm 10mm 15mm 10mm;
+            margin: 0 0 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            line-height: 1.3;
+            color: #333;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .title h2 {
+            margin: 0;
+            color: #444;
+            font-size: 18px;
+        }
+
+        .title h5 {
+            margin: 3px 0;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .main-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        .main-table th,
+        .main-table td {
+            border: 1px solid #ddd;
+            padding: 6px;
+            text-align: left;
+        }
+
+        .main-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 10px;
+        }
+
+        .main-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .summary-section {
+            margin-top: 20px;
+            border-top: 2px solid #444;
+            padding-top: 15px;
+        }
+
+        .summary-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .summary-table td {
+            padding: 5px;
+            vertical-align: top;
+            border: none;
+        }
+
+        .summary-label {
+            font-weight: bold;
+            color: #666;
+            font-size: 10px;
+        }
+
+        .summary-value {
+            color: #333;
+            font-size: 11px;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        @media print {
+            thead {
+                display: table-header-group;
+            }
+        }
+
+        body {
+            margin-top: 2cm;
+            margin-left: 2cm;
+            margin-right: 2cm;
+            margin-bottom: 2cm;
+        }
+
+        .header {
+            width: 100%;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 5px;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+
+        .company-name {
+            font-size: 18pt;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .company-address {
+            font-size: 10pt;
+            line-height: 1.3;
+        }
+
+        .document-title {
+            font-size: 16pt;
+            font-weight: bold;
+            margin-top: 15px;
+            text-align: center;
+        }
         * {
             font-family: Arial, sans-serif;
         }
@@ -52,26 +195,21 @@
 </head>
 
 <body>
-    <div class="kop-surat">
-        {{-- <div class="col">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Coat_of_arms_of_Central_Java.svg/789px-Coat_of_arms_of_Central_Java.svg.png"
-                alt="">
-        </div> --}}
-        <div class="text-center">
-            <h4 class="fw-bold mb-1">PEMERINTAH PROVINSI JAWA TENGAH</h4>
-            <h2 class="fw-bold mb-2">DINAS KOMUNIKASI DAN INFORMATIKA</h2>
-            <div class="alamat">
-                <p class="mb-0">Jalan Menteri Supeno I Nomor 2 Semarang 50234</p>
-                <p class="mb-0">Telepone 024-8319140 Faksimile (024)8319328</p>
-                <p class="mb-0">
-                    Laman:
-                    <a href="http://diskominfo.jatengprov.go.id">http://diskominfo.jatengprov.go.id</a>
-                    Surat Elektronik:
-                    <a href="mailto:diskominfo@jatengprov.go.id">diskominfo@jatengprov.go.id</a>
-                </p>
-            </div>
-        </div>
-    </div>
+    <table class="header" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="25%" style="vertical-align: top; padding-right: 15px; padding-bottom: 10px">
+                <img src="{{ public_path('image/logo.png') }}" alt="Batu Keriting Logo" class="logo">
+            </td>
+            <td width="75%" style="vertical-align: top;">
+                <div class="company-name">PT Batu Rambut Indonesia</div>
+                <div class="company-address">
+                    Jalan Gundul Perkasa (RT 00/RW 00) No. 404, Kel. Botak Cemerlang,<br>
+                    Kec. Bekasi Berkilau, 90210<br>
+                    Telp: 0856-BATU-KECE (0856-2288-5323) | Email: info@batukerenrambut.com
+                </div>
+            </td>
+        </tr>
+    </table>
     <div class="divider"></div>
     <div class="mb-4">
         <div class="text-center">

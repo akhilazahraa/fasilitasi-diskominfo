@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-lg-6 mb-4">
                     <label class="form-label">Instansi</label>
-                    <select name="opd_id" class="form-control" required>
+                    <select name="opd_id" class="form-control" id="opd_id" required>
                         <option value="">Pilih OPD</option>
                         @foreach ($instansis as $instansi)
                             <option value="{{ $instansi->id }}">

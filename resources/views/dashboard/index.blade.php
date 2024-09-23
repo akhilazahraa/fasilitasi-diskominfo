@@ -1,5 +1,5 @@
 @extends('layouts.admin') @section('container')
-    <div class="content-wrapper py-4">
+    <div class="content-wrapper">
         <div class="heading mb-4">
             <h1 class="fs-2">Dashboard</h1>
             <p id="currentDateTime" class="text-muted-foreground">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 mt-4">
+                <div class="col-lg-6 mt-lg-4">
                     <div class="card border">
                         <p class="fw-semibold text-primary mb-2">ISP</p>
                         <div class="d-flex justify-content-center">

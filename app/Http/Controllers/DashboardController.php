@@ -75,10 +75,9 @@ class DashboardController extends Controller
         return redirect()->back()->with('success', 'Profil Anda berhasil diperbarui!');
     }
 
-
     public function showUser(User $user)
     {
-        $user = User::all();
+        $user = User::paginate(1);
 
         return view('dashboard.user.index', [
             'title' => 'Fasilitasi | User',
@@ -104,7 +103,7 @@ class DashboardController extends Controller
             'phonenumber' => 'nullable',
             'address' => 'nullable',
             'city' => 'nullable',
-            'role' => 'required|in:ADMIN,USER', 
+            'role' => 'required|in:ADMIN,USER',
         ]);
 
         $user = User::findOrFail($id);
@@ -114,24 +113,50 @@ class DashboardController extends Controller
         return redirect()->route('dashboard.user')->with('success', 'Profil pengguna berhasil diperbarui!');
     }
 
-    public function createUser(){
+    public function createUser()
+    {
         return view('dashboard.user.create.index', [
-            'title' => 'Fasilitasi | Tambah User'
+            'title' => 'Fasilitasi | Tambah User',
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $validatedData = $request->validate([
-            'name' => "required",
-            'email' => "required|email:dns",
-            'password' => "required",
-            'phonenumber' => 'nullable'
+            'name' => 'required',
+            'email' => 'required|email:dns',
+            'password' => 'required',
+            'phonenumber' => 'nullable',
         ]);
 
-        $validatedData["password"] = bcrypt($validatedData["password"]);
+        $validatedData['password'] = bcrypt($validatedData['password']);
 
         User::create($validatedData);
 
         return redirect()->route('dashboard.user')->with('success', 'User berhasil ditambahkan!');
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $title = 'Daftar Pengguna'; // Definisikan variabel title
+    
+        $user = User::query()
+            ->when($search, function ($query, $search) {
+                return $query
+                    ->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('phonenumber', 'like', '%' . $search . '%');
+            })
+            ->paginate(10);
+    
+        // Return HTML table directly if it's an AJAX request
+        if ($request->ajax()) {
+            return view('dashboard.user.table', compact('user'))->render(); // Kembalikan view isi tabel
+        }
+    
+        // Sertakan variabel title saat mengirim data ke view
+        return view('dashboard.user.index', compact('user', 'title'));
+    }
+    
 }
